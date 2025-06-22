@@ -1,7 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Suspense, lazy } from 'react'
-import Header from './components/header'
-import Footer from './components/footer'
 import './App.css'
 
 const Landing = lazy(() => import('./pages/landing'))
@@ -12,7 +10,6 @@ const Application = lazy(() => import('./pages/application'))
 function App() {
   return (
     <Router>
-      <Header />
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<Landing />} />
@@ -21,7 +18,6 @@ function App() {
           <Route path="/application" element={<Application />} />
         </Routes>
       </Suspense>
-      <Footer />
     </Router>
   )
 }

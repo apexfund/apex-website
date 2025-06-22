@@ -1,8 +1,7 @@
 import React from 'react'
-import './components.css'
 
 const Footer = () => (
-  <footer className="footer">
+  <footer className="text-center p-4 bg-black text-white">
     &copy; {new Date().getFullYear()} Apex. All rights reserved.
   </footer>
 )
