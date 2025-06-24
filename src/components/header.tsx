@@ -32,7 +32,7 @@ const Header = () => {
                 to={to}
                 end={exact}
                 className={({ isActive }) =>
-                  `relative text-[#121212] transition-colors hover:text-[#96BFCF]
+                  `relative !text-[#121212] transition-colors hover:!text-[#96BFCF]
                   after:absolute after:-bottom-1 after:left-0 after:right-0 after:h-[2px]
                   ${isActive ? 'after:bg-[#96BFCF]' : 'after:bg-transparent'}`
                 }
@@ -62,7 +62,7 @@ const Header = () => {
                 end={exact}
                 onClick={() => setIsOpen(false)}
                 className={({ isActive }) =>
-                  `relative block !m-5 w-max text-[#121212] transition-colors hover:text-[#96BFCF]
+                  `relative block !m-5 w-max !text-[#121212] transition-colors hover:!text-[#96BFCF]
                   after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px]
                   ${isActive ? 'after:bg-[#96BFCF]' : 'after:bg-transparent'}`
                 }
