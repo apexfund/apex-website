@@ -15,18 +15,17 @@ const Header = () => {
 
   return (
     <header className="bg-[#F1EDEE]">
-      {/* <div className="max-w-7xl mx-auto px-6 sm:px-8"> */}
-      <div className="">
-        <nav className="flex items-center h-20 px-4 sm:px-6 w-full">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8">
+        <nav className="flex items-center justify-between h-20">
           {/* Left Logo */}
-          <div className="pt-3 pb-2">
+          <div className="pt-3 pb-2 flex-shrink-0 !ml-5 !mt-3">
             <NavLink to="/" className="flex items-center max-w-[170px]">
               <img src={logo} alt="Apex Fund Logo" className="w-auto" />
             </NavLink>
           </div>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex gap-8 text-base ml-8">
+          {/* Desktop Nav - Positioned to the right */}
+          <div className="hidden md:flex gap-8 text-base !mr-16">
             {navLinks.map(({ to, label, exact }) => (
               <NavLink
                 key={to}
@@ -45,7 +44,7 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-[#121212] ml-auto"
+            className="md:hidden text-[#121212] !mr-5"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
@@ -53,7 +52,7 @@ const Header = () => {
           </button>
         </nav>
 
-        {/* Mobile Dropdown */}
+        {/* Mobile Nav - Hidden by default, shown when isOpen is true */}
         {isOpen && (
           <div className="md:hidden pt-6 pl-6 pr-4 pb-4 space-y-4 text-sm">
             {navLinks.map(({ to, label, exact }) => (
@@ -63,18 +62,16 @@ const Header = () => {
                 end={exact}
                 onClick={() => setIsOpen(false)}
                 className={({ isActive }) =>
-                          `relative block w-max text-[#121212] transition-colors hover:text-[#96BFCF]
-                          after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px]
-                          ${isActive ? 'after:bg-[#96BFCF]' : 'after:bg-transparent'}`
+                  `relative block !m-5 w-max text-[#121212] transition-colors hover:text-[#96BFCF]
+                  after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px]
+                  ${isActive ? 'after:bg-[#96BFCF]' : 'after:bg-transparent'}`
                 }
-
               >
                 {label}
               </NavLink>
             ))}
           </div>
         )}
-
       </div>
     </header>
   )
