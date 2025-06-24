@@ -1,8 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import Header from '../components/header'
 import Footer from '../components/footer'
-import heroImg from '../assets/nyse.jpg'
-import workImg from '../assets/work.png'
+
 
 const updates = [
   { id: '01', title: 'Fall 2025 Recruiting.', desc: 'Applications for Fall 2025 recruiting cycle are out for Quant and Fundamental.' },
@@ -16,7 +15,7 @@ const Landing = () => {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [slideProgress, setSlideProgress] = useState(0)
   
-  const SLIDE_DURATION = 5000 // 4 seconds per slide
+  const SLIDE_DURATION = 5000 // 5 seconds per slide
 
   const goToSlide = (index) => {
     setCurrentSlide(index)
@@ -53,7 +52,7 @@ const Landing = () => {
 
   // Slot machine animation for the number
   useEffect(() => {
-    const duration = 5000 // 3.5 seconds (slower)
+    const duration = 5000 // 5 seconds
     const targetNumber = 15000
     const startTime = Date.now()
     
@@ -91,20 +90,11 @@ const Landing = () => {
       <Header />
       
       <div className="!m-10">
-        {/* Hero Section - Pushed Much More to the Right */}
+        {/* Hero Section with Side-by-Side Layout */}
         <section className="relative px-6 sm:px-8 py-12 max-w-7xl mx-auto">
-          <div className="!ml-20 flex flex-col lg:flex-row items-start gap-8 !lg:ml-32 !xl:ml-48">
-            {/* NYSE Image - Left of Text on Large Screens, Below on Small */}
-            <div className="flex-shrink-0 mr-0 lg:mr-16 order-2 lg:order-1">
-              <img 
-                src={heroImg} 
-                alt="NYSE Building" 
-                className="w-80 h-64 lg:w-96 lg:h-80 xl:w-[28rem] xl:h-96 rounded-lg object-cover shadow-lg" 
-              />
-            </div>
-
-            {/* Hero Text - Much Larger and More to the Right */}
-            <div className="flex-1 lg:max-w-2xl order-1 lg:order-2">
+          <div className="!ml-20 flex flex-col lg:flex-row lg:items-start lg:gap-12 xl:gap-16 !lg:ml-32 !xl:ml-48">
+            {/* Hero Text - Left Side */}
+            <div className="flex-1 lg:max-w-2xl">
               <h1 className="!text-5xl sm:text-7xl lg:text-8xl xl:text-9xl font-black !mb-8 !leading-tight !tracking-tight !text-left">
                 Real Assets,<br />Managed by Students
               </h1>
@@ -115,23 +105,9 @@ const Landing = () => {
                 <strong className="text-[#96BFCF] font-bold"> fundamental analysis</strong>.
               </p>
             </div>
-          </div>
-        </section>
 
-        {/* Second Image and Horizontal Carousel Section */}
-        <section className="px-6 sm:px-8 pt-8 pb-12 max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row items-start gap-8">
-            {/* Second Image - Positioned More to the Right to Match Figma */}
-            <div className="flex-shrink-0 lg:ml-48 xl:ml-64">
-              <img 
-                src={workImg} 
-                alt="Wall Street Trading Floor" 
-                className="w-72 h-56 lg:w-80 lg:h-64 xl:w-96 xl:h-72 rounded-lg object-cover shadow-lg" 
-              />
-            </div>
-
-            {/* Auto-Playing News Slideshow */}
-            <div className="flex-1 lg:ml-8 !mt-5 !ml-5">
+            {/* Carousel - Right Side on Desktop, Below on Mobile */}
+            <div className="w-full lg:w-96 xl:w-[400px] flex-shrink-0 mt-12 lg:mt-0">
               <h2 className="!mb-5 !text-2xl !font-bold !text-left">
                 <span className="border-b-2 border-black pb-2 inline-block font-bold">See what we've been working on...</span>
               </h2>

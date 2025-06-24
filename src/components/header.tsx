@@ -14,7 +14,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <header className="bg-[#F1EDEE]">
+    <header className="bg-[#F1EDEE] sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         <nav className="flex items-center justify-between h-20">
           {/* Left Logo */}

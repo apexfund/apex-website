@@ -11,12 +11,10 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.10",
+    "animejs": "^4.0.2",
     "buffer": "^6.0.3",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.522.0",
-    "@tailwindcss/vite": "^4.1.10",
-    "buffer": "^6.0.3",
-    "gray-matter": "^4.0.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-markdown": "^10.1.0",
