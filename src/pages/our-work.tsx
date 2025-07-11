@@ -10,8 +10,8 @@ export default function OurWork() {
       <Header />
       <main className="flex-grow flex flex-col justify-center items-center p-8">
         <div className='w-full h-full'>
-          <h1 className="text-4xl font-bold text-center mb-4">Strategies and Reportings</h1>
-            <p className="text-center text-gray-600 mb-8">
+          <h1 className="text-4xl font-bold text-center mb-4 text-gray-900">Strategies and Reportings</h1>
+            <p className="text-center text-gray-700 mb-8">
             All of Apex Fund's news, outlined strategies, and past research.
             </p>
             <div className="space-y-4">

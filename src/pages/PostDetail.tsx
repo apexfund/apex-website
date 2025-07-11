@@ -17,12 +17,12 @@ export default function PostDetail() {
 
   return (
     <article className="max-w-3xl mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-2">{post.meta.title}</h1>
-      <div className="flex justify-between text-gray-600 text-sm mb-6">
+      <h1 className="text-4xl font-bold mb-2 text-gray-900">{post.meta.title}</h1>
+      <div className="flex justify-between text-gray-700 text-sm mb-6">
         <span>{formatted}</span>
         {post.meta.category && <span className="uppercase">{post.meta.category}</span>}
       </div>
-      <div className="prose prose-lg">
+      <div className="prose prose-lg prose-headings:text-gray-900 prose-p:text-gray-800 prose-strong:text-gray-900">
         <ReactMarkdown>
           {post.content}
         </ReactMarkdown>

@@ -9,8 +9,7 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(0, 0, 0, 0.87);
+  color-scheme: light;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -20,4 +19,25 @@
 
 html, body, #root {
   height: 100%;
+}
+
+html:not(.dark) {
+  color: #374151;
+}
+
+html:not(.dark) .prose {
+  color: #374151;
+}
+
+html:not(.dark) .prose h1,
+html:not(.dark) .prose h2,
+html:not(.dark) .prose h3,
+html:not(.dark) .prose h4,
+html:not(.dark) .prose h5,
+html:not(.dark) .prose h6 {
+  color: #111827;
+}
+
+html:not(.dark) .prose p {
+  color: #374151;
 }

@@ -14,12 +14,12 @@ export default function PostCard({ meta }: Props) {
       <Link to={`/our-work/${meta.slug}`} className="block text-2xl font-bold hover:underline">
         {meta.title}
       </Link>
-      <div className="flex justify-between text-sm text-gray-600 mt-1">
+      <div className="flex justify-between text-sm text-gray-700 mt-1">
         <span>{formatted}</span>
         {meta.category && <span className="uppercase">{meta.category}</span>}
       </div>
       {meta.description && (
-        <p className="mt-2 text-gray-700">
+        <p className="mt-2 text-gray-800">
           {meta.description}
         </p>
       )}
