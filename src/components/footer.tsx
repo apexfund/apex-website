@@ -1,11 +1,8 @@
-import React from 'react'
 import footerBg from '../assets/footer.svg'
 
 const Footer = () => (
   <footer className="relative text-white">
     {/* SVG Wave Background Section */}
-    <div
-      className="w-full h-64 bg-cover bg-top bg-no-repeat"
     <div 
       className="w-full h-60 bg-cover bg-top bg-no-repeat"
       style={{
@@ -128,12 +125,10 @@ const Footer = () => (
           </div>
           
         </div>
-        
         {/* Bottom Section - EST. 2020 */}
         <div className="!mt-16 !flex !justify-center lg:!justify-end">
           <span className="!text-lg !font-semibold !text-gray-200">EST. 2020</span>
         </div>
-        
       </div>
     </div>
   </footer>

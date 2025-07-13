@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Header from '../components/header'
 import Footer from '../components/footer'
 
@@ -17,7 +17,7 @@ const Landing = () => {
   
   const SLIDE_DURATION = 5000 // 5 seconds per slide
 
-  const goToSlide = (index) => {
+  const goToSlide = (index: number) => {
     setCurrentSlide(index)
     setSlideProgress(0)
   }
