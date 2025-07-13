@@ -4,6 +4,8 @@ import footerBg from '../assets/footer.svg'
 const Footer = () => (
   <footer className="relative text-white">
     {/* SVG Wave Background Section */}
+    <div
+      className="w-full h-64 bg-cover bg-top bg-no-repeat"
     <div 
       className="w-full h-60 bg-cover bg-top bg-no-repeat"
       style={{
@@ -13,99 +15,115 @@ const Footer = () => (
         backgroundRepeat: 'no-repeat'
       }}
     />
-    
+
     {/* Content Section with solid background */}
     <div 
       className="w-full"
       style={{ backgroundColor: '#5B7E9A' }}
     >
-      <div className="!container !mx-auto !px-6 sm:!px-12 !py-16">
-        {/* Main Content Layout */}
-        <div className="!flex !flex-col lg:!flex-row lg:!justify-between lg:!items-start !gap-12 lg:!gap-16">
-          
-          {/* Left Side - Logo and Company Name */}
-          <div className="!flex !flex-col !items-start lg:!items-start">
-            <div className="!w-20 !h-20 !bg-gray-200 !rounded-full !mb-4"></div>
-            <h3 className="!text-xl !font-medium">Apex Fund</h3>
+      <div className="mx-auto max-w-11/12">
+        <div className="!mx-4 md:mx-8">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-15 mb-12">
+
+            {/* Logo Section */}
+            <div className="flex flex-col items-center md:items-start !m-5">
+              <div className="w-30 h-30 bg-white rounded-full mb-4 flex items-center justify-center">
+                <span className="text-blue-600 font-bold text-lg">AF</span>
+              </div>
+            </div>
+
+            {/* Contact Us */}
+            <div className="m-5">
+              <span className="text-white font-semibold text-xl mb-2">Contact Us</span>
+              <div className="w-full h-0.5 bg-white mb-4"></div>
+              <ul className="space-y-2">
+                <li>
+                  <a href="mailto:contact@apexfund.com" className="text-blue-200 hover:text-white transition-colors text-sm">
+                    Email
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-blue-200 hover:text-white transition-colors text-sm">
+                    TerpLink
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Get Involved */}
+            <div className="m-5">
+              <span className="text-white font-semibold text-lg mb-2">Get Involved</span>
+              <div className="w-full h-0.5 bg-white mb-4"></div>
+              <ul className="space-y-2">
+                <li>
+                  <a href="#" className="text-blue-200 hover:text-white transition-colors text-sm">
+                    Training
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-blue-200 hover:text-white transition-colors text-sm">
+                    Apply
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Our Team */}
+            <div className="m-5">
+              <span className="text-white font-semibold text-lg mb-2">Our Team</span>
+              <div className="w-full h-0.5 bg-white mb-4"></div>
+              <ul className="space-y-2">
+                <li>
+                  <a href="#" className="text-blue-200 hover:text-white transition-colors text-sm">
+                    Executive Team
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-blue-200 hover:text-white transition-colors text-sm">
+                    Investment Team
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Learn More */}
+            <div className="m-5">
+              <span className="text-white font-semibold text-lg mb-2">Learn More</span>
+              <div className="w-full h-0.5 bg-white mb-4"></div>
+              <ul className="space-y-2">
+                <li>
+                  <a href="#" className="text-blue-200 hover:text-white transition-colors text-sm">
+                    About Us
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-blue-200 hover:text-white transition-colors text-sm">
+                    Blog
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-blue-200 hover:text-white transition-colors text-sm">
+                    Placements
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
-          
-          {/* Right Side - Footer Links */}
-          <div className="!flex-1">
-            <div className="!grid !grid-cols-1 sm:!grid-cols-2 lg:!grid-cols-4 !gap-8 lg:!gap-12">
-              
-              {/* Contact Us */}
-              <div>
-                <h4 className="!font-bold !text-lg !mb-3 !pb-2 !border-b !border-white !border-solid">Contact Us</h4>
-                <ul className="!space-y-2 !mt-4">
-                  <li>
-                    <a href="mailto:contact@apexfund.com" className="!text-gray-200 hover:!text-white !transition-colors">
-                      Email
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://terplink.umd.edu/organization/apexfund" target="_blank" rel="noopener noreferrer" className="!text-gray-200 hover:!text-white !transition-colors">
-                      TerpLink
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              
-              {/* Get Involved */}
-              <div>
-                <h4 className="!font-bold !text-lg !mb-3 !pb-2 !border-b !border-white !border-solid">Get Involved</h4>
-                <ul className="!space-y-2 !mt-4">
-                  <li>
-                    <a href="/application" className="!text-gray-200 hover:!text-white !transition-colors">
-                      Training
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/application" className="!text-gray-200 hover:!text-white !transition-colors">
-                      Apply
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              
-              {/* Our Team */}
-              <div>
-                <h4 className="!font-bold !text-lg !mb-3 !pb-2 !border-b !border-white !border-solid">Our Team</h4>
-                <ul className="!space-y-2 !mt-4">
-                  <li>
-                    <a href="/meet-the-team" className="!text-gray-200 hover:!text-white !transition-colors">
-                      Executive Team
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/meet-the-team" className="!text-gray-200 hover:!text-white !transition-colors">
-                      Investment Team
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              
-              {/* Learn More */}
-              <div>
-                <h4 className="!font-bold !text-lg !mb-3 !pb-2 !border-b !border-white !border-solid">Learn More</h4>
-                <ul className="!space-y-2 !mt-4">
-                  <li>
-                    <a href="/about" className="!text-gray-200 hover:!text-white !transition-colors">
-                      About Us
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/blog" className="!text-gray-200 hover:!text-white !transition-colors">
-                      Blog
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://google.com" target="_blank" rel="noopener noreferrer" className="!text-gray-200 hover:!text-white !transition-colors">
-                      Placement
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              
+
+          {/* Empty row to add height */}
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-12">
+            <div className="m-5 h-5"></div>
+          </div>
+
+          {/* Bottom Section */}
+          <div className="border-t border-blue-300 border-opacity-30 pt-4 mt-8">
+            <div className="flex flex-col md:flex-row justify-between items-center">
+              <span className="text-white font-bold text-xl mb-4 md:mb-0">
+                Apex Fund
+              </span>
+              <span className="text-white font-bold text-xl">
+                EST. 2020
+              </span>
             </div>
           </div>
           
