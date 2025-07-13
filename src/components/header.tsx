@@ -16,10 +16,10 @@ const Header = () => {
   return (
     <header className="bg-[#F1EDEE] sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
-        <nav className="flex items-center justify-between h-20">
+        <nav className="flex items-center justify-between h-32"> {/* Increased height from h-20 to h-32 */}
           {/* Left Logo */}
-          <div className="pt-3 pb-2 flex-shrink-0 !ml-5 !mt-3">
-            <NavLink to="/" className="flex items-center max-w-[170px]">
+          <div className="pt-6 pb-4 flex-shrink-0 !ml-5 !mt-3"> {/* Increased pt and pb for more vertical space */}
+            <NavLink to="/" className="flex items-center max-w-[220px]"> {/* Increased max-w for larger logo */}
               <img src={logo} alt="Apex Fund Logo" className="w-auto" />
             </NavLink>
           </div>

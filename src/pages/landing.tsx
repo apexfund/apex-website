@@ -95,7 +95,9 @@ const Landing = () => {
           <div className="!ml-20 flex flex-col lg:flex-row lg:items-start lg:gap-12 xl:gap-16 !lg:ml-32 !xl:ml-48">
             {/* Hero Text - Left Side */}
             <div className="flex-1 lg:max-w-2xl">
-              <h1 className="!text-5xl sm:text-7xl lg:text-8xl xl:text-9xl font-black !mb-8 !leading-tight !tracking-tight !text-left">
+              <h1 className="!text-7xl !mb-8 !leading-tight !tracking-tight !text-left"
+                style={{ fontFamily: "'PP-Neue-World', serif" }}
+              >
                 Real Assets,<br />Managed by Students
               </h1>
               <p className="text-lg sm:text-xl lg:text-2xl text-left font-light leading-relaxed max-w-3xl">
