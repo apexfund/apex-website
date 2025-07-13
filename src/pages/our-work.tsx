@@ -6,19 +6,31 @@ import Footer from '../components/footer';
 
 export default function OurWork() {
   return (
-    <div className="flex flex-col min-h-screen bg-[#F1EDEE]">
+    <div
+      className="flex flex-col min-h-screen bg-[#F1EDEE]"
+      style={{ fontFamily: 'Inter, sans-serif' }}
+    >
       <Header />
-      <main className="flex-grow flex flex-col justify-center items-center p-8">
-        <div className='w-full h-full'>
-          <h1 className="text-4xl font-bold text-center mb-4 text-gray-900">Strategies and Reportings</h1>
-            <p className="text-center text-gray-700 mb-8">
-            All of Apex Fund's news, outlined strategies, and past research.
-            </p>
-            <div className="space-y-4">
-              {allPosts.map(p => (
-                <PostCard key={p.meta.slug} meta={p.meta} />
-              ))}
-            </div>
+      <main className="flex-grow flex flex-col items-center !p-20">
+        <h1
+          className="!mb-2 !text-left !w-full !max-w-3xl !text-3xl sm:!text-4xl md:!text-5xl lg:!text-6xl"
+          style={{ fontFamily: "'PP-Neue-World', serif" }}
+        >
+          Strategies and Reportings
+        </h1>
+        <p
+          style={{ fontFamily: "'Untitled-Sans', sans-serif", fontSize: 18, color: '#555', marginBottom: 30 }}
+          className="text-left w-full max-w-3xl"
+        >
+          All of Apex Fund's news, outlined strategies, and past research.
+        </p>
+        <div className="max-w-3xl w-full px-4 sm:px-8">
+          {allPosts.map((post, idx) => (
+            <React.Fragment key={post.meta.slug}>
+              {idx !== 0 && <hr className="!my-5 border-gray-300" />}
+              <PostCard meta={post.meta} />
+            </React.Fragment>
+          ))}
         </div>
       </main>
       <Footer />

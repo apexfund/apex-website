@@ -4,6 +4,43 @@
 @tailwind base;
 @tailwind components;
 
+@font-face {
+  font-family: 'PP-Neue-World';
+  src: url('./assets/fonts/PPNeueWorld/PPNeueWorld-SuperCondensedLight.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'PP-Neue-World';
+  src: url('./assets/fonts/PPNeueWorld/PPNeueWorld-Thin.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'PP-Neue-World';
+  src: url('./assets/fonts/PPNeueWorld/PPNeueWorld-SemiCondensedUltrabold.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'PP-Neue-World';
+  src: url('./assets/fonts/PPNeueWorld/PPNeueWorld-SemiExtendedBlack.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'PP-Neue-World';
+  src: url('./assets/fonts/PPNeueWorld/PPNeueWorld-CondensedRegular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'PP-Neue-World';
+  src: url('./assets/fonts/PPNeueWorld/PPNeueWorld-ExtendedThin.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+}
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
