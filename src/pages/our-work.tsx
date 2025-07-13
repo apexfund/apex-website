@@ -11,7 +11,7 @@ export default function OurWork() {
       style={{ fontFamily: 'Inter, sans-serif' }}
     >
       <Header />
-      <main className="flex-grow flex flex-col items-center !p-20">
+      <main className="flex-grow flex flex-col items-center p-20">
         <h1
           className="!mb-2 !text-left !w-full !max-w-3xl !text-3xl sm:!text-4xl md:!text-5xl lg:!text-6xl"
           style={{ fontFamily: "'PP-Neue-World', serif" }}

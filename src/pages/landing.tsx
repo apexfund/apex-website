@@ -53,7 +53,7 @@ const Landing = () => {
   // Slot machine animation for the number
   useEffect(() => {
     const duration = 5000 // 5 seconds
-    const targetNumber = 15000
+    const targetNumber = 15780
     const startTime = Date.now()
     
     const animateNumber = () => {
@@ -111,7 +111,7 @@ const Landing = () => {
             {/* Carousel - Right Side on Desktop, Below on Mobile */}
             <div className="w-full lg:w-96 xl:w-[400px] flex-shrink-0 mt-12 lg:mt-0">
               <h2 className="!mb-5 !text-2xl !font-bold !text-left">
-                <span className="border-b-2 border-black pb-2 inline-block font-bold">See what we've been working on...</span>
+                <span className="border-b-2 border-black pb-2 inline-block font-bold sm:!pt-10">See what we've been working on...</span>
               </h2>
               
               <div className="relative overflow-hidden rounded-lg">
