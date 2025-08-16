@@ -39,7 +39,7 @@ const Footer = () => (
                 <h4 className="!font-bold !text-lg !mb-3 !pb-2 !border-b !border-white !border-solid">Contact Us</h4>
                 <ul className="!space-y-2 !mt-4">
                   <li>
-                    <a href="mailto:contact@apexfund.com" className="!text-gray-200 hover:!text-white !transition-colors">
+                    <a href="mailto:apexfundquant@gmail.com" className="!text-gray-200 hover:!text-white !transition-colors">
                       Email
                     </a>
                   </li>

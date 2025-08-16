@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import Header from '../components/header'
 import Footer from '../components/footer'
+import PlacementsImg from '../assets/companies.png'
 
 
 const updates = [
@@ -157,6 +158,24 @@ const Landing = () => {
                   />
                 ))}
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Member Placements Section */}
+        <section className="px-6 sm:px-8 pt-32 pb-20 max-w-7xl mx-auto">
+          <div className="!ml-20 !lg:ml-32 !xl:ml-48">
+            <h2 
+              className="!text-6xl !mt-12 !mb-6 !leading-tight !tracking-tight text-left"
+              style={{ fontFamily: "'PP-Neue-World', serif" }}
+            >
+              Member Placements
+            </h2>
+            <p className="text-base sm:text-lg font-light leading-relaxed max-w-4xl mb-12 text-left">
+              Our members have secured positions at some of the top firms in the industry, a testament to the skills and experience gained through Apex.
+            </p>
+            <div className="flex items-center px-4">
+              <img src={PlacementsImg} alt="Company Logos of member placements" className="max-w-full h-auto" />
             </div>
           </div>
         </section>
