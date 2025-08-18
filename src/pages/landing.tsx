@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import PlacementsImg from '../assets/companies.png'
+import NyseImg from '../assets/nyse.jpg'
 
 
 const updates = [
@@ -93,7 +95,7 @@ const Landing = () => {
       <div className="!m-10">
         {/* Hero Section with Side-by-Side Layout */}
         <section className="relative px-6 sm:px-8 py-12 max-w-7xl mx-auto">
-          <div className="!ml-20 flex flex-col lg:flex-row lg:items-start lg:gap-12 xl:gap-16 !lg:ml-32 !xl:ml-48">
+          <div className="ml-0 md:!ml-20 flex flex-col lg:flex-row lg:items-start lg:gap-12 xl:gap-16 !lg:ml-32 !xl:ml-48">
             {/* Hero Text - Left Side */}
             <div className="flex-1 lg:max-w-2xl">
               <h1 className="!text-7xl !mb-8 !leading-tight !tracking-tight !text-left"
@@ -162,9 +164,38 @@ const Landing = () => {
           </div>
         </section>
 
+        {/* Mission Statement Section */}
+        <section className="px-6 sm:px-8 !pt-32 pb-24 max-w-7xl mx-auto">
+          <div className="ml-0 md:!ml-20 !lg:ml-32 !xl:ml-48">
+            <div className="flex flex-col md:flex-row-reverse md:items-center">
+              {/* Right Column on Desktop: Title */}
+              <div className="flex-shrink-0 md:w-1/3">
+                <h2 
+                  className="!text-6xl !leading-tight !tracking-tight text-left md:text-right text-[#96BFCF]"
+                  style={{ fontFamily: "'PP-Neue-World', serif" }}
+                >
+                  Our
+                  <br />
+                  Mission.
+                </h2>
+              </div>
+
+              {/* Divider */}
+              <div className="hidden md:block w-1 bg-gray-300 self-stretch mx-12"></div>
+
+              {/* Left Column on Desktop: Statement */}
+              <div className="flex-1 mt-6 md:mt-0">
+                <p className="!text-2xl lg:!text-3xl font-light leading-relaxed text-gray-800">
+                  To provide <strong className="font-semibold text-black">real-world financial experience</strong> to students by managing a <strong className="font-semibold text-black">diversified portfolio</strong>, fostering crucial <strong className="font-semibold text-black">analytical skills</strong>, and building a community of <strong className="font-semibold text-black">future financial leaders</strong>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Member Placements Section */}
         <section className="px-6 sm:px-8 pt-32 pb-20 max-w-7xl mx-auto">
-          <div className="!ml-20 !lg:ml-32 !xl:ml-48">
+          <div className="ml-0 md:!ml-20 !lg:ml-32 !xl:ml-48">
             <h2 
               className="!text-6xl !mt-12 !mb-6 !leading-tight !tracking-tight text-left"
               style={{ fontFamily: "'PP-Neue-World', serif" }}
@@ -179,6 +210,49 @@ const Landing = () => {
             </div>
           </div>
         </section>
+
+        <div className="relative h-16 ml-0 md:!ml-20 !lg:ml-32 !xl:ml-48">
+            <div className="absolute top-0 left-0 h-0.5 bg-gray-300 w-1/3"></div>
+            <div className="absolute top-0 left-0 w-0.5 bg-gray-300 h-1/3"></div>
+        </div>
+
+        {/* Call to Action Grid Section */}
+        <section className="px-6 sm:px-8 py-24 max-w-7xl mx-auto">
+          <div className="ml-0 md:!ml-20 !lg:ml-32 !xl:ml-48">
+            <div className="flex flex-col md:grid md:grid-cols-2 md:gap-4 md:h-[600px] border border-gray-300 rounded-lg p-4">
+              {/* Top-Left: Image */}
+              <div className="col-span-1 row-span-1 mb-4 md:mb-0 order-4 md:order-none">
+                <img src={NyseImg} alt="New York Stock Exchange" className="w-full h-48 md:h-full object-cover rounded-lg" />
+              </div>
+
+              {/* Top-Right: Meet Our Team */}
+              <Link to="/meet-the-team" className="col-span-1 row-span-1 bg-gray-200 rounded-lg flex items-center justify-center text-center !p-8 hover:bg-gray-300 transition-colors duration-300 my-4 md:my-0 order-1 md:order-none">
+                <div>
+                  <h3 className="!text-4xl font-bold" style={{ fontFamily: "'PP-Neue-World', serif" }}>Meet Our Team</h3>
+                  <p className="mt-2 text-lg">Explore the talent behind Apex.</p>
+                </div>
+              </Link>
+
+              {/* Bottom-Left: View Our Work */}
+              <Link to="/our-work" className="col-span-1 row-span-1 bg-gray-200 rounded-lg flex items-center justify-center text-center !p-8 hover:bg-gray-300 transition-colors duration-300 my-4 md:my-0 order-3 md:order-none">
+                <div>
+                  <h3 className="!text-4xl font-bold" style={{ fontFamily: "'PP-Neue-World', serif" }}>View Our Work</h3>
+                  <p className="mt-2 text-lg">See our strategies and results.</p>
+                </div>
+              </Link>
+
+              {/* Bottom-Right: Image */}
+              <div className="col-span-1 row-span-1 order-2 md:order-none">
+                <img src={PlacementsImg} alt="Team working" className="w-full h-48 md:h-full object-cover rounded-lg" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div className="relative h-16 ml-0 md:!ml-20 !lg:ml-32 !xl:ml-48">
+            <div className="absolute bottom-0 right-0 h-0.5 bg-gray-300 w-1/3"></div>
+            <div className="absolute bottom-0 right-0 w-0.5 bg-gray-300 h-1/3"></div>
+        </div>
       </div>
 
       <Footer />
