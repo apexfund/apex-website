@@ -23,7 +23,7 @@ const Application = () => (
           <h2 className="!text-5xl text-center underline underline-offset-4 !mb-8" style={{ fontFamily: "'PP-Neue-World', serif" }}>Fundamental</h2>
           <p className="text-base text-gray-700 mb-8 text-center max-w-md">
             <span className="font-semibold">Click the following link to apply for this team:</span><br />
-            <a href="https://example.com/fundamental-application" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline font-bold">Apply for Fundamental</a>
+            <a href="https://example.com/fundamental-application" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline font-bold hover:!text-[#96BFCF]">Apply for Fundamental</a>
           </p>
           <h3 className="text-xl font-bold underline underline-offset-4 mb-3 mt-2">How to Prepare</h3>
           <ul className="list-disc list-inside text-gray-600 mb-8 text-left max-w-md space-y-2">
@@ -60,7 +60,7 @@ const Application = () => (
           <h2 className="!text-5xl text-center underline underline-offset-4 !mb-8" style={{ fontFamily: "'PP-Neue-World', serif" }}>Quantitative</h2>
           <p className="text-base text-gray-700 mb-8 text-center max-w-md">
             <span className="font-semibold">Click the following link to apply for this team:</span><br />
-            <a href="https://example.com/quantitative-application" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline font-bold">Apply for Quantitative</a>
+            <a href="https://example.com/quantitative-application" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline font-bold hover:!text-[#96BFCF]">Apply for Quantitative</a>
           </p>
           <h3 className="text-xl font-bold underline underline-offset-4 mb-3 mt-2">How to Prepare</h3>
           <ul className="list-disc list-inside text-gray-600 mb-8 text-left max-w-md space-y-2">

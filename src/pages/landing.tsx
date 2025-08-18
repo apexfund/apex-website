@@ -17,7 +17,7 @@ const Landing = () => {
   const [animatedNumber, setAnimatedNumber] = useState(0)
   const [currentSlide, setCurrentSlide] = useState(0)
   const [slideProgress, setSlideProgress] = useState(0)
-  
+
   const SLIDE_DURATION = 5000 // 5 seconds per slide
 
   const goToSlide = (index: number) => {
@@ -58,40 +58,40 @@ const Landing = () => {
     const duration = 5000 // 5 seconds
     const targetNumber = 15780
     const startTime = Date.now()
-    
+
     const animateNumber = () => {
       const currentTime = Date.now()
       const elapsed = currentTime - startTime
       const progress = Math.min(elapsed / duration, 1)
-      
+
       // Smoother easing function
       const easeOut = 1 - Math.pow(1 - progress, 6)
-      
+
       // Much gentler randomness for smoother effect
       const randomFactor = progress < 0.7 ? (Math.random() - 0.5) * 0.05 : 0
       const currentValue = Math.floor((targetNumber * easeOut) + (targetNumber * randomFactor))
-      
+
       setAnimatedNumber(Math.max(0, Math.min(currentValue, targetNumber)))
-      
+
       if (progress < 1) {
         requestAnimationFrame(animateNumber)
       } else {
         setAnimatedNumber(targetNumber)
       }
     }
-    
+
     // Start animation after a small delay
     const timeout = setTimeout(() => {
       requestAnimationFrame(animateNumber)
     }, 800)
-    
+
     return () => clearTimeout(timeout)
   }, [])
 
   return (
     <div className="bg-[#F1EDEE] text-[#121212] min-h-screen">
       <Header />
-      
+
       <div className="!m-10">
         {/* Hero Section with Side-by-Side Layout */}
         <section className="relative px-6 sm:px-8 py-12 max-w-7xl mx-auto">
@@ -116,9 +116,9 @@ const Landing = () => {
               <h2 className="!mb-5 !text-2xl !font-bold !text-left">
                 <span className="border-b-2 border-black pb-2 inline-block font-bold sm:!pt-10">See what we've been working on...</span>
               </h2>
-              
+
               <div className="relative overflow-hidden rounded-lg">
-                <div 
+                <div
                   className="flex transition-transform duration-500 ease-in-out"
                   style={{ transform: `translateX(-${currentSlide * 100}%)` }}
                 >
@@ -131,7 +131,7 @@ const Landing = () => {
                           <h3 className="font-bold !text-2xl mb-2 leading-tight">{update.title}</h3>
                         </div>
                         <p className="text-xl text-gray-600 mb-3 flex-grow leading-relaxed">{update.desc}</p>
-                        <a href="#" className="text-sm font-semibold hover:underline text-gray-800">
+                        <a href="#" className="text-sm font-semibold hover:underline text-gray-800 hover:!text-[#96BFCF]">
                           Learn more &gt;
                         </a>
                       </div>
@@ -142,7 +142,7 @@ const Landing = () => {
 
               {/* Progress Bar */}
               <div className="mt-4 bg-gray-300 h-1 rounded-full overflow-hidden">
-                <div 
+                <div
                   className="h-full bg-[#96BFCF] transition-all duration-100 ease-linear"
                   style={{ width: `${((slideProgress) % 100)}%` }}
                 ></div>
@@ -154,9 +154,8 @@ const Landing = () => {
                   <button
                     key={index}
                     onClick={() => goToSlide(index)}
-                    className={`w-3 h-3 rounded-full transition-colors ${
-                      currentSlide === index ? 'bg-[#96BFCF]' : 'bg-gray-300'
-                    }`}
+                    className={`w-3 h-3 rounded-full transition-colors ${currentSlide === index ? 'bg-[#96BFCF]' : 'bg-gray-300'
+                      }`}
                   />
                 ))}
               </div>
