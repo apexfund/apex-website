@@ -11,28 +11,32 @@ export default function OurWork() {
       style={{ fontFamily: 'Inter, sans-serif' }}
     >
       <Header />
-      <main className="flex-grow flex flex-col items-center p-20">
-        <h1
-          className="!mb-2 !text-left !w-full !max-w-3xl !text-3xl sm:!text-4xl md:!text-5xl lg:!text-6xl"
-          style={{ fontFamily: "'PP-Neue-World', serif" }}
-        >
-          Strategies and Reportings
-        </h1>
-        <p
-          style={{ fontFamily: "'Untitled-Sans', sans-serif", fontSize: 18, color: '#555', marginBottom: 30 }}
-          className="text-left w-full max-w-3xl"
-        >
-          All of Apex Fund's news, outlined strategies, and past research.
-        </p>
-        <div className="max-w-3xl w-full px-4 sm:px-8">
-          {allPosts.map((post, idx) => (
-            <React.Fragment key={post.meta.slug}>
-              {idx !== 0 && <hr className="!my-5 border-gray-300" />}
-              <PostCard meta={post.meta} />
-            </React.Fragment>
-          ))}
+      <div className="!m-10">
+        <div className="flex justify-center">
+          <main className="flex-grow flex flex-col items-center p-6 sm:p-10">
+            <h1
+              className="!mb-2 !text-left !w-full !max-w-3xl !text-3xl sm:!text-4xl md:!text-5xl lg:!text-6xl"
+              style={{ fontFamily: "'PP-Neue-World', serif" }}
+            >
+              Strategies and Reportings
+            </h1>
+            <p
+              style={{ fontFamily: "'Untitled-Sans', sans-serif", fontSize: 18, color: '#555', marginBottom: 30 }}
+              className="text-left w-full max-w-3xl"
+            >
+              All of Apex Fund's news, outlined strategies, and past research.
+            </p>
+            <div className="max-w-3xl w-full px-4 sm:px-8">
+              {allPosts.map((post, idx) => (
+                <React.Fragment key={post.meta.slug}>
+                  {idx !== 0 && <hr className="!my-5 border-gray-300" />}
+                  <PostCard meta={post.meta} />
+                </React.Fragment>
+              ))}
+            </div>
+          </main>
         </div>
-      </main>
+      </div>
       <Footer />
     </div>
   );
