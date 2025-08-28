@@ -3,6 +3,7 @@ import PostCard from '../components/PostCard';
 import { allPosts } from '../utils/posts';
 import Header from '../components/header';
 import Footer from '../components/footer';
+import { PRIMARY_FONT_FAMILY } from '../utils/constants';
 
 export default function OurWork() {
   return (
@@ -16,7 +17,7 @@ export default function OurWork() {
           <main className="flex-grow flex flex-col items-center p-6 sm:p-10">
             <h1
               className="!mb-2 !text-left !w-full !max-w-3xl !text-3xl sm:!text-4xl md:!text-5xl lg:!text-6xl"
-              style={{ fontFamily: "'PP-Neue-World', serif" }}
+              style={{ fontFamily: PRIMARY_FONT_FAMILY }}
             >
               Strategies and Reportings
             </h1>

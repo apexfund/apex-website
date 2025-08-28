@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Header from '../components/header'
 import Footer from '../components/footer'
 import MemberCard from '../components/MemberCard';
+import { PRIMARY_FONT_FAMILY } from '../utils/constants';
 
 const MeetTheTeam = () => {
   const [activeTab, setActiveTab] = useState('quantitative');
@@ -245,7 +246,7 @@ const MeetTheTeam = () => {
       <main className="flex-grow flex flex-col justify-center items-center p-8">
         <h1
           className="!mb-2 text-center w-full !max-w-3xl !text-7xl mx-auto"
-          style={{ fontFamily: "'PP-Neue-World', serif" }}
+          style={{ fontFamily: PRIMARY_FONT_FAMILY }}
         >
           Meet The Team
         </h1>
@@ -262,7 +263,7 @@ const MeetTheTeam = () => {
             onClick={() => setActiveTab('quantitative')}
             className={`text-3xl font-bold text-center cursor-pointer transition-all duration-200 text-gray-700 hover:!text-[#96BFCF] ${activeTab === 'quantitative' ? '!border-b-2 !border-gray-700 !pb-1' : ''
               }`}
-            style={{ fontFamily: "'PP-Neue-World', serif" }}
+            style={{ fontFamily: PRIMARY_FONT_FAMILY }}
           >
             Quantitative Division
           </span>
@@ -271,7 +272,7 @@ const MeetTheTeam = () => {
             onClick={() => setActiveTab('fundamental')}
             className={`text-3xl font-bold text-center cursor-pointer transition-all duration-200 text-gray-700 hover:!text-[#96BFCF] ${activeTab === 'fundamental' ? '!border-b-2 !border-gray-700 !pb-1' : ''
               }`}
-            style={{ fontFamily: "'PP-Neue-World', serif" }}
+            style={{ fontFamily: PRIMARY_FONT_FAMILY }}
           >
             Fundamental Division
           </span>
