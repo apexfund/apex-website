@@ -5,7 +5,7 @@ import MemberCard from '../components/MemberCard';
 import { PRIMARY_FONT_FAMILY } from '../utils/constants';
 
 const MeetTheTeam = () => {
-  const [activeTab, setActiveTab] = useState('quantitative');
+  
 
   const quantitativeMembers = [
     {
@@ -238,7 +238,7 @@ const MeetTheTeam = () => {
     },
   ];
 
-  const currentMembers = activeTab === 'quantitative' ? quantitativeMembers : fundamentalMembers;
+  const allMembers = [...quantitativeMembers, ...fundamentalMembers];
 
   return (
     <div className="flex flex-col min-h-screen bg-[#F1EDEE]">
@@ -257,32 +257,13 @@ const MeetTheTeam = () => {
           Get to know the people behind Apex.
         </p>
 
-        {/* Division Navigation */}
-        <div className="mt-8 !mb-8 flex flex-wrap gap-8 justify-center">
-          <span
-            onClick={() => setActiveTab('quantitative')}
-            className={`text-3xl font-bold text-center cursor-pointer transition-all duration-200 text-gray-700 hover:!text-[#96BFCF] ${activeTab === 'quantitative' ? '!border-b-2 !border-gray-700 !pb-1' : ''
-              }`}
-            style={{ fontFamily: PRIMARY_FONT_FAMILY }}
-          >
-            Quantitative Division
-          </span>
-          <div className="text-3xl text-gray-400">|</div>
-          <span
-            onClick={() => setActiveTab('fundamental')}
-            className={`text-3xl font-bold text-center cursor-pointer transition-all duration-200 text-gray-700 hover:!text-[#96BFCF] ${activeTab === 'fundamental' ? '!border-b-2 !border-gray-700 !pb-1' : ''
-              }`}
-            style={{ fontFamily: PRIMARY_FONT_FAMILY }}
-          >
-            Fundamental Division
-          </span>
-        </div>
+        
 
         {/* Members Grid */}
-        <div className="mt-8 w-full max-w-5xl flex flex-wrap gap-8 justify-center mx-auto">
-          {currentMembers.map((member, index) => (
+        <div className="mt-8 w-full max-w-4xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 gap-8">
+          {allMembers.map((member, index) => (
             <MemberCard
-              key={`${activeTab}-${index}`}
+              key={index}
               name={member.name}
               role={member.role}
               team={member.team}

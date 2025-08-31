@@ -216,6 +216,23 @@ const Landing = () => {
             <div className="absolute top-0 left-0 w-0.5 bg-gray-300 h-1/3"></div>
         </div>
 
+        <div className="flex flex-col items-center justify-center py-10">
+          <h1 className="!text-7xl !mb-8 !leading-tight !tracking-tight !text-left"
+                style={{ fontFamily: PRIMARY_FONT_FAMILY }}
+              >
+                Ready to Join?
+              </h1>
+          <div className="mt-2 inline-block !px-4 !py-2 rounded transition-all duration-200 !border-2 !border-[#96BFCF]">
+            <Link
+              to="/application"
+              className="text-2xl underline decoration-blue-500 hover:decoration-[#96BFCF]
+                        text-blue-500 hover:text-[#96BFCF]"
+            >
+              Apply Now
+            </Link>
+          </div>
+
+      </div>
         
 
         <div className="relative h-16 ml-0 md:!ml-20 !lg:ml-32 !xl:ml-48">
@@ -224,22 +241,7 @@ const Landing = () => {
         </div>
       </div>
 
-      <div className="flex flex-col items-center justify-center py-10">
-          <h1 className="!text-7xl !mb-8 !leading-tight !tracking-tight !text-left"
-                style={{ fontFamily: PRIMARY_FONT_FAMILY }}
-              >
-                Ready to Join?
-              </h1>
-          <Link 
-            to="/application" 
-            className="text-xl mt-2 inline-block px-2 py-1 rounded transition-all duration-200 
-                      underline decoration-blue-500 hover:decoration-[#96BFCF] 
-                      text-blue-500 hover:text-[#96BFCF]"
-          >
-            Apply Now
-          </Link>
-
-      </div>
+      
 
       <Footer />
     </div>
