@@ -1,4 +1,4 @@
-import { useState } from 'react';
+
 import Header from '../components/header'
 import Footer from '../components/footer'
 import MemberCard from '../components/MemberCard';
@@ -11,98 +11,98 @@ const MeetTheTeam = () => {
   const quantitativeMembers = [
     {
       name: "Vishesh Gupta",
-      role: "Senior Quant Analyst",
+      role: "Senior Analyst",
       team: "Quantitative Team",
       imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQG-i2rm5VjOZA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1728014942451?e=1758153600&v=beta&t=vZDQCmY51KGmtlzF7gx7_GIRuiWVU-sWimXj75yk5bA',
       linkedIn: 'https://www.linkedin.com/in/visheshng/'
     },
     {
       name: "Aditya Dabeer",
-      role: "Senior Quant Analyst",
+      role: "Senior Analyst",
       team: "Quantitative Team",
       imageUrl: 'https://media.licdn.com/dms/image/v2/C4E03AQGoJ00tBzreOQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1625952151426?e=1758153600&v=beta&t=yuwq1hXIKNuyVwV6BaSQTYUmRxAaLcX7AwVg5UBU3TA',
       linkedIn: 'https://www.linkedin.com/in/adityadabeer/'
     },
     {
       name: "Nirav Koley",
-      role: "Senior Quant Analyst",
+      role: "Senior Analyst",
       team: "Quantitative Team",
       imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQHr7L_2iuz9IA/profile-displayphoto-shrink_200_200/B4EZdQ6mNxHgAc-/0/1749409228037?e=1758153600&v=beta&t=H2IO35STDXu4XgomrQY4E3dhKhdSNetleawDGtatv1Y',
       linkedIn: 'https://www.linkedin.com/in/nirav-koley/'
     },
     {
       name: "Caleb Chang",
-      role: "Quant Analyst",
+      role: "Analyst",
       team: "Quantitative Team",
       imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQEWadqsi6uAuw/profile-displayphoto-shrink_200_200/B4EZc4RcsMHYAY-/0/1748995793117?e=1758153600&v=beta&t=5lGaIQx2YarpyavRrMxY-kXsaBWWGp4T-DPMpWIJXv0',
       linkedIn: 'https://www.linkedin.com/in/cchang22/'
     },
     {
       name: "Daniel Wang",
-      role: "Quant Analyst",
+      role: "Analyst",
       team: "Quantitative Team",
       imageUrl: 'https://media.licdn.com/dms/image/v2/D5603AQENILk5AeYIdA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1692668795534?e=1758153600&v=beta&t=wXBzxb9EtKiEQodPUgKTbRFwK2dP4F6OdRiHWpqVJuw',
       linkedIn: 'https://www.linkedin.com/in/daniel-e-wang/'
     },
     {
       name: "Edward Song",
-      role: "Quant Analyst",
+      role: "Analyst",
       team: "Quantitative Team",
       imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQGer1ICctlSag/profile-displayphoto-shrink_200_200/B4EZVx807xHgAY-/0/1741373526346?e=1758153600&v=beta&t=uoHczB7oA9pfmeTfA5MydhkAarm_3Zgab1iDjsOqSrs',
       linkedIn: 'https://www.linkedin.com/in/edwardrsong/'
     },
     {
       name: "Krishi Cherukupalli",
-      role: "Junior Quant Analyst",
+      role: "Junior Analyst",
       team: "Quantitative Team",
       imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQF-jBjapTB3MA/profile-displayphoto-shrink_200_200/B4EZVLAkyUHUAY-/0/1740720197078?e=1758153600&v=beta&t=BT4q6_9jxDopI2txV4QkIF-ir6RnBaGgFlOd3JqaAXU',
       linkedIn: 'https://www.linkedin.com/in/krishi-cherukupalli/'
     },
     {
       name: "Narain Sriam",
-      role: "Junior Quant Analyst",
+      role: "Junior Analyst",
       team: "Quantitative Team",
       imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQHdDBbTtnMzdQ/profile-displayphoto-shrink_800_800/B4EZbKw_PxGQAg-/0/1747158562165?e=1758153600&v=beta&t=Kto5RO5Ivjeg1jUpjREwM-AHO13Z2-CrBTYauIuaNGg',
       linkedIn: 'https://www.linkedin.com/in/narainsriram/'
     },
     {
       name: "Pranav Bykampadi",
-      role: "Junior Quant Analyst",
+      role: "Junior Analyst",
       team: "Quantitative Team",
       imageUrl: 'https://media.licdn.com/dms/image/v2/D5603AQELYR4NQfgTWA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1730678756654?e=1758153600&v=beta&t=1JbT2p4pDOrdfE2TELKZVO5R9jLAPJo5Fiug7WAPa40',
       linkedIn: 'https://www.linkedin.com/in/pranav-bykampadi-b89162262/'
     },
     {
       name: "Sachin Satish Kumar",
-      role: "Junior Quant Analyst",
+      role: "Junior Analyst",
       team: "Quantitative Team",
       imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQFd_OqaaiB-_w/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1664753014858?e=1758153600&v=beta&t=3Kd5VhZA2Hx8_wl0_JNmB-WPFlSYBZaFoFVWCYKhcq4',
       linkedIn: 'https://www.linkedin.com/in/sachin-satishkumar/'
     },
     {
       name: "Shivam Amin",
-      role: "Junior Quant Analyst",
+      role: "Junior Analyst",
       team: "Quantitative Team",
       imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQFkHvDcCMLfFA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1696305311664?e=1758153600&v=beta&t=c24HwVtmdWSmCJmZcACBODkfsysfB1N84hgUFqUhaoc',
       linkedIn: 'https://www.linkedin.com/in/shivamamin05/'
     },
     {
       name: "Eshan Khan",
-      role: "Junior Quant Analyst",
+      role: "Junior Analyst",
       team: "Quantitative Team",
       imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQGLZ3hNzF0bxw/profile-displayphoto-shrink_200_200/B4EZRx3pzpG0Ac-/0/1737077202463?e=1758153600&v=beta&t=77FMGgJDU92fCxGzpm0lcbH5YdO7E8FVdEK9TocNNq4',
       linkedIn: 'https://www.linkedin.com/in/eshankhan05/'
     },
     {
       name: "Varun Rao",
-      role: "Junior Quant Analyst",
+      role: "Junior Analyst",
       team: "Quantitative Team",
       imageUrl: 'https://media.licdn.com/dms/image/v2/C4E03AQEmzB7FxqZstA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1638240266203?e=1758153600&v=beta&t=eLHV_ue-lzlUxB3pKaPeDYCJyUnf6Osiy96MeJfRg3k',
       linkedIn: 'https://www.linkedin.com/in/varunvrao/'
     },
     {
       name: "Viraj Urs",
-      role: "Junior Quant Analyst",
+      role: "Junior Analyst",
       team: "Quantitative Team",
       imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQG_HmeU_2pbng/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1722256276435?e=1758153600&v=beta&t=mIU0rQTy1YcEbiDbrTvClwvwzcxADl_R8f4xN0l1kRk',
       linkedIn: 'https://www.linkedin.com/in/viraj-urs/'
@@ -111,23 +111,23 @@ const MeetTheTeam = () => {
 
   const fundamentalMembers = [
     // Add your fundamental division members here
-    {
-      name: "Peerce Nozeika",
-      role: "Portfolio Manager",
-      team: "Fundamental Team",
-      imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQFPu56OYu85zw/profile-displayphoto-shrink_800_800/B4EZawJUi2HcAk-/0/1746711956605?e=1758153600&v=beta&t=otgVIs1oaChW4ZtDZqHD3a80IrfRsk_cBtTNWKhsl6U',
-      linkedIn: 'https://www.linkedin.com/in/peercenozeika/'
-    },
-    {
-      name: "Ryan Middlestat",
-      role: "Portfolio Manager",
-      team: "Fundamental Team",
-      imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQHEs4ig1isV0Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1711564639360?e=1758153600&v=beta&t=qlROGDxotEGdSUtDucg5MNUoUZRQactqFjZOgAUQeLE',
-      linkedIn: 'https://www.linkedin.com/in/ryan-middlestadt/'
-    },
+    // {
+    //   name: "Peerce Nozeika",
+    //   role: "Portfolio Manager",
+    //   team: "Fundamental Team",
+    //   imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQFPu56OYu85zw/profile-displayphoto-shrink_800_800/B4EZawJUi2HcAk-/0/1746711956605?e=1758153600&v=beta&t=otgVIs1oaChW4ZtDZqHD3a80IrfRsk_cBtTNWKhsl6U',
+    //   linkedIn: 'https://www.linkedin.com/in/peercenozeika/'
+    // },
+    // {
+    //   name: "Ryan Middlestat",
+    //   role: "Portfolio Manager",
+    //   team: "Fundamental Team",
+    //   imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQHEs4ig1isV0Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1711564639360?e=1758153600&v=beta&t=qlROGDxotEGdSUtDucg5MNUoUZRQactqFjZOgAUQeLE',
+    //   linkedIn: 'https://www.linkedin.com/in/ryan-middlestadt/'
+    // },
     {
       name: "Mayank Barnwal",
-      role: "Analyst",
+      role: "Senior Analyst",
       team: "Fundamental Team",
       imageUrl: 'https://media.licdn.com/dms/image/v2/D4D03AQGNzBhJjrd6wQ/profile-displayphoto-shrink_800_800/B4DZdrJdkjHMAc-/0/1749849334105?e=1758153600&v=beta&t=AthufCCixO_Uw0OKBuMZpAjJV_z4aOVftX7LtMN3s6k',
       linkedIn: 'https://www.linkedin.com/in/mayank-barnwal/'
@@ -241,10 +241,35 @@ const MeetTheTeam = () => {
 
   const allMembers = [...quantitativeMembers, ...fundamentalMembers];
 
+  const executiveBoardNames = ["Vishesh Gupta", "Aditya Dabeer", "Nirav Koley", "Mayank Barnwal"];
+
+  const sortByLastName = (a: any, b: any) => {
+    const roleOrder: { [key: string]: number } = {
+      "Senior Analyst": 1,
+      "Analyst": 2,
+      "Junior Analyst": 3,
+      "Portfolio Manager": 0, // Assuming Portfolio Manager should come first in fundamental team
+    };
+
+    const roleA = roleOrder[a.role] !== undefined ? roleOrder[a.role] : 99; // Assign a high number for unknown roles
+    const roleB = roleOrder[b.role] !== undefined ? roleOrder[b.role] : 99;
+
+    if (roleA !== roleB) {
+      return roleA - roleB;
+    }
+
+    const lastNameA = a.name.split(' ').pop();
+    const lastNameB = b.name.split(' ').pop();
+    return lastNameA.localeCompare(lastNameB);
+  };
+
+  const executiveBoardMembers = allMembers.filter(member => executiveBoardNames.includes(member.name)).sort(sortByLastName);
+  const otherMembers = allMembers.filter(member => !executiveBoardNames.includes(member.name)).sort(sortByLastName);
+
   return (
     <div className="relative min-h-screen">
       <Background />
-      <div className="relative z-10 flex flex-col min-h-screen">
+      <div className="relative z-10 flex flex-col min-h-screen bg-transparent">
         <Header />
         <main className="flex-grow flex flex-col justify-center items-center p-8">
           <h1
@@ -262,9 +287,35 @@ const MeetTheTeam = () => {
 
           
 
-          {/* Members Grid */}
+          {/* Executive Board */}
+          <h2
+            className="!mb-2 text-center w-full !max-w-3xl !text-5xl mx-auto !mt-10"
+            style={{ fontFamily: PRIMARY_FONT_FAMILY }}
+          >
+            Executive Board
+          </h2>
           <div className="mt-8 w-full max-w-4xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 gap-8">
-            {allMembers.map((member, index) => (
+            {executiveBoardMembers.map((member, index) => (
+              <MemberCard
+                key={index}
+                name={member.name}
+                role={member.role}
+                team={member.team}
+                imageUrl={member.imageUrl}
+                linkedinUrl={member.linkedIn}
+              />
+            ))}
+          </div>
+
+          {/* Our Team */}
+          <h2
+            className="!mb-2 text-center w-full !max-w-3xl !text-5xl mx-auto mt-10"
+            style={{ fontFamily: PRIMARY_FONT_FAMILY }}
+          >
+            Our Team
+          </h2>
+          <div className="mt-8 w-full max-w-4xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 gap-8">
+            {otherMembers.map((member, index) => (
               <MemberCard
                 key={index}
                 name={member.name}

@@ -12,7 +12,7 @@ interface MemberCardProps {
 const MemberCard: React.FC<MemberCardProps> = ({ name, role, team, bio, imageUrl, linkedinUrl }) => {
   const cardContent = (
     <div
-      className="bg-[#F1EDEE] rounded-xl pt-10 !pb-8 px-6 flex flex-col items-center mx-auto transition-all duration-300 ease-in-out border-2 border-transparent cursor-pointer"
+      className="rounded-xl pt-10 !pb-8 px-6 flex flex-col items-center mx-auto transition-all duration-300 ease-in-out border-2 border-transparent cursor-pointer"
     >
       {imageUrl ? (
         <img

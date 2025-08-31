@@ -1,4 +1,3 @@
-import React from 'react'
 import footerBg from '../assets/footer.svg'
 
 const Footer = () => (

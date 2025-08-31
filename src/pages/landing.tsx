@@ -4,7 +4,7 @@ import Header from '../components/header'
 import Footer from '../components/footer'
 import { PRIMARY_FONT_FAMILY } from '../utils/constants';
 import PlacementsImg from '../assets/companies.png'
-import NyseImg from '../assets/nyse.jpg'
+
 import Background from '../components/Background';
 
 const updates = [
