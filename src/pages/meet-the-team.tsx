@@ -3,6 +3,7 @@ import Header from '../components/header'
 import Footer from '../components/footer'
 import MemberCard from '../components/MemberCard';
 import { PRIMARY_FONT_FAMILY } from '../utils/constants';
+import Background from '../components/Background';
 
 const MeetTheTeam = () => {
   
@@ -241,39 +242,42 @@ const MeetTheTeam = () => {
   const allMembers = [...quantitativeMembers, ...fundamentalMembers];
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#F1EDEE]">
-      <Header />
-      <main className="flex-grow flex flex-col justify-center items-center p-8">
-        <h1
-          className="!mb-2 text-center w-full !max-w-3xl !text-7xl mx-auto"
-          style={{ fontFamily: PRIMARY_FONT_FAMILY }}
-        >
-          Meet The Team
-        </h1>
-        <p
-          style={{ fontFamily: "'Untitled-Sans', sans-serif", fontSize: 18, color: '#555', marginBottom: 30 }}
-          className="text-center w-full max-w-3xl mx-auto"
-        >
-          Get to know the people behind Apex.
-        </p>
+    <div className="relative min-h-screen">
+      <Background />
+      <div className="relative z-10 flex flex-col min-h-screen">
+        <Header />
+        <main className="flex-grow flex flex-col justify-center items-center p-8">
+          <h1
+            className="!mb-2 text-center w-full !max-w-3xl !text-7xl mx-auto"
+            style={{ fontFamily: PRIMARY_FONT_FAMILY }}
+          >
+            Meet The Team
+          </h1>
+          <p
+            style={{ fontFamily: "'Untitled-Sans', sans-serif", fontSize: 18, color: '#555', marginBottom: 30 }}
+            className="text-center w-full max-w-3xl mx-auto"
+          >
+            Get to know the people behind Apex.
+          </p>
 
-        
+          
 
-        {/* Members Grid */}
-        <div className="mt-8 w-full max-w-4xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 gap-8">
-          {allMembers.map((member, index) => (
-            <MemberCard
-              key={index}
-              name={member.name}
-              role={member.role}
-              team={member.team}
-              imageUrl={member.imageUrl}
-              linkedinUrl={member.linkedIn}
-            />
-          ))}
-        </div>
-      </main>
-      <Footer />
+          {/* Members Grid */}
+          <div className="mt-8 w-full max-w-4xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 gap-8">
+            {allMembers.map((member, index) => (
+              <MemberCard
+                key={index}
+                name={member.name}
+                role={member.role}
+                team={member.team}
+                imageUrl={member.imageUrl}
+                linkedinUrl={member.linkedIn}
+              />
+            ))}
+          </div>
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 };
