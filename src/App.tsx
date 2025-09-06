@@ -10,7 +10,7 @@ const Application = lazy(() => import('./pages/application'))
 
 function App() {
   return (
-    <Router basename="/apex-website/">
+    <Router basename={import.meta.env.MODE === 'development' ? '/' : '/apex-website/'}>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<Landing />} />

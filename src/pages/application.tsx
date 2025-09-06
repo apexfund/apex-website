@@ -15,7 +15,7 @@ const Application = () => {
             <div className="w-full max-w-7xl mx-auto">
             <div className="ml-0 md:!ml-20 !lg:ml-32 !xl:ml-48">
               <h1
-                className="!mb-2 text-left w-full !max-w-3xl !text-7xl mx-auto px-4"
+                className="!mb-2 text-left w-full !max-w-3xl text-5xl !text-7xl mx-auto px-4"
                 style={{ fontFamily: PRIMARY_FONT_FAMILY }}
               >
                 Application
