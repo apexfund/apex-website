@@ -47,7 +47,7 @@ const Application = () => {
                 </div>
 
                 <p className="text-left text-base text-gray-700 !mb-4">
-                  Develop quantitative strategies involving systematic trading and data analysis using sophisticated mathematical models and computational techniques. Ideal for CS, Mathematics, Engineering, and other data-oriented majors.
+                  Develop quantitative strategies using data analysis and mathematical models. Ideal for CS, Math, and Engineering majors.
                 </p>
 
                 {/* Fundamental Section */}
@@ -68,7 +68,7 @@ const Application = () => {
                 </div>
 
                 <p className="text-left text-base text-gray-700 !mb-4">
-                  Explore core financial principles and leverage fundamental analysis to drive investment strategies and long-term value creation. Well suited for students in financial and business related majors.
+                  Explore financial principles and fundamental analysis for investment strategies. Well suited for finance and business majors.
                 </p>
 
               </div>
