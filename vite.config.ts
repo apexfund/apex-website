@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: '/apex-website/',
+  base: '/apex-website',
   build: {
     rollupOptions: {
       onwarn(warning, warn) {

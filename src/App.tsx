@@ -10,7 +10,7 @@ const Application = lazy(() => import('./pages/application'))
 
 function App() {
   return (
-    <Router basename="/">
+    <Router basename="/apex-website/">
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<Landing />} />
