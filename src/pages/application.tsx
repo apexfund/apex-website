@@ -29,9 +29,9 @@ const Application = () => {
               </p>
             </div>
             <div className="ml-0 md:!ml-20 !lg:ml-32 !xl:ml-48">
-              <div className="flex flex-col w-full mt-10 max-w-5xl mx-auto">
+              <div className="flex flex-col w-full mt-10 max-w-5xl mx-auto px-6 sm:px-8">
                 {/* Quantitative Section */}
-                <div className="border border-gray-300 rounded-lg !mb-4">
+                <div id="quant-application" className="border border-gray-300 rounded-lg !mb-4">
                   <a
                     href="https://example.com/quantitative-application"
                     target="_blank"
@@ -52,7 +52,7 @@ const Application = () => {
                 </p>
 
                 {/* Fundamental Section */}
-                <div className="border border-gray-300 rounded-lg !mb-4">
+                <div id="fund-application" className="border border-gray-300 rounded-lg !mb-4">
                   <a
                     href="https://example.com/fundamental-application"
                     target="_blank"

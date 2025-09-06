@@ -55,13 +55,13 @@ const Footer = () => (
                 <h4 className="!font-bold !text-lg !mb-3 !pb-2 !border-b !border-white !border-solid">Get Involved</h4>
                 <ul className="!space-y-2 !mt-4">
                   <li>
-                    <a href="/application" className="!text-gray-200 hover:!text-white !transition-colors">
-                      Training
+                    <a href="/application#quant-application" className="!text-gray-200 hover:!text-white !transition-colors">
+                      Quant
                     </a>
                   </li>
                   <li>
-                    <a href="/application" className="!text-gray-200 hover:!text-white !transition-colors">
-                      Apply
+                    <a href="/application#fund-application" className="!text-gray-200 hover:!text-white !transition-colors">
+                      Fund
                     </a>
                   </li>
                 </ul>
@@ -72,12 +72,12 @@ const Footer = () => (
                 <h4 className="!font-bold !text-lg !mb-3 !pb-2 !border-b !border-white !border-solid">Our Team</h4>
                 <ul className="!space-y-2 !mt-4">
                   <li>
-                    <a href="/meet-the-team" className="!text-gray-200 hover:!text-white !transition-colors">
+                    <a href="/meet-the-team#executive-board" className="!text-gray-200 hover:!text-white !transition-colors">
                       Executive Team
                     </a>
                   </li>
                   <li>
-                    <a href="/meet-the-team" className="!text-gray-200 hover:!text-white !transition-colors">
+                    <a href="/meet-the-team#investment-team" className="!text-gray-200 hover:!text-white !transition-colors">
                       Investment Team
                     </a>
                   </li>
@@ -89,7 +89,7 @@ const Footer = () => (
                 <h4 className="!font-bold !text-lg !mb-3 !pb-2 !border-b !border-white !border-solid">Learn More</h4>
                 <ul className="!space-y-2 !mt-4">
                   <li>
-                    <a href="/about" className="!text-gray-200 hover:!text-white !transition-colors">
+                    <a href="/" className="!text-gray-200 hover:!text-white !transition-colors">
                       About Us
                     </a>
                   </li>
@@ -99,7 +99,7 @@ const Footer = () => (
                     </a>
                   </li>
                   <li>
-                    <a href="https://google.com" target="_blank" rel="noopener noreferrer" className="!text-gray-200 hover:!text-white !transition-colors">
+                    <a href="/#placements" className="!text-gray-200 hover:!text-white !transition-colors">
                       Placement
                     </a>
                   </li>

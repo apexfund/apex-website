@@ -27,7 +27,7 @@ export default function OurWork() {
               >
                 All of Apex Fund's news, outlined strategies, and past research.
               </p>
-              <div className="max-w-3xl w-full px-4 sm:px-8">
+              <div className="max-w-3xl w-full !mx-6 sm:!mx-8">
                 {allPosts.map((post, idx) => (
                   <React.Fragment key={post.meta.slug}>
                     {idx !== 0 && <hr className="!my-5 border-gray-300" />}

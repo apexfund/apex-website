@@ -9,9 +9,8 @@ import Background from '../components/Background';
 
 const updates = [
   { id: '01', title: 'Fall 2025 Recruiting.', desc: 'Applications for Fall 2025 recruiting cycle are out for Quant and Fundamental.' },
-  { id: '02', title: 'Bootcamps Spring 2025.', desc: 'Dates and topics for our quantitative finance bootcamps have been released here.' },
+  { id: '02', title: 'Interest Meeting 9/15.', desc: 'Sign up for our interest meeting to learn more.' },
   { id: '03', title: 'IMC Prosperity Placement.', desc: 'Members Aditya Dabeer and Nirav Koley placed 7th internationally in IMC Prosperity. Congrats!' },
-  { id: '04', title: 'QuantConnect Competition.', desc: "Apex's Quantitative Division has joined QuantConnect's Q1 competition. Track their progress here." },
 ]
 
 const Landing = () => {
@@ -98,7 +97,8 @@ const Landing = () => {
           <div className="!m-10">
             {/* Hero Section with Side-by-Side Layout */}
             <section className="relative px-6 sm:px-8 py-12 max-w-7xl mx-auto min-h-screen flex items-center">
-              <div className="ml-0 md:!ml-20 flex flex-col lg:flex-row lg:items-start lg:gap-12 xl:gap-16 !lg:ml-32 !xl:ml-48">
+              <div className="max-w-full overflow-x-hidden"> 
+                <div className="ml-0 md:!ml-20 flex flex-col lg:flex-row lg:items-start lg:gap-12 xl:gap-16 !lg:ml-32 !xl:ml-48">
                 {/* Hero Text - Left Side */}
                 <div className="flex-1 lg:max-w-2xl">
                   <h1 className="!text-7xl !mb-8 !leading-tight !tracking-tight !text-left"
@@ -163,6 +163,7 @@ const Landing = () => {
                   </div>
                 </div>
               </div>
+            </div> 
             </section>
 
             {/* Mission Statement Section */}
@@ -195,7 +196,7 @@ const Landing = () => {
             </section>
 
             {/* Member Placements Section */}
-            <section className="px-6 sm:px-8 pt-32 pb-20 max-w-7xl mx-auto min-h-screen flex items-center">
+            <section id="placements" className="px-6 sm:px-8 pt-32 pb-20 max-w-7xl mx-auto min-h-screen flex items-center">
               <div className="ml-0 md:!ml-20 !lg:ml-32 !xl:ml-48">
                 <h2 
                   className="!text-6xl !mt-12 !mb-6 !leading-tight !tracking-tight text-left"
