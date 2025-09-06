@@ -291,7 +291,7 @@ const MeetTheTeam = () => {
           <h2
             id="executive-board"
             className="!mb-2 text-center w-full !max-w-3xl !text-5xl mx-auto !mt-10"
-            style={{ fontFamily: PRIMARY_FONT_FAMILY }}
+            style={{ fontFamily: PRIMARY_FONT_FAMILY, scrollMarginTop: '130px' }}
           >
             Executive Board
           </h2>
@@ -312,7 +312,7 @@ const MeetTheTeam = () => {
           <h2
             id="investment-team"
             className="!mb-2 text-center w-full !max-w-3xl !text-5xl mx-auto mt-10"
-            style={{ fontFamily: PRIMARY_FONT_FAMILY }}
+            style={{ fontFamily: PRIMARY_FONT_FAMILY, scrollMarginTop: '130px' }}
           >
             Our Team
           </h2>
