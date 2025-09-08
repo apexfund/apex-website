@@ -56,7 +56,7 @@ const Landing = () => {
   // Slot machine animation for the number
   useEffect(() => {
     const duration = 5000 // 5 seconds
-    const targetNumber = 15780
+    const targetNumber = 9780
     const startTime = Date.now()
 
     const animateNumber = () => {
@@ -108,7 +108,7 @@ const Landing = () => {
                   </h1>
                   <p className="text-lg sm:text-xl lg:text-2xl text-left font-light leading-relaxed max-w-3xl">
                     Led by students at the University of Maryland, College Park — Apex Fund manages
-                    <strong className="text-[#96BFCF] font-bold"> ${animatedNumber.toLocaleString()}</strong> in assets through
+                    <strong className="text-[#96BFCF] font-bold"> ~${animatedNumber.toLocaleString()}</strong> in assets through
                     <strong className="text-[#96BFCF] font-bold"> quantitative trading</strong> and
                     <strong className="text-[#96BFCF] font-bold"> fundamental analysis</strong>.
                   </p>
