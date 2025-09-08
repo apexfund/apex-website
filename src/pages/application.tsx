@@ -32,7 +32,7 @@ const Application = () => {
                 {/* Quantitative Section */}
                 <div id="quant-application" className="border border-gray-300 rounded-lg !mb-4">
                   <a
-                    href="https://example.com/quantitative-application"
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSdULF0z4HJZ9Oc35BZeINGzqzaBSnz3Alxgj80QPtrSgA249w/viewform?usp=dialog"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group w-full flex items-center justify-between p-4 bg-transparent hover:bg-transparent focus:outline-none !border !border-transparent hover:!border-[#96BFCF] !rounded"
@@ -40,7 +40,7 @@ const Application = () => {
                     <h2 className="!text-4xl !leading-tight !tracking-tight text-left" style={{ fontFamily: PRIMARY_FONT_FAMILY }}>Quantitative <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span></h2>
                     <span className="flex items-center !p-2 transition-all duration-300 !border !border-transparent hover:!border-[#96BFCF] !rounded">
                       <div className="!p-2 !mt-1">
-                        <span className="text-xl mr-4 text-gray-500">Learn more</span>
+                        <span className="text-xl mr-4 text-gray-500">Apply</span>
                       </div>
                     </span>
                   </a>
@@ -61,7 +61,7 @@ const Application = () => {
                     <h2 className="!text-4xl !leading-tight !tracking-tight text-left" style={{ fontFamily: PRIMARY_FONT_FAMILY }}>Fundamental <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span></h2>
                     <span className="flex items-center !p-2 transition-all duration-300 !border !border-transparent hover:!border-[#96BFCF] !rounded">
                       <div className="!p-2 !mt-1">
-                        <span className="text-xl mr-4 text-gray-500">Learn more</span>
+                        <span className="text-xl mr-4 text-gray-500">Apply</span>
                       </div>
                     </span>
                   </a>

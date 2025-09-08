@@ -8,9 +8,9 @@ import PlacementsImg from '../assets/companies.png'
 import Background from '../components/Background';
 
 const updates = [
-  { id: '01', title: 'Fall 2025 Recruiting.', desc: 'Applications for Fall 2025 recruiting cycle are out for Quant and Fundamental.' },
-  { id: '02', title: 'Interest Meeting 9/15.', desc: 'Sign up for our interest meeting to learn more.' },
-  { id: '03', title: 'IMC Prosperity Placement.', desc: 'Members Aditya Dabeer and Nirav Koley placed 7th internationally in IMC Prosperity. Congrats!' },
+  { id: '01', title: 'Fall 2025 Recruiting.', desc: 'Applications for Fall 2025 recruiting cycle are out for Quantitative Analysts.', link: 'https://docs.google.com/forms/d/e/1FAIpQLSdULF0z4HJZ9Oc35BZeINGzqzaBSnz3Alxgj80QPtrSgA249w/viewform?usp=dialog' },
+  { id: '02', title: 'Interest Meeting 9/15.', desc: 'Sign up for our interest meeting to learn more.', link: '/posts/test-strat-1' },
+  { id: '03', title: 'IMC Prosperity Placement.', desc: 'Members Aditya Dabeer and Nirav Koley placed 7th internationally in IMC Prosperity. Congrats!', link: '/posts/test-strat-1' },
 ]
 
 const Landing = () => {
@@ -134,9 +134,15 @@ const Landing = () => {
                               <h3 className="font-bold !text-2xl mb-2 leading-tight">{update.title}</h3>
                             </div>
                             <p className="text-xl text-gray-600 mb-3 flex-grow leading-relaxed">{update.desc}</p>
-                            <a href="#" className="text-sm font-semibold hover:underline text-gray-800 hover:!text-[#96BFCF]">
-                              Learn more &gt;
-                            </a>
+                            {update.link.startsWith('http') ? (
+                              <a href={update.link} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold hover:underline text-gray-800 hover:!text-[#96BFCF]">
+                                Learn more &gt;
+                              </a>
+                            ) : (
+                              <Link to={update.link} className="text-sm font-semibold hover:underline text-gray-800 hover:!text-[#96BFCF]">
+                                Learn more &gt;
+                              </Link>
+                            )}
                           </div>
                         </div>
                       ))}
