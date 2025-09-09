@@ -8,9 +8,10 @@ import PlacementsImg from '../assets/companies.png'
 import Background from '../components/Background';
 
 const updates = [
-  { id: '01', title: 'Fall 2025 Recruiting.', desc: 'Applications for Fall 2025 recruiting cycle are out for Quantitative Analysts.', link: 'https://docs.google.com/forms/d/e/1FAIpQLSdULF0z4HJZ9Oc35BZeINGzqzaBSnz3Alxgj80QPtrSgA249w/viewform?usp=dialog' },
-  { id: '02', title: 'Interest Meeting 9/15.', desc: 'Sign up for our interest meeting to learn more.', link: '/posts/test-strat-1' },
-  { id: '03', title: 'IMC Prosperity Placement.', desc: 'Members Aditya Dabeer and Nirav Koley placed 7th internationally in IMC Prosperity. Congrats!', link: '/posts/test-strat-1' },
+  { id: '01', title: 'Quant Applications Opening.', desc: 'Applications are out for Quantitative Analysts.', link: 'https://docs.google.com/forms/d/e/1FAIpQLSdULF0z4HJZ9Oc35BZeINGzqzaBSnz3Alxgj80QPtrSgA249w/viewform?usp=dialog' },
+  { id: '02', title: 'Fundamental Application Opening', desc: 'Applications for our fundamental team are now open.', link: 'https://docs.google.com/forms/d/e/1FAIpQLSdtpskvgKSSOkLHtRSrE99tVDMC5wSEttWd6V0j6TfLOJTRCw/viewform' },
+  { id: '03', title: 'Interest Meeting 9/15.', desc: 'Sign up for our interest meeting to learn more.', link: '/posts/test-strat-1' },
+  { id: '04', title: 'IMC Prosperity Placement.', desc: 'Members Aditya Dabeer and Nirav Koley placed 7th internationally in IMC Prosperity. Congrats!', link: '/posts/test-strat-1' },
 ]
 
 const Landing = () => {

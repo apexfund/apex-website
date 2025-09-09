@@ -53,7 +53,7 @@ const Application = () => {
                 {/* Fundamental Section */}
                 <div id="fund-application" className="border border-gray-300 rounded-lg !mb-4">
                   <a
-                    href="https://example.com/fundamental-application"
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSdtpskvgKSSOkLHtRSrE99tVDMC5wSEttWd6V0j6TfLOJTRCw/viewform"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group w-full flex items-center justify-between p-4 bg-transparent hover:bg-transparent focus:outline-none !border !border-transparent hover:!border-[#96BFCF] !rounded"
