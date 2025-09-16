@@ -41,7 +41,7 @@ const MeetTheTeam = () => {
       name: "Daniel Wang",
       role: "Analyst",
       team: "Quantitative Team",
-      imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQGYAKDfk7Rfyw/profile-displayphoto-scale_400_400/B4EZiWnBanHoAg-/0/1754873468964?e=1759968000&v=beta&t=DEUD3ogt2DhBXFJBudbC8LlPJGQvaWOjfbK0hkO1Qhs',
+      imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQF8Stqu--2m4A/profile-displayphoto-scale_400_400/B4EZlSdqM3IQAg-/0/1758025131447?e=1761177600&v=beta&t=vTpEl0pUocrhl4S3vshF9avtQsewXa4qwjP5Bl0eD_0',
       linkedIn: 'https://www.linkedin.com/in/daniel-e-wang/'
     },
     {
@@ -135,15 +135,15 @@ const MeetTheTeam = () => {
       name: "Alex Lavitz",
       role: "Analyst",
       team: "Fundamental Team",
-      imageUrl: '',
-      linkedIn: ''
+      imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQEMyO_fWkNjSA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1693359285175?e=1761177600&v=beta&t=1d1dONoJdgo3SoyBk0fpll-HtBtkREG366pd22mD338',
+      linkedIn: 'https://www.linkedin.com/in/alexlavitz/'
     },
     {
       name: "Ali Shah",
       role: "Analyst",
       team: "Fundamental Team",
-      imageUrl: '',
-      linkedIn: ''
+      imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQGHJ5cHUUU3XQ/profile-displayphoto-shrink_400_400/B4EZdr03xbH0Ag-/0/1749860714176?e=1761177600&v=beta&t=24bzX-nxwyclqfvD80WaWRor4uTw-tDXsNp5-rU9CPE',
+      linkedIn: 'https://www.linkedin.com/in/ali-hadi-shah/'
     },
     {
       name: "Emilio Gallo",
