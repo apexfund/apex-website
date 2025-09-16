@@ -294,7 +294,7 @@ const MeetTheTeam = () => {
           >
             Executive Board
           </h2>
-          <div className="mt-8 w-full max-w-4xl flex flex-wrap justify-center gap-8">
+          <div className="mt-8 w-full max-w-4xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 gap-8">
             {executiveBoardMembers.map((member, index) => (
               <MemberCard
                 key={index}
@@ -315,7 +315,7 @@ const MeetTheTeam = () => {
           >
             Our Team
           </h2>
-          <div className="mt-8 w-full max-w-4xl flex flex-wrap justify-center gap-8">
+          <div className="mt-8 w-full max-w-4xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 gap-8">
             {otherMembers.map((member, index) => (
               <MemberCard
                 key={index}
