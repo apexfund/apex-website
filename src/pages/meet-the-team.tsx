@@ -110,55 +110,40 @@ const MeetTheTeam = () => {
   ];
 
   const fundamentalMembers = [
-    // Add your fundamental division members here
-    // {
-    //   name: "Peerce Nozeika",
-    //   role: "Portfolio Manager",
-    //   team: "Fundamental Team",
-    //   imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQFPu56OYu85zw/profile-displayphoto-shrink_800_800/B4EZawJUi2HcAk-/0/1746711956605?e=1758153600&v=beta&t=otgVIs1oaChW4ZtDZqHD3a80IrfRsk_cBtTNWKhsl6U',
-    //   linkedIn: 'https://www.linkedin.com/in/peercenozeika/'
-    // },
-    // {
-    //   name: "Ryan Middlestat",
-    //   role: "Portfolio Manager",
-    //   team: "Fundamental Team",
-    //   imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQHEs4ig1isV0Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1711564639360?e=1758153600&v=beta&t=qlROGDxotEGdSUtDucg5MNUoUZRQactqFjZOgAUQeLE',
-    //   linkedIn: 'https://www.linkedin.com/in/ryan-middlestadt/'
-    // },
     {
       name: "Mayank Barnwal",
-      role: "Senior Analyst",
+      role: "Portfolio Manager",
       team: "Fundamental Team",
       imageUrl: 'https://media.licdn.com/dms/image/v2/D4D03AQGNzBhJjrd6wQ/profile-displayphoto-shrink_800_800/B4DZdrJdkjHMAc-/0/1749849334105?e=1758153600&v=beta&t=AthufCCixO_Uw0OKBuMZpAjJV_z4aOVftX7LtMN3s6k',
       linkedIn: 'https://www.linkedin.com/in/mayank-barnwal/'
     },
     {
-      name: "Martin Linsky",
-      role: "Analyst",
+      name: "Joseph Asselta",
+      role: "Portfolio Manager",
       team: "Fundamental Team",
-      imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQEtGnhut3POeg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1694811454522?e=1758153600&v=beta&t=CGDNvnsqnfK2PQ9jJFXzVsiQtiv9oj6AMM9fVRv-XBI',
-      linkedIn: 'https://www.linkedin.com/in/martin-linsky/'
-    },
-    {
-      name: "Patrick Eskildsen",
-      role: "Analyst",
-      team: "Fundamental Team",
-      imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQGrbfVBRENSIQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1678385028497?e=1758153600&v=beta&t=quLmFEnpCiTP0fdtHi1I1i5DuZGoHxTsdDtT4SHQh0E',
-      linkedIn: 'https://www.linkedin.com/in/patrick-eskildsen/'
-    },
-    {
-      name: "Tyson Nguyen",
-      role: "Analyst",
-      team: "Fundamental Team",
-      imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQH_LlBK68Uy3g/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1687455108942?e=1758153600&v=beta&t=34pnQ5PsjBn_BY90FauhdN9cjwv7P_PtKxlNUFAJijg',
-      linkedIn: 'https://www.linkedin.com/in/tyson-nguyen-b40920233/'
+      imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQEDq-NPAHiIZw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1693441629038?e=1758153600&v=beta&t=BsLkY4Bwnbfn_BWO89V14ptLrTxMGJ5gR-o2IHuIlYU',
+      linkedIn: 'https://www.linkedin.com/in/josephasselta/'
     },
     {
       name: "Cooper Dorf",
-      role: "Analyst",
+      role: "Portfolio Manager",
       team: "Fundamental Team",
       imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQEtGnhut3POeg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1694811454522?e=1758153600&v=beta&t=CGDNvnsqnfK2PQ9jJFXzVsiQtiv9oj6AMM9fVRv-XBI',
       linkedIn: 'https://www.linkedin.com/in/cooper-dorf/'
+    },
+    {
+      name: "Alex Lavitz",
+      role: "Analyst",
+      team: "Fundamental Team",
+      imageUrl: '',
+      linkedIn: ''
+    },
+    {
+      name: "Ali Shah",
+      role: "Analyst",
+      team: "Fundamental Team",
+      imageUrl: '',
+      linkedIn: ''
     },
     {
       name: "Emilio Gallo",
@@ -169,79 +154,93 @@ const MeetTheTeam = () => {
     },
     {
       name: "Gage Hamilton",
-      role: "Junior Analyst",
+      role: "Analyst",
       team: "Fundamental Team",
       imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQG1YK4k2WjXXQ/profile-displayphoto-shrink_800_800/B4EZSovth5GgAc-/0/1737997867921?e=1758153600&v=beta&t=hixRzUFBPzJzDCKfnPMceajVrJVHk8X87HZvSXkYfYM',
       linkedIn: 'https://www.linkedin.com/in/gage-hamilton-aa8718284/'
     },
     {
+      name: "Isaac Kushnir",
+      role: "Analyst",
+      team: "Fundamental Team",
+      imageUrl: 'https://media.licdn.com/dms/image/v2/D5603AQFvTlOxYic3_w/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1724858335338?e=1758153600&v=beta&t=sfACIo1CZsjk9uZBUs9RBGneOg7SAGw09EUP3lwE8YE',
+      linkedIn: 'https://www.linkedin.com/in/isaac-kushnir/'
+    },
+    {
       name: "Kevin Bowles",
-      role: "Junior Analyst",
+      role: "Analyst",
       team: "Fundamental Team",
       imageUrl: 'https://media.licdn.com/dms/image/v2/D4D03AQEi8L8RWOBoRQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1726710758853?e=1758153600&v=beta&t=xE8A7iaq-s92QAa6P7XUYjwf1vcp7c-E5xxLGWlWR4Y',
       linkedIn: 'https://www.linkedin.com/in/kevin-bowles-8239a9321/'
     },
     {
       name: "Leo Paradise",
-      role: "Junior Analyst",
+      role: "Analyst",
       team: "Fundamental Team",
       imageUrl: 'https://media.licdn.com/dms/image/v2/D4D03AQFU2TDw38JtnA/profile-displayphoto-shrink_800_800/B4DZU.j02lHkAc-/0/1740511334202?e=1758153600&v=beta&t=mQ6mIPErYds3By0tW3QnMtrQCwarhXe_Zx-mkZ9fHU0',
       linkedIn: 'https://www.linkedin.com/in/leo-paradise-23b282328/'
     },
     {
+      name: "Marty Linsky",
+      role: "Analyst",
+      team: "Fundamental Team",
+      imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQEtGnhut3POeg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1694811454522?e=1761177600&v=beta&t=FWh5p-tyo1zHtEUBZzemUPZxd0Y3uZYW38N7G74xw7Q',
+      linkedIn: 'https://www.linkedin.com/in/martin-linsky/'
+    },
+    {
       name: "Matthew Vacek",
-      role: "Junior Analyst",
+      role: "Analyst",
       team: "Fundamental Team",
       imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQHOQyqzF1mi_g/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1730470214354?e=1758153600&v=beta&t=RUiGgPd_ZVLHBou3EVUKIjE7TnaIEzsYoFjI8Dv03Ks',
       linkedIn: 'https://www.linkedin.com/in/matthew-c-vacek/'
     },
     {
-      name: "Reed Plotnick",
-      role: "Junior Analyst",
-      team: "Fundamental Team",
-      imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQFgeeiIJv3Iig/profile-displayphoto-shrink_800_800/B4EZaNtJaJHMAc-/0/1746134146930?e=1758153600&v=beta&t=BD-xUKUPxgkqzqZYo0ZimOSPPWZkNL0hWztUZddjCJM',
-      linkedIn: 'https://www.linkedin.com/in/reedplotnick/'
-    },
-    {
-      name: "Tristan Wolf",
-      role: "Junior Analyst",
-      team: "Fundamental Team",
-      imageUrl: 'https://media.licdn.com/dms/image/v2/D4D03AQFNDBrlyDoqQQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1730338824853?e=1758153600&v=beta&t=V-V6L021AAVyDvAcuqEA1HXuPiDip9XWTnW1mKlAhIA',
-      linkedIn: 'https://www.linkedin.com/in/tristan-wolf-93293b333/'
-    },
-    {
-      name: "Joseph Asselta",
-      role: "Junior Analyst",
-      team: "Fundamental Team",
-      imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQEDq-NPAHiIZw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1693441629038?e=1758153600&v=beta&t=BsLkY4Bwnbfn_BWO89V14ptLrTxMGJ5gR-o2IHuIlYU',
-      linkedIn: 'https://www.linkedin.com/in/josephasselta/'
-    },
-    {
       name: "Michael Luther",
-      role: "Junior Analyst",
+      role: "Analyst",
       team: "Fundamental Team",
       imageUrl: '',
       linkedIn: 'https://www.linkedin.com/in/michael-a-luther/'
     },
     {
-      name: "Isaac Kushnir",
-      role: "Junior Analyst",
+      name: "Patrick Eskildsen",
+      role: "Analyst",
       team: "Fundamental Team",
-      imageUrl: 'https://media.licdn.com/dms/image/v2/D5603AQFvTlOxYic3_w/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1724858335338?e=1758153600&v=beta&t=sfACIo1CZsjk9uZBUs9RBGneOg7SAGw09EUP3lwE8YE',
-      linkedIn: 'https://www.linkedin.com/in/isaac-kushnir/'
+      imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQGrbfVBRENSIQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1678385028497?e=1758153600&v=beta&t=quLmFEnpCiTP0fdtHi1I1i5DuZGoHxTsdDtT4SHQh0E',
+      linkedIn: 'https://www.linkedin.com/in/patrick-eskildsen/'
     },
     {
-      name: "Royal Eze",
+      name: "Reed Plotnick",
+      role: "Analyst",
+      team: "Fundamental Team",
+      imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQFgeeiIJv3Iig/profile-displayphoto-shrink_800_800/B4EZaNtJaJHMAc-/0/1746134146930?e=1758153600&v=beta&t=BD-xUKUPxgkqzqZYo0ZimOSPPWZkNL0hWztUZddjCJM',
+      linkedIn: 'https://www.linkedin.com/in/reedplotnick/'
+    },
+    {
+      name: "Saketh Ram Kannoju",
+      role: "Analyst",
+      team: "Fundamental Team",
+      imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQFZm1S_zQQOdg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1728623524445?e=1761177600&v=beta&t=o33U5hemXSZA-H5-SXbvn38KIbcLxpw7MsU175Og4Dg',
+      linkedIn: 'https://www.linkedin.com/in/sakethkannoju/'
+    },
+    {
+      name: "Tyson Nguyen",
+      role: "Analyst",
+      team: "Fundamental Team",
+      imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQH_LlBK68Uy3g/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1687455108942?e=1758153600&v=beta&t=34pnQ5PsjBn_BY90FauhdN9cjwv7P_PtKxlNUFAJijg',
+      linkedIn: 'https://www.linkedin.com/in/tyson-nguyen-b40920233/'
+    },
+    {
+      name: "Boburkhan Djumanov",
       role: "Junior Analyst",
       team: "Fundamental Team",
-      imageUrl: 'https://media.licdn.com/dms/image/v2/D4E03AQG9o-EL9XNzAQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1707718604479?e=1758153600&v=beta&t=E6fdZvdm7u7UhoPQUYo9QgEuZv8chkDI5ZD62vKfOnM',
-      linkedIn: 'https://www.linkedin.com/in/royal-eze/'
-    },
+      imageUrl: 'https://media.licdn.com/dms/image/v2/D4D03AQFQjVaYjdGD3g/profile-displayphoto-shrink_200_200/B4DZWgecQoGkAY-/0/1742154090251?e=1761177600&v=beta&t=hboHesgD9t9sX19tSAH47JZJfZANO6sMDpVKoFtUPrc',
+      linkedIn: 'https://www.linkedin.com/in/boburkhandjumanov/'
+    }
   ];
 
   const allMembers = [...quantitativeMembers, ...fundamentalMembers];
 
-  const executiveBoardNames = ["Vishesh Gupta", "Aditya Dabeer", "Nirav Koley", "Mayank Barnwal"];
+  const executiveBoardNames = ["Vishesh Gupta", "Aditya Dabeer", "Nirav Koley", "Mayank Barnwal", "Joseph Asselta", "Cooper Dorf"];
 
   const sortByLastName = (a: any, b: any) => {
     const roleOrder: { [key: string]: number } = {
