@@ -123,6 +123,7 @@ const Landing = () => {
               <div className="max-w-full overflow-x-hidden">
                 <div className="ml-0 md:!ml-20 flex flex-col lg:flex-row lg:items-start lg:gap-12 xl:gap-16 !lg:ml-32 !xl:ml-48">
                   {/* Hero Text - Left Side */}
+
                   <div className="flex-1 lg:max-w-2xl">
                     <h1
                       className="!text-6xl md:!text-7xl !mb-8 !leading-tight !tracking-tight !text-left"
@@ -234,7 +235,7 @@ const Landing = () => {
             </section>
 
             {/* Mission Statement Section */}
-            <section className="px-6 sm:px-8 !pt-32 pb-24 max-w-7xl mx-auto min-h-screen flex items-center">
+            <section className="px-6 sm:px-8 !pt-10 sm:!pt-32 !pb-10 sm:!pb-32 pb-24 max-w-7xl mx-auto flex items-center">
               <div className="ml-0 md:!ml-20 !lg:ml-32 !xl:ml-48">
                 <div className="flex flex-col md:flex-row-reverse md:items-center">
                   {/* Right Column on Desktop: Title */}
@@ -281,7 +282,7 @@ const Landing = () => {
             {/* Member Placements Section */}
             <section
               id="placements"
-              className="px-6 sm:px-8 pt-32 pb-20 max-w-7xl mx-auto min-h-screen flex items-center"
+              className="px-6 sm:px-8 pt-32 pb-20 max-w-7xl mx-auto flex items-center py-8"
             >
               <div className="ml-0 md:!ml-20 !lg:ml-32 !xl:ml-48">
                 <h2
