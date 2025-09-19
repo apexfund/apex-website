@@ -1,4 +1,5 @@
 import { PRIMARY_FONT_FAMILY } from "../utils/constants";
+import Background from "./Background";
 
 const Loading = () => {
   return (
@@ -16,11 +17,11 @@ const Loading = () => {
             `,
         }}
       />
-
+      <Background />
       <div className="flex flex-col items-center justify-center w-full min-h-screen gap-6">
         <h2
           className="!text-6xl !leading-tight !tracking-tight text-center text-[#96BFCF]"
-          style={{ fontFamily: PRIMARY_FONT_FAMILY }}
+          style={{ fontFamily: PRIMARY_FONT_FAMILY, zIndex: 4 }}
         >
           Loading...
         </h2>
