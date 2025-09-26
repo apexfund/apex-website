@@ -59,6 +59,13 @@ const MeetTheTeam = () => {
       linkedIn: 'https://www.linkedin.com/in/krishi-cherukupalli/'
     },
     {
+      name: "Kushal Kapoor",
+      role: "Junior Analyst",
+      team: "Quantitative Team",
+      imageUrl: 'https://media.licdn.com/dms/image/v2/D4D03AQGb0tZu0p73uA/profile-displayphoto-scale_400_400/B4DZmH1.VeJUAg-/0/1758920698571?e=1761782400&v=beta&t=DxsknXggJSyaDZZs9WJM016lFIkbyMI42okjQ52vd9w',
+      linkedIn: 'https://www.linkedin.com/in/kushalkapoor25/'
+    },
+    {
       name: "Narain Sriam",
       role: "Junior Analyst",
       team: "Quantitative Team",
