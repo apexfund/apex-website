@@ -7,7 +7,7 @@ const Application = () => {
   return (
     <div className="relative !h-screen">
       <Background />
-      <div class="bg-red-500 text-white p-4">Test</div>
+      <div className="bg-red-500 text-white p-4">Test</div>
 
       <div className="relative z-10 flex flex-col min-h-screen">
         <Header />
