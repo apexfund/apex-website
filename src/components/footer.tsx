@@ -1,9 +1,10 @@
+import React from 'react'
 import footerBg from '../assets/footer.svg'
 
 const Footer = () => (
   <footer className="relative text-white">
     {/* SVG Wave Background Section */}
-    <div
+    <div 
       className="w-full h-60 bg-cover bg-top bg-no-repeat"
       style={{
         backgroundImage: `url(${footerBg})`,
@@ -12,27 +13,27 @@ const Footer = () => (
         backgroundRepeat: 'no-repeat'
       }}
     />
-
+    
     {/* Content Section with solid background */}
-    <div
+    <div 
       className="w-full"
       style={{ backgroundColor: '#5B7E9A' }}
     >
       <div className="!container !mx-auto !px-6 sm:!px-12 !py-16">
         {/* Main Content Layout */}
         <div className="!flex !flex-col lg:!flex-row lg:!justify-between lg:!items-start !gap-12 lg:!gap-16">
-
+          
           {/* TODO: Circle with AF and apex fund, do we need ts?  */}
-
+          
           {/* <div className="!flex !flex-col !items-start lg:!items-start">
             <div className="!w-20 !h-20 !bg-gray-200 !rounded-full !mb-4"></div>
             <h3 className="!text-xl !font-medium">Apex Fund</h3>
           </div> */}
-
+          
           {/* Right Side - Footer Links */}
           <div className="!flex-1">
             <div className="!grid !grid-cols-1 sm:!grid-cols-2 lg:!grid-cols-4 !gap-8 lg:!gap-12">
-
+              
               {/* Contact Us */}
               <div>
                 <h4 className="!font-bold !text-lg !mb-3 !pb-2 !border-b !border-white !border-solid">Contact Us</h4>
@@ -49,73 +50,73 @@ const Footer = () => (
                   </li>
                 </ul>
               </div>
-
+              
               {/* Get Involved */}
               <div>
                 <h4 className="!font-bold !text-lg !mb-3 !pb-2 !border-b !border-white !border-solid">Get Involved</h4>
                 <ul className="!space-y-2 !mt-4">
                   <li>
-                    <a href="/application#quant-application" className="!text-gray-200 hover:!text-white !transition-colors">
-                      Quant
+                    <a href="/application" className="!text-gray-200 hover:!text-white !transition-colors">
+                      Training
                     </a>
                   </li>
                   <li>
-                    <a href="/application#fund-application" className="!text-gray-200 hover:!text-white !transition-colors">
-                      Fund
+                    <a href="/application" className="!text-gray-200 hover:!text-white !transition-colors">
+                      Apply
                     </a>
                   </li>
                 </ul>
               </div>
-
+              
               {/* Our Team */}
               <div>
                 <h4 className="!font-bold !text-lg !mb-3 !pb-2 !border-b !border-white !border-solid">Our Team</h4>
                 <ul className="!space-y-2 !mt-4">
                   <li>
-                    <a href="/meet-the-team#executive-board" className="!text-gray-200 hover:!text-white !transition-colors">
+                    <a href="/meet-the-team" className="!text-gray-200 hover:!text-white !transition-colors">
                       Executive Team
                     </a>
                   </li>
                   <li>
-                    <a href="/meet-the-team#investment-team" className="!text-gray-200 hover:!text-white !transition-colors">
+                    <a href="/meet-the-team" className="!text-gray-200 hover:!text-white !transition-colors">
                       Investment Team
                     </a>
                   </li>
                 </ul>
               </div>
-
+              
               {/* Learn More */}
               <div>
                 <h4 className="!font-bold !text-lg !mb-3 !pb-2 !border-b !border-white !border-solid">Learn More</h4>
                 <ul className="!space-y-2 !mt-4">
                   <li>
-                    <a href="/" className="!text-gray-200 hover:!text-white !transition-colors">
+                    <a href="/about" className="!text-gray-200 hover:!text-white !transition-colors">
                       About Us
                     </a>
                   </li>
                   <li>
-                    <a href="/our-work" className="!text-gray-200 hover:!text-white !transition-colors">
-                      Our work
+                    <a href="/blog" className="!text-gray-200 hover:!text-white !transition-colors">
+                      Blog
                     </a>
                   </li>
                   <li>
-                    <a href="/#placements" className="!text-gray-200 hover:!text-white !transition-colors">
+                    <a href="https://google.com" target="_blank" rel="noopener noreferrer" className="!text-gray-200 hover:!text-white !transition-colors">
                       Placement
                     </a>
                   </li>
                 </ul>
               </div>
-
+              
             </div>
           </div>
-
+          
         </div>
-
+        
         {/* Bottom Section - EST. 2020 */}
         <div className="!mt-16 !flex !justify-center lg:!justify-end">
           <span className="!text-lg !font-semibold !text-gray-200">EST. 2020</span>
         </div>
-
+        
       </div>
     </div>
   </footer>
