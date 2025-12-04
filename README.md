@@ -1,2 +1,2 @@
-# Dev Notes
-Header and Footer are weird w/ the scrolling elements and 100vh, just manually include them in each page for now
+# README
+Website for student led investment fund __Apex Fund__.
