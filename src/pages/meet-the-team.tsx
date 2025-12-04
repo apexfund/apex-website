@@ -62,6 +62,13 @@ const MeetTheTeam = () => {
       linkedIn: 'https://www.linkedin.com/in/nirav-koley/'
     },
     {
+      name: "Kushal Kapoor",
+      role: "Senior Analyst",
+      team: "Quantitative Team",
+      imageUrl: kushal_kapoor,
+      linkedIn: 'https://www.linkedin.com/in/kushalkapoor25/'
+    },
+    {
       name: "Caleb Chang",
       role: "Analyst",
       team: "Quantitative Team",
@@ -88,13 +95,6 @@ const MeetTheTeam = () => {
       team: "Quantitative Team",
       imageUrl: krishi_cherukupalli,
       linkedIn: 'https://www.linkedin.com/in/krishi-cherukupalli/'
-    },
-    {
-      name: "Kushal Kapoor",
-      role: "Analyst",
-      team: "Quantitative Team",
-      imageUrl: kushal_kapoor,
-      linkedIn: 'https://www.linkedin.com/in/kushalkapoor25/'
     },
     {
       name: "Narain Sriam",
