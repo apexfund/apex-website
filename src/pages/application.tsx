@@ -42,7 +42,7 @@ const Application = () => {
                     className="border border-gray-300 rounded-lg !mb-4"
                   >
                     <a
-                      href="https://docs.google.com/forms/d/e/1FAIpQLSdULF0z4HJZ9Oc35BZeINGzqzaBSnz3Alxgj80QPtrSgA249w/viewform?usp=dialog"
+                      href="https://forms.gle/DddEiicn8J2XaAcs9"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="group w-full flex items-center justify-between p-4 bg-transparent hover:bg-transparent focus:outline-none !border !border-transparent hover:!border-[#96BFCF] !rounded"
@@ -95,7 +95,7 @@ const Application = () => {
                       <span className="flex items-center !p-2 transition-all duration-300 !border !border-transparent hover:!border-[#96BFCF] !rounded">
                         <div className="!p-2 !mt-1">
                           <span className="text-xl mr-4 text-gray-500">
-                            Apply
+                            Applications Closed
                           </span>
                         </div>
                       </span>
