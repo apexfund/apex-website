@@ -10,7 +10,8 @@ const config: Config = {
         backgroundDark: '#121212',
         navLight: '#F1EDEE',
         navDark: '#121212',
-        accent: '#96BFCF'
+        accent: '#96BFCF',
+        footer: '#728FA7'
       }
     }
   },
