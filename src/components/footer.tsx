@@ -15,8 +15,7 @@ const Footer = () => (
     
     {/* Content Section with solid background */}
     <div 
-      className="w-full"
-      style={{ backgroundColor: '#5B7E9A' }}
+      className="w-full bg-footer"
     >
       <div className="!container !mx-auto !px-6 sm:!px-12 !py-16">
         {/* Main Content Layout */}
