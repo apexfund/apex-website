@@ -4,6 +4,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import { PRIMARY_FONT_FAMILY } from "../utils/constants";
 import PlacementsImg from "../assets/companies.png";
+import SponsorshipsImg from "../assets/sponsors.png";
 
 import Background from "../components/Background";
 
@@ -294,6 +295,32 @@ const Landing = () => {
                   <img
                     src={PlacementsImg}
                     alt="Company Logos of member placements"
+                    className="max-w-full h-auto"
+                  />
+                </div>
+              </div>
+            </section>
+
+            {/* Sponsorships Section */}
+            <section
+              id="sponsorships"
+              className="px-6 sm:px-8 pt-32 pb-20 max-w-7xl mx-auto flex items-center py-8"
+            >
+              <div className="ml-0 md:!ml-20 !lg:ml-32 !xl:ml-48">
+                <h2
+                  className="!text-6xl !mt-12 !mb-6 !leading-tight !tracking-tight text-left"
+                  style={{ fontFamily: PRIMARY_FONT_FAMILY }}
+                >
+                  Sponsorships
+                </h2>
+                <p className="text-base sm:text-lg font-light leading-relaxed max-w-4xl mb-12 text-left">
+                  We&apos;re grateful to partner with organizations that support
+                  Apex and our members.
+                </p>
+                <div className="flex items-center px-4">
+                  <img
+                    src={SponsorshipsImg}
+                    alt="Company Logos of sponsors and collaborators"
                     className="max-w-full h-auto"
                   />
                 </div>
