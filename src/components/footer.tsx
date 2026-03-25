@@ -61,7 +61,7 @@ const Footer = () => (
                   </li>
                   <li>
                     <a href="/application" className="!text-gray-200 hover:!text-white !transition-colors">
-                      Apply
+                      Application
                     </a>
                   </li>
                 </ul>

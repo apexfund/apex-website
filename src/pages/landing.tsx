@@ -344,7 +344,7 @@ const Landing = () => {
                   to="/application"
                   className="block !px-4 !py-2 text-2xl underline decoration-transparent hover:decoration-[#F1EDEE] text-[#96BFCF] hover:text-[#F1EDEE] transition-all duration-300 ease-in-out"
                 >
-                  Apply Now
+                  Applications Closed
                 </Link>
               </div>
             </div>

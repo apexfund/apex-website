@@ -41,29 +41,25 @@ const Application = () => {
                     id="quant-application"
                     className="border border-gray-300 rounded-lg !mb-4"
                   >
-                    <a
-                      href="https://forms.gle/DddEiicn8J2XaAcs9"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group w-full flex items-center justify-between p-4 bg-transparent hover:bg-transparent focus:outline-none !border !border-transparent hover:!border-[#96BFCF] !rounded"
+                    <div
+                      className="w-full flex items-center justify-between p-4 bg-[#F2EDEE] !border !border-transparent !rounded opacity-60 cursor-not-allowed"
+                      aria-disabled="true"
                     >
                       <h2
                         className="!text-4xl !leading-tight !tracking-tight text-left"
                         style={{ fontFamily: PRIMARY_FONT_FAMILY }}
                       >
                         Quantitative{" "}
-                        <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
-                          →
-                        </span>
+                        <span className="inline-block">→</span>
                       </h2>
-                      <span className="flex items-center !p-2 transition-all duration-300 !border !border-transparent hover:!border-[#96BFCF] !rounded">
+                      <span className="flex items-center !p-2 !border !border-transparent !rounded">
                         <div className="!p-2 !mt-1">
                           <span className="text-xl mr-4 text-gray-500">
-                            Apply
+                            Applications Closed
                           </span>
                         </div>
                       </span>
-                    </a>
+                    </div>
                   </div>
 
                   <p className="text-left text-base text-gray-700 !mb-4">
@@ -77,29 +73,25 @@ const Application = () => {
                     id="fund-application"
                     className="border border-gray-300 rounded-lg !mb-4"
                   >
-                    <a
-                      href="https://docs.google.com/forms/d/e/1FAIpQLSdtpskvgKSSOkLHtRSrE99tVDMC5wSEttWd6V0j6TfLOJTRCw/viewform"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group w-full flex items-center justify-between p-4 bg-transparent hover:bg-transparent focus:outline-none !border !border-transparent hover:!border-[#96BFCF] !rounded"
+                    <div
+                      className="w-full flex items-center justify-between p-4 bg-[#F2EDEE] !border !border-transparent !rounded opacity-60 cursor-not-allowed"
+                      aria-disabled="true"
                     >
                       <h2
                         className="!text-4xl !leading-tight !tracking-tight text-left"
                         style={{ fontFamily: PRIMARY_FONT_FAMILY }}
                       >
                         Fundamental{" "}
-                        <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
-                          →
-                        </span>
+                        <span className="inline-block">→</span>
                       </h2>
-                      <span className="flex items-center !p-2 transition-all duration-300 !border !border-transparent hover:!border-[#96BFCF] !rounded">
+                      <span className="flex items-center !p-2 !border !border-transparent !rounded">
                         <div className="!p-2 !mt-1">
                           <span className="text-xl mr-4 text-gray-500">
                             Applications Closed
                           </span>
                         </div>
                       </span>
-                    </a>
+                    </div>
                   </div>
 
                   <p className="text-left text-base text-gray-700 !mb-4">
