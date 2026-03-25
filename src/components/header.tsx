@@ -7,7 +7,7 @@ const navLinks = [
   { to: '/', label: 'Home', exact: true },
   { to: '/our-work', label: 'Our Work' },
   { to: '/meet-the-team', label: 'Team' },
-  { to: '/application', label: 'Apply' }
+  { to: '/application', label: 'Application' }
 ]
 
 const Header = () => {
