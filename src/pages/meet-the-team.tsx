@@ -280,7 +280,7 @@ const MeetTheTeam = () => {
     "Cooper Dorf",
   ];
 
-  const sortByLastName = (a: any, b: any) => {
+  const sortByLastName = (a: { name: string; role: string }, b: { name: string; role: string }) => {
     const roleOrder: { [key: string]: number } = {
       "Senior Analyst": 1,
       Analyst: 2,
@@ -295,8 +295,8 @@ const MeetTheTeam = () => {
       return roleA - roleB;
     }
 
-    const lastNameA = a.name.split(" ").pop();
-    const lastNameB = b.name.split(" ").pop();
+    const lastNameA = a.name.split(" ").pop() || "";
+    const lastNameB = b.name.split(" ").pop() || "";
     return lastNameA.localeCompare(lastNameB);
   };
 

@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import type { PostMeta } from '../utils/posts';
 
 type Props = { meta: PostMeta };
@@ -14,13 +13,15 @@ export default function PostCard({ meta }: Props) {
       {/* Header Row: Title + Label */}
       <div className="flex justify-between items-center mb-2">
         <h4 className="font-bold" style={{ fontFamily: "'Product-Sans-Bold', sans-serif", fontSize: 24, marginBottom: 10 }}>
-          <Link
-            to={`/our-work/${meta.slug}`}
+          <a
+            href={`/markdown-viewer/${meta.slug}`}
+            target="_blank"
+            rel="noopener noreferrer"
             className="font-bold underline decoration-black decoration-2 text-black transition-all duration-200 hover:!text-white hover:bg-black hover:no-underline"
             style={{ fontFamily: "'Product-Sans-Bold', sans-serif", boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}
           >
             {meta.title}
-          </Link>
+          </a>
         </h4>
         {meta.category && (
           <span
