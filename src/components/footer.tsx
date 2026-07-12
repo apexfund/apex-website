@@ -1,124 +1,109 @@
-import footerBg from '../assets/footer.svg'
+import logo from '../assets/logo.png'
 
-const Footer = () => (
-  <footer className="relative text-white">
-    {/* SVG Wave Background Section */}
-    <div 
-      className="w-full h-60 bg-cover bg-top bg-no-repeat"
-      style={{
-        backgroundImage: `url(${footerBg})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'top center',
-        backgroundRepeat: 'no-repeat'
-      }}
-    />
-    
-    {/* Content Section with solid background */}
-    <div 
-      className="w-full"
-      style={{ backgroundColor: '#5B7E9A' }}
-    >
-      <div className="!container !mx-auto !px-6 sm:!px-12 !py-16">
-        {/* Main Content Layout */}
-        <div className="!flex !flex-col lg:!flex-row lg:!justify-between lg:!items-start !gap-12 lg:!gap-16">
-          
-          {/* TODO: Circle with AF and apex fund, do we need ts?  */}
-          
-          {/* <div className="!flex !flex-col !items-start lg:!items-start">
-            <div className="!w-20 !h-20 !bg-gray-200 !rounded-full !mb-4"></div>
-            <h3 className="!text-xl !font-medium">Apex Fund</h3>
-          </div> */}
-          
-          {/* Right Side - Footer Links */}
-          <div className="!flex-1">
-            <div className="!grid !grid-cols-1 sm:!grid-cols-2 lg:!grid-cols-4 !gap-8 lg:!gap-12">
-              
-              {/* Contact Us */}
-              <div>
-                <h4 className="!font-bold !text-lg !mb-3 !pb-2 !border-b !border-white !border-solid">Contact Us</h4>
-                <ul className="!space-y-2 !mt-4">
-                  <li>
-                    <a href="mailto:apexfundquant@gmail.com" className="!text-gray-200 hover:!text-white !transition-colors">
-                      Email
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://terplink.umd.edu/organization/apexfund" target="_blank" rel="noopener noreferrer" className="!text-gray-200 hover:!text-white !transition-colors">
-                      TerpLink
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              
-              {/* Get Involved */}
-              <div>
-                <h4 className="!font-bold !text-lg !mb-3 !pb-2 !border-b !border-white !border-solid">Get Involved</h4>
-                <ul className="!space-y-2 !mt-4">
-                  <li>
-                    <a href="/application" className="!text-gray-200 hover:!text-white !transition-colors">
-                      Training
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/application" className="!text-gray-200 hover:!text-white !transition-colors">
-                      Application
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              
-              {/* Our Team */}
-              <div>
-                <h4 className="!font-bold !text-lg !mb-3 !pb-2 !border-b !border-white !border-solid">Our Team</h4>
-                <ul className="!space-y-2 !mt-4">
-                  <li>
-                    <a href="/meet-the-team" className="!text-gray-200 hover:!text-white !transition-colors">
-                      Executive Team
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/meet-the-team" className="!text-gray-200 hover:!text-white !transition-colors">
-                      Investment Team
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              
-              {/* Learn More */}
-              <div>
-                <h4 className="!font-bold !text-lg !mb-3 !pb-2 !border-b !border-white !border-solid">Learn More</h4>
-                <ul className="!space-y-2 !mt-4">
-                  <li>
-                    <a href="/about" className="!text-gray-200 hover:!text-white !transition-colors">
-                      About Us
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/blog" className="!text-gray-200 hover:!text-white !transition-colors">
-                      Blog
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://google.com" target="_blank" rel="noopener noreferrer" className="!text-gray-200 hover:!text-white !transition-colors">
-                      Placement
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              
-            </div>
+const STRIP = '#ffffff'
+const ON_STRIP = '#000000'
+const ON_STRIP_MUTED = 'rgba(0,0,0,0.5)'
+const ON_STRIP_FAINT = 'rgba(0,0,0,0.35)'
+
+const Footer = () => {
+const year = new Date().getFullYear()
+return (
+  <footer style={{ backgroundColor: STRIP }}>
+    <div style={{ backgroundColor: STRIP }}>
+      <div className="max-w-7xl mx-auto px-6 sm:px-8" style={{ paddingTop: 48, paddingBottom: 56 }}>
+        <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start" style={{ gap: 48, marginLeft: '8%', marginRight: '9%' }}>
+
+          {/* Brand column */}
+          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', flexShrink: 0 }}>
+            <img src={logo} alt="Apex Fund" style={{ height: 72, width: 'auto', maxWidth: 220, objectFit: 'contain' }} />
           </div>
-          
+
+          {/* Link columns */}
+          <div className="grid grid-cols-2 lg:grid-cols-4" style={{ gap: 32, flex: 1 }}>
+            {[
+              {
+                heading: 'Contact',
+                links: [
+                  { label: 'Email', href: 'mailto:apexfundquant@gmail.com' },
+                  { label: 'TerpLink', href: 'https://terplink.umd.edu/organization/apexfund', external: true },
+                ],
+              },
+              {
+                heading: 'Get Involved',
+                links: [
+                  { label: 'Apply', href: '/join-us' },
+                  { label: 'Interest Meeting', href: '/join-us' },
+                ],
+              },
+              {
+                heading: 'Our Team',
+                links: [
+                  { label: 'Executive Board', href: '/meet-the-team' },
+                  { label: 'Investment Team', href: '/meet-the-team' },
+                ],
+              },
+              {
+                heading: 'Explore',
+                links: [
+                  { label: 'Research', href: '/our-work' },
+                  { label: 'Placements', href: '/#placements' },
+                ],
+              },
+            ].map((col) => (
+              <div key={col.heading}>
+                <h4
+                  style={{
+                    color: ON_STRIP,
+                    fontSize: 11,
+                    fontWeight: 700,
+                    letterSpacing: '0.12em',
+                    textTransform: 'uppercase',
+                    margin: '0 0 16px 0',
+                  }}
+                >
+                  {col.heading}
+                </h4>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 10 }}>
+                  {col.links.map((link) => (
+                    <li key={link.label}>
+                      <a
+                        href={link.href}
+                        target={link.external ? '_blank' : undefined}
+                        rel={link.external ? 'noopener noreferrer' : undefined}
+                        style={{ color: ON_STRIP_MUTED, fontSize: 14, textDecoration: 'none', transition: 'color 0.2s' }}
+                        onMouseEnter={(e) => (e.currentTarget.style.color = ON_STRIP)}
+                        onMouseLeave={(e) => (e.currentTarget.style.color = ON_STRIP_MUTED)}
+                      >
+                        {link.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
-        
-        {/* Bottom Section - EST. 2020 */}
-        <div className="!mt-16 !flex !justify-center lg:!justify-end">
-          <span className="!text-lg !font-semibold !text-gray-200">EST. 2020</span>
+
+        {/* Bottom bar */}
+        <div
+          style={{
+            marginTop: 48,
+            marginLeft: '8%',
+            marginRight: '9%',
+            paddingTop: 20,
+            display: 'flex',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            gap: 8,
+          }}
+        >
+          <span style={{ color: ON_STRIP_FAINT, fontSize: 12 }}>© {year} Apex Fund. All rights reserved.</span>
+          <span style={{ color: ON_STRIP_FAINT, fontSize: 12 }}>University of Maryland, College Park</span>
         </div>
-        
       </div>
     </div>
   </footer>
 )
+}
 
 export default Footer
