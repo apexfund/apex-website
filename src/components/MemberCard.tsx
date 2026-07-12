@@ -46,8 +46,8 @@ const MemberCard: React.FC<MemberCardProps> = ({ name, role, team, bio, imageUrl
           }}
         />
       ) : (
-        <div style={{ width: 76, height: 76, borderRadius: '50%', backgroundColor: '#E5E7EB', marginBottom: 14, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28, color: '#9CA3AF' }}>
-          🧑‍💼
+        <div style={{ width: 76, height: 76, borderRadius: '50%', backgroundColor: '#D6E8EF', marginBottom: 14, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26, fontWeight: 600, color: '#4A8FAA', fontFamily: 'Georgia, serif', letterSpacing: '-0.01em', userSelect: 'none' }}>
+          {name.charAt(0).toUpperCase()}
         </div>
       )}
 

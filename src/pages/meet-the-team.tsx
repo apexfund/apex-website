@@ -3,8 +3,6 @@ import Footer from '../components/footer'
 import MemberCard from '../components/MemberCard'
 
 import vishesh_gupta from '../assets/members/vishesh_gupta.jpeg'
-import aditya_dabeer from '../assets/members/aditya_dabeer.jpeg'
-import nirav_koley from '../assets/members/nirav_koley.jpeg'
 import caleb_chang from '../assets/members/caleb_chang.jpeg'
 import daniel_wang from '../assets/members/daniel_wang.jpeg'
 import edward_song from '../assets/members/edward_song.jpeg'
@@ -16,7 +14,6 @@ import shivam_amin from '../assets/members/shivam_amin.jpeg'
 import eshan_khan from '../assets/members/eshan_khan.jpeg'
 import varun_rao from '../assets/members/varun_rao.jpeg'
 import viraj_urs from '../assets/members/viraj_urs.jpeg'
-import mayank_barnwal from '../assets/members/mayank_barnwal.jpeg'
 import joseph_asselta from '../assets/members/joseph_asselta.jpeg'
 import cooper_dorf from '../assets/members/cooper_dorf.jpeg'
 import alex_lavitz from '../assets/members/alex_lavitz.jpeg'
@@ -180,23 +177,37 @@ function AccentLabel({ children }: { children: React.ReactNode }) {
 
 const quantitativeMembers = [
   { name: 'Vishesh Gupta', role: 'Senior Analyst', team: 'Quantitative Team', imageUrl: vishesh_gupta, linkedIn: 'https://www.linkedin.com/in/visheshng/' },
-  { name: 'Aditya Dabeer', role: 'Senior Analyst', team: 'Quantitative Team', imageUrl: aditya_dabeer, linkedIn: 'https://www.linkedin.com/in/adityadabeer/' },
-  { name: 'Nirav Koley', role: 'Senior Analyst', team: 'Quantitative Team', imageUrl: nirav_koley, linkedIn: 'https://www.linkedin.com/in/nirav-koley/' },
-  { name: 'Kushal Kapoor', role: 'Senior Analyst', team: 'Quantitative Team', imageUrl: kushal_kapoor, linkedIn: 'https://www.linkedin.com/in/kushalkapoor25/' },
+  { name: 'Kushal Kapoor', role: 'Advisor', team: 'Quantitative Team', imageUrl: kushal_kapoor, linkedIn: 'https://www.linkedin.com/in/kushalkapoor25/' },
   { name: 'Caleb Chang', role: 'Analyst', team: 'Quantitative Team', imageUrl: caleb_chang, linkedIn: 'https://www.linkedin.com/in/cchang22/' },
   { name: 'Daniel Wang', role: 'Analyst', team: 'Quantitative Team', imageUrl: daniel_wang, linkedIn: 'https://www.linkedin.com/in/daniel-e-wang/' },
   { name: 'Edward Song', role: 'Analyst', team: 'Quantitative Team', imageUrl: edward_song, linkedIn: 'https://www.linkedin.com/in/edwardrsong/' },
-  { name: 'Krishi Cherukupalli', role: 'Junior Analyst', team: 'Quantitative Team', imageUrl: krishi_cherukupalli, linkedIn: 'https://www.linkedin.com/in/krishi-cherukupalli/' },
-  { name: 'Narain Sriam', role: 'Junior Analyst', team: 'Quantitative Team', imageUrl: narain_sriram, linkedIn: 'https://www.linkedin.com/in/narainsriram/' },
-  { name: 'Pranav Bykampadi', role: 'Junior Analyst', team: 'Quantitative Team', imageUrl: pranav_bykampadi, linkedIn: 'https://www.linkedin.com/in/pranav-bykampadi-b89162262/' },
-  { name: 'Shivam Amin', role: 'Junior Analyst', team: 'Quantitative Team', imageUrl: shivam_amin, linkedIn: 'https://www.linkedin.com/in/shivamamin05/' },
-  { name: 'Eshan Khan', role: 'Junior Analyst', team: 'Quantitative Team', imageUrl: eshan_khan, linkedIn: 'https://www.linkedin.com/in/eshankhan05/' },
-  { name: 'Varun Rao', role: 'Junior Analyst', team: 'Quantitative Team', imageUrl: varun_rao, linkedIn: 'https://www.linkedin.com/in/varunvrao/' },
-  { name: 'Viraj Urs', role: 'Junior Analyst', team: 'Quantitative Team', imageUrl: viraj_urs, linkedIn: 'https://www.linkedin.com/in/viraj-urs/' },
+  { name: 'Krishi Cherukupalli', role: 'Senior Analyst', team: 'Quantitative Team', imageUrl: krishi_cherukupalli, linkedIn: 'https://www.linkedin.com/in/krishi-cherukupalli/' },
+  { name: 'Narain Sriam', role: 'Analyst', team: 'Quantitative Team', imageUrl: narain_sriram, linkedIn: 'https://www.linkedin.com/in/narainsriram/' },
+  { name: 'Pranav Bykampadi', role: 'Analyst', team: 'Quantitative Team', imageUrl: pranav_bykampadi, linkedIn: 'https://www.linkedin.com/in/pranav-bykampadi-b89162262/' },
+  { name: 'Shivam Amin', role: 'Analyst', team: 'Quantitative Team', imageUrl: shivam_amin, linkedIn: 'https://www.linkedin.com/in/shivamamin05/' },
+  { name: 'Eshan Khan', role: 'Analyst', team: 'Quantitative Team', imageUrl: eshan_khan, linkedIn: 'https://www.linkedin.com/in/eshankhan05/' },
+  { name: 'Varun Rao', role: 'Analyst', team: 'Quantitative Team', imageUrl: varun_rao, linkedIn: 'https://www.linkedin.com/in/varunvrao/' },
+  { name: 'Viraj Urs', role: 'Analyst', team: 'Quantitative Team', imageUrl: viraj_urs, linkedIn: 'https://www.linkedin.com/in/viraj-urs/' },
+  { name: 'Aarush Vinod', role: 'Analyst', team: 'Quantitative Team', imageUrl: undefined, linkedIn: '' },
+  { name: 'Curtis Lu', role: 'Analyst', team: 'Quantitative Team', imageUrl: undefined, linkedIn: 'https://www.linkedin.com/in/curtis-h-lu/' },
+  { name: 'Aastha Doshi', role: 'Analyst', team: 'Quantitative Team', imageUrl: undefined, linkedIn: '' },
+  { name: 'Agastya Choudhary', role: 'Analyst', team: 'Quantitative Team', imageUrl: undefined, linkedIn: '' },
+  { name: 'Anish Maheshwar', role: 'Analyst', team: 'Quantitative Team', imageUrl: undefined, linkedIn: '' },
+  { name: 'Anish Parikh', role: 'Analyst', team: 'Quantitative Team', imageUrl: undefined, linkedIn: '' },
+  { name: 'Anya Goel', role: 'Analyst', team: 'Quantitative Team', imageUrl: undefined, linkedIn: '' },
+  { name: 'Dhruv Dhananjay', role: 'Analyst', team: 'Quantitative Team', imageUrl: undefined, linkedIn: '' },
+  { name: 'Eric Huang', role: 'Analyst', team: 'Quantitative Team', imageUrl: undefined, linkedIn: '' },
+  { name: 'Felix Ozpaker', role: 'Analyst', team: 'Quantitative Team', imageUrl: undefined, linkedIn: '' },
+  { name: 'Hashem Alomar', role: 'Analyst', team: 'Quantitative Team', imageUrl: undefined, linkedIn: '' },
+  { name: 'Oliver Andrews', role: 'Analyst', team: 'Quantitative Team', imageUrl: undefined, linkedIn: '' },
+  { name: 'Owen Marzolf-Miller', role: 'Analyst', team: 'Quantitative Team', imageUrl: undefined, linkedIn: '' },
+  { name: 'Rohan Chintakindi', role: 'Analyst', team: 'Quantitative Team', imageUrl: undefined, linkedIn: '' },
+  { name: 'Theo Williams', role: 'Analyst', team: 'Quantitative Team', imageUrl: undefined, linkedIn: '' },
+  { name: 'Vedant Narayan', role: 'Analyst', team: 'Quantitative Team', imageUrl: undefined, linkedIn: '' },
+  { name: 'Yudhiishbala Senthilkumar', role: 'Analyst', team: 'Quantitative Team', imageUrl: undefined, linkedIn: '' },
 ]
 
 const fundamentalMembers = [
-  { name: 'Mayank Barnwal', role: 'Portfolio Manager', team: 'Fundamental Team', imageUrl: mayank_barnwal, linkedIn: 'https://www.linkedin.com/in/mayank-barnwal/' },
   { name: 'Joseph Asselta', role: 'Portfolio Manager', team: 'Fundamental Team', imageUrl: joseph_asselta, linkedIn: 'https://www.linkedin.com/in/josephasselta/' },
   { name: 'Cooper Dorf', role: 'Portfolio Manager', team: 'Fundamental Team', imageUrl: cooper_dorf, linkedIn: 'https://www.linkedin.com/in/cooper-dorf/' },
   { name: 'Alex Lavitz', role: 'Analyst', team: 'Fundamental Team', imageUrl: alex_lavitz, linkedIn: 'https://www.linkedin.com/in/alexlavitz/' },
@@ -213,25 +224,25 @@ const fundamentalMembers = [
   { name: 'Reed Plotnick', role: 'Analyst', team: 'Fundamental Team', imageUrl: reed_plotnick, linkedIn: 'https://www.linkedin.com/in/reedplotnick/' },
   { name: 'Saketh Ram Kannoju', role: 'Analyst', team: 'Fundamental Team', imageUrl: saketh_ram_kannuoju, linkedIn: 'https://www.linkedin.com/in/sakethkannoju/' },
   { name: 'Tyson Nguyen', role: 'Analyst', team: 'Fundamental Team', imageUrl: tyson_nguyen, linkedIn: 'https://www.linkedin.com/in/tyson-nguyen-b40920233/' },
-  { name: 'Boburkhan Djumanov', role: 'Junior Analyst', team: 'Fundamental Team', imageUrl: boburkhan_djumanov, linkedIn: 'https://www.linkedin.com/in/boburkhandjumanov/' },
+  { name: 'Boburkhan Djumanov', role: 'Analyst', team: 'Fundamental Team', imageUrl: boburkhan_djumanov, linkedIn: 'https://www.linkedin.com/in/boburkhandjumanov/' },
 ]
 
-const executiveBoardNames = ['Vishesh Gupta', 'Aditya Dabeer', 'Nirav Koley', 'Mayank Barnwal', 'Joseph Asselta', 'Cooper Dorf']
+const executiveBoardNames = ['Vishesh Gupta', 'Krishi Cherukupalli', 'Joseph Asselta', 'Cooper Dorf', 'Kushal Kapoor']
 
-function sortByRole<T extends { name: string; role: string }>(arr: T[]): T[] {
-  const order: Record<string, number> = { 'Portfolio Manager': 0, 'Senior Analyst': 1, 'Analyst': 2, 'Junior Analyst': 3 }
-  return [...arr].sort((a, b) => {
-    const diff = (order[a.role] ?? 99) - (order[b.role] ?? 99)
-    if (diff !== 0) return diff
-    return (a.name.split(' ').pop() ?? '').localeCompare(b.name.split(' ').pop() ?? '')
-  })
+function firstName(name: string) {
+  return name.trim().split(/\s+/)[0]?.toLowerCase() ?? ''
 }
 
-const allMembers = [...quantitativeMembers, ...fundamentalMembers]
-const executiveBoardMembers = sortByRole(allMembers.filter(m => executiveBoardNames.includes(m.name)))
-const otherMembers = sortByRole(allMembers.filter(m => !executiveBoardNames.includes(m.name)))
+function sortAlpha<T extends { name: string }>(arr: T[]): T[] {
+  return [...arr].sort((a, b) => firstName(a.name).localeCompare(firstName(b.name), 'en'))
+}
 
 const MeetTheTeam = () => {
+  const allMembers = [...quantitativeMembers, ...fundamentalMembers]
+  const executiveBoardMembers = sortAlpha(allMembers.filter(m => executiveBoardNames.includes(m.name)))
+  const quantOther = sortAlpha(quantitativeMembers.filter(m => !executiveBoardNames.includes(m.name)))
+  const fundOther = sortAlpha(fundamentalMembers.filter(m => !executiveBoardNames.includes(m.name)))
+
   return (
     <div style={{ minHeight: '100vh', paddingTop: 72 }}>
       <style>{`
@@ -303,7 +314,7 @@ const MeetTheTeam = () => {
         <section id="executive-board" className="max-w-7xl mx-auto px-6 sm:px-8" style={{ paddingTop: 80, paddingBottom: 80, scrollMarginTop: 72 }}>
           <div style={{ marginLeft: '8%', marginRight: '9%' }}>
             <AccentLabel>Leadership</AccentLabel>
-            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px, 3.5vw, 44px)', fontWeight: 400, letterSpacing: '-0.02em', color: ACCENT, margin: '0 0 40px 0' }}>
+            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px, 3.5vw, 44px)', fontWeight: 400, letterSpacing: '-0.02em', color: '#0C1929', margin: '0 0 40px 0' }}>
               Executive Board
             </h2>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: 16 }}>
@@ -322,15 +333,37 @@ const MeetTheTeam = () => {
         </section>
 
 
-        {/* Investment Team */}
-        <section id="investment-team" className="max-w-7xl mx-auto px-6 sm:px-8" style={{ paddingTop: 80, paddingBottom: 96, scrollMarginTop: 72 }}>
+        {/* Quantitative Team */}
+        <section id="quantitative-team" className="max-w-7xl mx-auto px-6 sm:px-8" style={{ paddingTop: 80, paddingBottom: 80, scrollMarginTop: 72 }}>
           <div style={{ marginLeft: '8%', marginRight: '9%' }}>
             <AccentLabel>Analysts</AccentLabel>
-            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px, 3.5vw, 44px)', fontWeight: 400, letterSpacing: '-0.02em', color: ACCENT, margin: '0 0 40px 0' }}>
-              Investment Team
+            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px, 3.5vw, 44px)', fontWeight: 400, letterSpacing: '-0.02em', color: '#0C1929', margin: '0 0 40px 0' }}>
+              Quantitative Team
             </h2>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: 16 }}>
-              {otherMembers.map((member, i) => (
+              {quantOther.map((member, i) => (
+                <MemberCard
+                  key={i}
+                  name={member.name}
+                  role={member.role}
+                  team={member.team}
+                  imageUrl={member.imageUrl}
+                  linkedinUrl={member.linkedIn}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Fundamental Team */}
+        <section id="fundamental-team" className="max-w-7xl mx-auto px-6 sm:px-8" style={{ paddingTop: 80, paddingBottom: 96, scrollMarginTop: 72 }}>
+          <div style={{ marginLeft: '8%', marginRight: '9%' }}>
+            <AccentLabel>Analysts</AccentLabel>
+            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px, 3.5vw, 44px)', fontWeight: 400, letterSpacing: '-0.02em', color: '#0C1929', margin: '0 0 40px 0' }}>
+              Fundamental Team
+            </h2>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: 16 }}>
+              {fundOther.map((member, i) => (
                 <MemberCard
                   key={i}
                   name={member.name}

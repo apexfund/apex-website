@@ -1,6 +1,5 @@
 import Header from '../components/header'
 import Footer from '../components/footer'
-
 const HERO_GRADIENT = 'linear-gradient(145deg, #1B5470 0%, #2B7291 30%, #3E8DAA 65%, #6BAABF 100%)'
 const CREAM   = '#F1EDEE'
 const TEXT    = '#0C1929'
@@ -11,7 +10,7 @@ const PLUS_BG = `url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox
 const values = [
   {
     title: 'Community',
-    body: 'Apex is more than a fund — it\'s a network of driven students and alumni who push each other to grow, share ideas, and open doors for one another.',
+    body: 'Apex is more than a fund. It\'s a tight-knit family where you\'ll find yourself surrounded by driven, like-minded people who push each other to grow, share ideas, and open doors for one another. The friendships you build here tend to last a lifetime.',
   },
   {
     title: 'Integrity',
@@ -308,6 +307,7 @@ export default function OurMission() {
             </div>
           </div>
         </section>
+
 
       </div>
 

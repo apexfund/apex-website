@@ -1,5 +1,6 @@
 import Header from "../components/header"
 import Footer from "../components/footer"
+import PlacementsImg from "../assets/companies.png"
 
 const HERO_GRADIENT = 'linear-gradient(145deg, #1B5470 0%, #2B7291 30%, #3E8DAA 65%, #6BAABF 100%)'
 const STRIP      = '#96BFCF'
@@ -15,15 +16,15 @@ type Status = 'open' | 'closed'
 interface Track { id: string; title: string; team: string; description: string; ideal: string; skills: string[]; status: Status; formLink: string }
 
 const tracks: Track[] = [
-  { id: 'quantitative', title: 'Quantitative Analyst', team: 'Quantitative Team', description: 'Develop and implement algorithmic trading strategies using statistical models, machine learning, and real market data. Collaborate with senior analysts to research alpha-generating ideas and build rigorous backtesting frameworks.', ideal: 'Computer Science, Mathematics, Statistics, or Engineering majors', skills: ['Python or R', 'Statistical modeling', 'Data analysis', 'Linear algebra', 'Interest in markets'], status: 'closed', formLink: 'https://forms.gle/DddEiicn8J2XaAcs9' },
-  { id: 'fundamental', title: 'Fundamental Analyst', team: 'Fundamental Team', description: 'Conduct in-depth research on public equities, build financial models, and develop investment theses. Manage real long/short positions and present recommendations to the investment committee.', ideal: 'Finance, Business, Economics, or Accounting majors', skills: ['Financial modeling', 'Equity research', 'DCF valuation', 'Accounting', 'Excel'], status: 'closed', formLink: '' },
+  { id: 'quantitative', title: 'Quantitative Analyst', team: 'Quantitative Team', description: 'Work at the intersection of finance and technology. Members typically focus on one of two tracks: research and trading, where you develop algorithmic strategies, build backtesting frameworks, and analyze real market data; or development, where you build the tools, infrastructure, and software that power our trading systems. We have active projects in both areas.', ideal: 'Computer Science, Mathematics, Statistics, or Engineering majors', skills: ['Curiosity about markets', 'Willingness to learn', 'Analytical thinking', 'Python / R (optional but recommended)', 'Statistics / probability (optional)', 'SQL (optional)', 'Linear algebra (optional)'], status: 'closed', formLink: 'https://forms.gle/DddEiicn8J2XaAcs9' },
+  { id: 'fundamental', title: 'Fundamental Analyst', team: 'Fundamental Team', description: 'Conduct in-depth research on public equities, build financial models, and develop investment theses. Manage real long/short positions and present recommendations to the investment committee.', ideal: 'Finance, Business, Economics, or Accounting majors', skills: ['Curiosity about markets', 'Willingness to learn', 'Strong work ethic', 'Excel / financial modeling (optional but recommended)', 'Accounting basics (optional)', 'DCF / valuation (optional)', 'Bloomberg / FactSet (optional)'], status: 'closed', formLink: '' },
 ]
 
 const steps = [
   { n: '01', title: 'Submit Application', desc: 'Complete our online form when applications open each semester.' },
   { n: '02', title: 'Online Assessment', desc: 'Complete a short take-home assessment to demonstrate your technical and analytical skills.' },
   { n: '03', title: 'Interview', desc: 'Selected candidates are invited for a technical or behavioral interview with our team.' },
-  { n: '04', title: 'Welcome to Apex', desc: 'Congratulations — you\'re in. Begin your journey with Apex Fund.' },
+  { n: '04', title: 'Welcome to Apex', desc: 'Congratulations, you\'re in. Begin your journey with Apex Fund.' },
 ]
 
 /**
@@ -213,7 +214,7 @@ const JoinUs = () => (
             <span style={{ color: 'rgba(220,236,244,0.85)', fontSize: 11, fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase' }}>Join Apex</span>
           </div>
           <h1 className="hero-slide" style={{ fontFamily: SERIF, fontSize: 'clamp(44px,6vw,80px)', fontWeight: 400, lineHeight: 1.08, letterSpacing: '-0.02em', color: '#DCF0F8', margin: '0 0 24px 0', animationDelay: '0.18s' }}>
-            Build Your Career<br />With Apex.
+            Jumpstart Your Career<br />With Apex.
           </h1>
           <p className="hero-slide" style={{ color: 'rgba(220,240,250,0.75)', fontSize: 18, lineHeight: 1.7, maxWidth: 480, margin: 0, animationDelay: '0.30s' }}>
             Take away skills that matter, surround yourself with driven people, and grow into the finance professional you want to be. All while having a great time doing it.
@@ -225,22 +226,34 @@ const JoinUs = () => (
     {/* ════ BODY SECTIONS ════ */}
     <div style={{ backgroundColor: '#fff' }}>
 
-      {/* Why Apex */}
+      {/* Why Apex + Placements */}
       <section className="max-w-7xl mx-auto px-6 sm:px-8" style={{ paddingTop: 96, paddingBottom: 96 }}>
         <div style={{ marginLeft: '8%', marginRight: '9%' }}>
-        <AccentLabel>Why Apex</AccentLabel>
-        <div style={{ display: 'grid', gap: 40 }} className="md:grid-cols-3">
-          {[
-            { title: 'Real Capital', desc: 'Manage actual money — not simulations. Our fund deploys real capital across quantitative and fundamental strategies, giving you genuine market exposure.' },
-            { title: 'Research Depth', desc: 'Publish original research, backtest strategies, and develop investment theses that inform real portfolio decisions alongside a community of peers.' },
-            { title: 'Career Network', desc: 'Alumni placed at top hedge funds, investment banks, and technology firms. Benefit from active mentorship and direct recruiting connections.' },
-          ].map(item => (
-            <div key={item.title}>
-              <h3 style={{ fontFamily: SERIF, fontSize: 22, fontWeight: 400, color: TEXT, margin: '0 0 12px 0' }}>{item.title}</h3>
-              <p style={{ fontSize: 15, color: '#6B7280', lineHeight: 1.75, margin: 0 }}>{item.desc}</p>
-            </div>
-          ))}
-        </div>
+          <AccentLabel>Why Apex</AccentLabel>
+          <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(32px,4vw,54px)', fontWeight: 400, lineHeight: 1.1, letterSpacing: '-0.02em', color: TEXT, margin: '0 0 48px 0' }}>
+            Built to Launch Your Career.
+          </h2>
+          <div style={{ display: 'grid', gap: 40, marginBottom: 72 }} className="md:grid-cols-2 lg:grid-cols-4">
+            {[
+              { title: 'Real Capital', desc: 'Manage actual money, not simulations. Our fund deploys real capital across quantitative and fundamental strategies, giving you genuine market exposure.' },
+              { title: 'Research Depth', desc: 'Publish original research, backtest strategies, and develop investment theses that inform real portfolio decisions alongside a community of peers.' },
+              { title: 'Structured Education', desc: 'Every analyst goes through a hands-on program covering financial modeling, quantitative methods, and software engineering/quant dev, so you hit the ground running from day one.' },
+              { title: 'Career Network', desc: 'Alumni placed at top hedge funds, investment banks, and technology firms. Benefit from active mentorship and direct recruiting connections.' },
+            ].map(item => (
+              <div key={item.title}>
+                <h3 style={{ fontFamily: SERIF, fontSize: 22, fontWeight: 400, color: TEXT, margin: '0 0 12px 0' }}>{item.title}</h3>
+                <p style={{ fontSize: 15, color: '#6B7280', lineHeight: 1.75, margin: 0 }}>{item.desc}</p>
+              </div>
+            ))}
+          </div>
+          <div>
+            <p style={{ fontSize: 13, color: '#9CA3AF', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 600, margin: '0 0 32px 0' }}>Where our members have gone</p>
+            <img
+              src={PlacementsImg}
+              alt="Company logos of member placements"
+              style={{ display: 'block', width: '100%', height: 'auto', opacity: 0.9 }}
+            />
+          </div>
         </div>
       </section>
 

@@ -3,6 +3,9 @@ import PostCard from '../components/PostCard'
 import { allPosts } from '../utils/posts'
 import Header from '../components/header'
 import Footer from '../components/footer'
+import { useQuery } from 'convex/react'
+import { api } from '../../convex/_generated/api'
+import type { PostMeta } from '../utils/posts'
 
 const HERO_GRADIENT = 'linear-gradient(145deg, #1B5470 0%, #2B7291 30%, #3E8DAA 65%, #6BAABF 100%)'
 const ACCENT = '#96BFCF'
@@ -131,6 +134,22 @@ function WorkGraphic() {
 }
 
 export default function OurWork() {
+  const convexArticles = useQuery(api.articles.list) ?? []
+
+  const convexPosts: { meta: PostMeta }[] = convexArticles.map(a => ({
+    meta: {
+      title: a.title,
+      date: a.date,
+      category: a.category,
+      description: a.description,
+      slug: `__convex__${a.slug}`,
+    },
+  }))
+
+  const merged = [...allPosts, ...convexPosts].sort(
+    (a, b) => new Date(b.meta.date).getTime() - new Date(a.meta.date).getTime()
+  )
+
   return (
     <div style={{ minHeight: '100vh', paddingTop: 72 }}>
       <style>{`
@@ -202,16 +221,14 @@ export default function OurWork() {
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <div style={{ width: '100%', maxWidth: 720, marginBottom: 48 }}>
               <span style={{ color: ACCENT, fontSize: 11, fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
-                {allPosts.length} {allPosts.length === 1 ? 'Article' : 'Articles'}
+                {merged.length} {merged.length === 1 ? 'Article' : 'Articles'}
               </span>
             </div>
 
             <div style={{ width: '100%', maxWidth: 720 }}>
-              {allPosts.map((post, idx) => (
+              {merged.map((post, idx) => (
                 <React.Fragment key={post.meta.slug}>
-                  {idx !== 0 && (
-                    <div style={{ height: 0 }} />
-                  )}
+                  {idx !== 0 && <div style={{ height: 0 }} />}
                   <PostCard meta={post.meta} />
                 </React.Fragment>
               ))}
