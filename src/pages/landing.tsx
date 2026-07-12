@@ -335,7 +335,9 @@ const Landing = () => {
             <p style={{ fontSize: 16, color: 'rgba(220,240,250,0.65)', lineHeight: 1.7, maxWidth: 500, margin: '0 0 48px 0' }}>
               Our members have secured positions at top firms in the industry, a testament to the skills gained through Apex.
             </p>
-            <img src={PlacementsImg} alt="Company logos of member placements" style={{ display: 'block', width: '100%', height: 'auto', opacity: 0.85 }} />
+            <div style={{ borderRadius: 16, padding: 32, background: 'rgba(220,240,250,0.04)', boxShadow: '0 4px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(220,240,250,0.08)', backdropFilter: 'blur(8px)' }}>
+              <img src={PlacementsImg} alt="Company logos of member placements" style={{ display: 'block', width: '100%', height: 'auto', opacity: 0.9, borderRadius: 8 }} />
+            </div>
           </div>
         </section>
 
@@ -351,7 +353,9 @@ const Landing = () => {
             <p style={{ fontSize: 16, color: 'rgba(220,240,250,0.65)', lineHeight: 1.7, maxWidth: 500, margin: '0 0 48px 0' }}>
               We're grateful to partner with organizations that support Apex and our members.
             </p>
-            <img src={SponsorshipsImg} alt="Sponsor logos" style={{ display: 'block', width: '100%', height: 'auto', opacity: 0.85 }} />
+            <div style={{ borderRadius: 16, padding: 32, background: 'rgba(220,240,250,0.04)', boxShadow: '0 4px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(220,240,250,0.08)', backdropFilter: 'blur(8px)' }}>
+              <img src={SponsorshipsImg} alt="Sponsor logos" style={{ display: 'block', width: '100%', height: 'auto', opacity: 0.9, borderRadius: 8 }} />
+            </div>
           </div>
         </section>
 
