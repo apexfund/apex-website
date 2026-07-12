@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Lock } from 'lucide-react'
 import logo from '../assets/logo.png'
 
 const STRIP = '#1A4A60'
@@ -60,6 +60,21 @@ const Header = () => {
               </NavLink>
             ))}
 
+            {/* Admin link — subtle lock icon */}
+            <NavLink
+              to="/admin"
+              title="Admin"
+              style={({ isActive }) => ({
+                color: isActive ? ON_STRIP : ON_STRIP_MUTED,
+                display: 'flex',
+                alignItems: 'center',
+                paddingBottom: 4,
+                borderBottom: isActive ? `2px solid #96BFCF` : '2px solid transparent',
+                transition: 'color 0.2s',
+              })}
+            >
+              <Lock size={15} />
+            </NavLink>
           </div>
 
           {/* Mobile hamburger */}
@@ -95,6 +110,23 @@ const Header = () => {
                 {label}
               </NavLink>
             ))}
+            <NavLink
+              to="/admin"
+              onClick={() => setIsOpen(false)}
+              style={({ isActive }) => ({
+                display: 'flex',
+                alignItems: 'center',
+                gap: 8,
+                padding: '12px 0',
+                color: isActive ? ON_STRIP : ON_STRIP_MUTED,
+                fontSize: 14,
+                fontWeight: isActive ? 600 : 400,
+                textDecoration: 'none',
+              })}
+            >
+              <Lock size={14} />
+              Admin
+            </NavLink>
           </div>
         )}
       </div>

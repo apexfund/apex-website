@@ -1,36 +1,15 @@
 import { useParams, Navigate } from 'react-router-dom';
 import MarkdownPreview from '@uiw/react-markdown-preview';
-import { getPostBySlug } from '../utils/posts';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useQuery } from 'convex/react';
+import { api } from '../../convex/_generated/api';
 import logo from '../assets/logo.png';
 import PlusBackground from '../components/PlusBackground';
 
-export default function MarkdownPage() {
-  const { slug } = useParams<{ slug: string }>();
-  const [postContent, setPostContent] = useState<string | null>(null);
-
-  useEffect(() => {
-    const prev = document.body.style.backgroundColor;
-    document.body.style.backgroundColor = '#ffffff';
-    return () => { document.body.style.backgroundColor = prev; };
-  }, []);
-
-  useEffect(() => {
-    if (slug) {
-      const post = getPostBySlug(slug);
-      if (post) {
-        setPostContent(post.content);
-      }
-    }
-  }, [slug]);
-
-  if (!slug) return <Navigate to="/our-work" replace />;
-  if (!postContent) return <div className="p-8 text-center">Loading or Post not found.</div>;
-
+function ArticleLayout({ content }: { content: string }) {
   return (
     <div style={{ position: 'relative', minHeight: '100vh', backgroundColor: '#ffffff', paddingTop: 72 }}>
       <PlusBackground />
-      {/* All content above the background pattern */}
       <div style={{ position: 'relative', zIndex: 1 }}>
         <header style={{ backgroundColor: '#ffffff', borderBottom: '1px solid #e5e5e5' }}>
           <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 32px' }}>
@@ -74,7 +53,7 @@ export default function MarkdownPage() {
 
         <div style={{ maxWidth: '860px', margin: '0 auto', padding: '48px 24px' }}>
           <MarkdownPreview
-            source={postContent}
+            source={content}
             wrapperElement={{ 'data-color-mode': 'light' }}
             style={{ backgroundColor: '#ffffff', padding: '40px', borderRadius: '6px', boxShadow: '0 1px 3px rgba(0,0,0,0.08)' }}
           />
@@ -82,4 +61,31 @@ export default function MarkdownPage() {
       </div>
     </div>
   );
+}
+
+function ConvexArticlePage({ slug }: { slug: string }) {
+  const article = useQuery(api.articles.getBySlug, { slug });
+
+  if (article === undefined) {
+    return <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#9CA3AF' }}>Loading…</div>;
+  }
+  if (!article) {
+    return <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#9CA3AF' }}>Post not found.</div>;
+  }
+
+  return <ArticleLayout content={article.content} />;
+}
+
+export default function MarkdownPage() {
+  const { slug } = useParams<{ slug: string }>();
+
+  useEffect(() => {
+    const prev = document.body.style.backgroundColor;
+    document.body.style.backgroundColor = '#ffffff';
+    return () => { document.body.style.backgroundColor = prev; };
+  }, []);
+
+  if (!slug) return <Navigate to="/our-work" replace />;
+
+  return <ConvexArticlePage slug={slug} />;
 }

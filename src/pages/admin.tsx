@@ -1,9 +1,10 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useQuery, useMutation } from 'convex/react'
 import { api } from '../../convex/_generated/api'
 import type { Id } from '../../convex/_generated/dataModel'
 
-const ADMIN_PASSWORD = 'apexfund2025'
+const SESSION_KEY = 'apexAdminToken'
 
 const SERIF = 'Georgia, serif'
 const TEXT = '#0C1929'
@@ -29,20 +30,105 @@ type ArticleDoc = {
 const emptyForm = { title: '', date: new Date().toISOString().slice(0, 10), category: '', description: '', content: '', slug: '' }
 
 export default function Admin() {
-  const [authed, setAuthed] = useState(false)
+  // Restore session from localStorage on mount
+  const [sessionToken, setSessionToken] = useState<string | null>(
+    () => localStorage.getItem(SESSION_KEY)
+  )
   const [pw, setPw] = useState('')
   const [pwError, setPwError] = useState(false)
+  const [loginLoading, setLoginLoading] = useState(false)
 
   const [form, setForm] = useState(emptyForm)
   const [editing, setEditing] = useState<Id<'articles'> | null>(null)
   const [tab, setTab] = useState<'list' | 'write'>('list')
   const [deleteConfirm, setDeleteConfirm] = useState<Id<'articles'> | null>(null)
+  const [saveError, setSaveError] = useState<string | null>(null)
+
+  // Always call hooks at top level
+  const isSessionValid = useQuery(
+    api.adminAuth.validateSession,
+    sessionToken ? { token: sessionToken } : 'skip'
+  )
 
   const articles: ArticleDoc[] = useQuery(api.articles.list) ?? []
+  const loginMutation = useMutation(api.adminAuth.adminLogin)
+  const logoutMutation = useMutation(api.adminAuth.adminLogout)
   const createArticle = useMutation(api.articles.create)
   const updateArticle = useMutation(api.articles.update)
   const removeArticle = useMutation(api.articles.remove)
 
+  // Derive auth state: we have a token AND the server says it's valid
+  // isSessionValid === undefined means still loading; treat as authed optimistically
+  const authed = !!sessionToken && isSessionValid !== false
+
+  async function handleLogin() {
+    setLoginLoading(true)
+    setPwError(false)
+    try {
+      const token = await loginMutation({ password: pw })
+      if (token) {
+        localStorage.setItem(SESSION_KEY, token)
+        setSessionToken(token)
+        setPw('')
+      } else {
+        setPwError(true)
+      }
+    } finally {
+      setLoginLoading(false)
+    }
+  }
+
+  async function handleLogout() {
+    if (sessionToken) {
+      await logoutMutation({ token: sessionToken })
+    }
+    localStorage.removeItem(SESSION_KEY)
+    setSessionToken(null)
+    setTab('list')
+    setEditing(null)
+    setForm(emptyForm)
+  }
+
+  function startEdit(a: ArticleDoc) {
+    setForm({ title: a.title, date: a.date, category: a.category ?? '', description: a.description ?? '', content: a.content, slug: a.slug })
+    setEditing(a._id)
+    setTab('write')
+    setSaveError(null)
+  }
+
+  function resetForm() {
+    setForm(emptyForm)
+    setEditing(null)
+    setTab('list')
+    setSaveError(null)
+  }
+
+  async function handleSubmit() {
+    if (!form.title || !form.date || !form.content || !sessionToken) return
+    setSaveError(null)
+    const slug = form.slug || slugify(form.title)
+    const payload = {
+      sessionToken,
+      title: form.title,
+      date: form.date,
+      slug,
+      content: form.content,
+      ...(form.category ? { category: form.category } : {}),
+      ...(form.description ? { description: form.description } : {}),
+    }
+    try {
+      if (editing) {
+        await updateArticle({ id: editing, ...payload })
+      } else {
+        await createArticle(payload)
+      }
+      resetForm()
+    } catch (err) {
+      setSaveError(err instanceof Error ? err.message : 'Failed to save article')
+    }
+  }
+
+  // ── Login screen ──────────────────────────────────────────────────────────
   if (!authed) {
     return (
       <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F8F9FA' }}>
@@ -54,53 +140,48 @@ export default function Admin() {
             placeholder="Password"
             value={pw}
             onChange={e => { setPw(e.target.value); setPwError(false) }}
-            onKeyDown={e => { if (e.key === 'Enter') { if (pw === ADMIN_PASSWORD) setAuthed(true); else setPwError(true) } }}
+            onKeyDown={e => { if (e.key === 'Enter') handleLogin() }}
             style={{ width: '100%', padding: '10px 12px', border: `1px solid ${pwError ? '#EF4444' : 'rgba(0,0,0,0.12)'}`, fontSize: 14, outline: 'none', boxSizing: 'border-box', marginBottom: 8 }}
           />
           {pwError && <p style={{ fontSize: 12, color: '#EF4444', margin: '0 0 12px 0' }}>Incorrect password.</p>}
           <button
-            onClick={() => { if (pw === ADMIN_PASSWORD) setAuthed(true); else setPwError(true) }}
-            style={{ width: '100%', padding: '11px', backgroundColor: TEXT, color: '#fff', fontSize: 14, fontWeight: 600, border: 'none', cursor: 'pointer' }}
+            onClick={handleLogin}
+            disabled={loginLoading}
+            style={{ width: '100%', padding: '11px', backgroundColor: TEXT, color: '#fff', fontSize: 14, fontWeight: 600, border: 'none', cursor: loginLoading ? 'not-allowed' : 'pointer', opacity: loginLoading ? 0.7 : 1 }}
           >
-            Sign In
+            {loginLoading ? 'Signing in…' : 'Sign In'}
           </button>
+          <Link
+            to="/our-work"
+            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, marginTop: 20, color: '#6B7280', fontSize: 13, textDecoration: 'none' }}
+            onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = TEXT }}
+            onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = '#6B7280' }}
+          >
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 3L5 8L10 13" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            Back to Our Work
+          </Link>
         </div>
       </div>
     )
   }
 
-  function startEdit(a: ArticleDoc) {
-    setForm({ title: a.title, date: a.date, category: a.category ?? '', description: a.description ?? '', content: a.content, slug: a.slug })
-    setEditing(a._id)
-    setTab('write')
-  }
-
-  function resetForm() {
-    setForm(emptyForm)
-    setEditing(null)
-    setTab('list')
-  }
-
-  async function handleSubmit() {
-    if (!form.title || !form.date || !form.content) return
-    const slug = form.slug || slugify(form.title)
-    const payload = { ...form, slug, category: form.category || undefined, description: form.description || undefined }
-    if (editing) {
-      await updateArticle({ id: editing, ...payload })
-    } else {
-      await createArticle(payload)
-    }
-    resetForm()
-  }
-
+  // ── Admin UI ──────────────────────────────────────────────────────────────
   return (
     <div style={{ minHeight: '100vh', backgroundColor: '#F8F9FA' }}>
       {/* Top bar */}
       <div style={{ backgroundColor: TEXT, padding: '0 40px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 56 }}>
         <span style={{ fontFamily: SERIF, color: '#DCF0F8', fontSize: 18 }}>Apex Admin</span>
-        <div style={{ display: 'flex', gap: 16 }}>
+        <div style={{ display: 'flex', gap: 24, alignItems: 'center' }}>
           <button onClick={() => { setTab('list'); setEditing(null); setForm(emptyForm) }} style={{ background: 'none', border: 'none', color: tab === 'list' ? '#fff' : 'rgba(220,240,250,0.5)', fontSize: 13, cursor: 'pointer', fontWeight: tab === 'list' ? 600 : 400 }}>Articles</button>
           <button onClick={() => { setTab('write'); setEditing(null); setForm(emptyForm) }} style={{ background: 'none', border: 'none', color: tab === 'write' ? '#fff' : 'rgba(220,240,250,0.5)', fontSize: 13, cursor: 'pointer', fontWeight: tab === 'write' ? 600 : 400 }}>+ New Article</button>
+          <button
+            onClick={handleLogout}
+            style={{ background: 'none', border: '1px solid rgba(255,255,255,0.2)', color: 'rgba(220,240,250,0.6)', fontSize: 12, cursor: 'pointer', padding: '4px 12px', borderRadius: 2 }}
+          >
+            Log out
+          </button>
         </div>
       </div>
 
@@ -123,7 +204,7 @@ export default function Admin() {
                   <button onClick={() => startEdit(a)} style={{ padding: '6px 16px', border: `1px solid ${ACCENT}`, backgroundColor: 'transparent', color: TEXT, fontSize: 13, cursor: 'pointer' }}>Edit</button>
                   {deleteConfirm === a._id ? (
                     <>
-                      <button onClick={async () => { await removeArticle({ id: a._id }); setDeleteConfirm(null) }} style={{ padding: '6px 16px', backgroundColor: '#EF4444', border: 'none', color: '#fff', fontSize: 13, cursor: 'pointer' }}>Confirm</button>
+                      <button onClick={async () => { await removeArticle({ id: a._id, sessionToken: sessionToken! }); setDeleteConfirm(null) }} style={{ padding: '6px 16px', backgroundColor: '#EF4444', border: 'none', color: '#fff', fontSize: 13, cursor: 'pointer' }}>Confirm</button>
                       <button onClick={() => setDeleteConfirm(null)} style={{ padding: '6px 12px', border: '1px solid rgba(0,0,0,0.12)', backgroundColor: 'transparent', fontSize: 13, cursor: 'pointer' }}>Cancel</button>
                     </>
                   ) : (
@@ -173,6 +254,9 @@ export default function Admin() {
                   placeholder="Write your article in Markdown..."
                 />
               </div>
+              {saveError && (
+                <p style={{ fontSize: 13, color: '#EF4444', margin: 0 }}>{saveError}</p>
+              )}
               <div style={{ display: 'flex', gap: 12, paddingTop: 8 }}>
                 <button onClick={handleSubmit} style={{ padding: '11px 32px', backgroundColor: TEXT, color: '#fff', border: 'none', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>
                   {editing ? 'Save Changes' : 'Publish Article'}

@@ -1,6 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PostCard from '../components/PostCard'
-import { allPosts } from '../utils/posts'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import { useQuery } from 'convex/react'
@@ -138,21 +137,33 @@ function useOptionalQuery(query: any) {
 }
 
 export default function OurWork() {
-  const convexArticles = useOptionalQuery(api.articles.list) ?? []
+  const [search, setSearch] = useState('')
 
-  const convexPosts: { meta: PostMeta }[] = convexArticles.map((a: any) => ({
+  const rawArticles = useOptionalQuery(api.articles.list)
+  const isLoading = rawArticles === undefined
+  const articles = rawArticles ?? []
+
+  const posts: { meta: PostMeta }[] = articles.map((a: any) => ({
     meta: {
       title: a.title,
       date: a.date,
       category: a.category,
       description: a.description,
-      slug: `__convex__${a.slug}`,
+      slug: a.slug,
     },
   }))
 
-  const merged = [...allPosts, ...convexPosts].sort(
-    (a, b) => new Date(b.meta.date).getTime() - new Date(a.meta.date).getTime()
-  )
+  const q = search.trim().toLowerCase()
+  const visible = posts
+    .filter(({ meta }) => {
+      if (!q) return true
+      return (
+        meta.title.toLowerCase().includes(q) ||
+        (meta.description ?? '').toLowerCase().includes(q) ||
+        (meta.category ?? '').toLowerCase().includes(q)
+      )
+    })
+    .sort((a, b) => new Date(b.meta.date).getTime() - new Date(a.meta.date).getTime())
 
   return (
     <div style={{ minHeight: '100vh', paddingTop: 72 }}>
@@ -223,19 +234,73 @@ export default function OurWork() {
       <div style={{ backgroundColor: '#fff', minHeight: '50vh' }}>
         <div className="max-w-7xl mx-auto px-6 sm:px-8" style={{ paddingTop: 80, paddingBottom: 96 }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <div style={{ width: '100%', maxWidth: 720, marginBottom: 48 }}>
-              <span style={{ color: ACCENT, fontSize: 11, fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
-                {merged.length} {merged.length === 1 ? 'Article' : 'Articles'}
+            <div style={{ width: '100%', maxWidth: 720, marginBottom: 40 }}>
+              <span style={{ color: ACCENT, fontSize: 11, fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase', display: 'block', marginBottom: 20 }}>
+                {isLoading ? 'Loading…' : `${visible.length} ${visible.length === 1 ? 'Article' : 'Articles'}`}
               </span>
+
+              <div style={{ position: 'relative' }}>
+                <svg
+                  width="18" height="18" viewBox="0 0 24 24" fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden
+                  style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}
+                >
+                  <circle cx="11" cy="11" r="7" stroke="#9CA3AF" strokeWidth="2" />
+                  <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="#9CA3AF" strokeWidth="2" strokeLinecap="round" />
+                </svg>
+                <input
+                  type="text"
+                  value={search}
+                  onChange={e => setSearch(e.target.value)}
+                  placeholder="Search articles by title, category, or description…"
+                  aria-label="Search articles"
+                  style={{
+                    width: '100%',
+                    padding: '12px 40px 12px 42px',
+                    border: '1px solid rgba(0,0,0,0.14)',
+                    fontSize: 15,
+                    outline: 'none',
+                    boxSizing: 'border-box',
+                    fontFamily: "'Untitled-Sans', sans-serif",
+                    color: '#121212',
+                    backgroundColor: '#fff',
+                  }}
+                  onFocus={e => { e.currentTarget.style.borderColor = ACCENT }}
+                  onBlur={e => { e.currentTarget.style.borderColor = 'rgba(0,0,0,0.14)' }}
+                />
+                {search && (
+                  <button
+                    type="button"
+                    onClick={() => setSearch('')}
+                    aria-label="Clear search"
+                    style={{
+                      position: 'absolute', right: 10, top: '50%', transform: 'translateY(-50%)',
+                      background: 'none', border: 'none', cursor: 'pointer', color: '#9CA3AF',
+                      fontSize: 20, lineHeight: 1, padding: '2px 6px',
+                    }}
+                  >
+                    ×
+                  </button>
+                )}
+              </div>
             </div>
 
             <div style={{ width: '100%', maxWidth: 720 }}>
-              {merged.map((post, idx) => (
-                <React.Fragment key={post.meta.slug}>
-                  {idx !== 0 && <div style={{ height: 0 }} />}
-                  <PostCard meta={post.meta} />
-                </React.Fragment>
-              ))}
+              {isLoading ? (
+                <div style={{ padding: '48px 0', textAlign: 'center', color: '#9CA3AF', fontSize: 15 }}>Loading articles…</div>
+              ) : visible.length === 0 ? (
+                <div style={{ padding: '48px 0', textAlign: 'center', color: '#9CA3AF', fontSize: 15 }}>
+                  {search ? `No articles match “${search}”.` : 'No articles yet.'}
+                </div>
+              ) : (
+                visible.map((post, idx) => (
+                  <React.Fragment key={post.meta.slug}>
+                    {idx !== 0 && <div style={{ height: 0 }} />}
+                    <PostCard meta={post.meta} />
+                  </React.Fragment>
+                ))
+              )}
             </div>
           </div>
         </div>

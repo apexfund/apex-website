@@ -10,4 +10,9 @@ export default defineSchema({
     content: v.string(),
     slug: v.string(),
   }).index('by_slug', ['slug']),
+
+  adminSessions: defineTable({
+    token: v.string(),
+    createdAt: v.number(),
+  }).index('by_token', ['token']),
 })
