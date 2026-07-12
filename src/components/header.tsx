@@ -38,8 +38,8 @@ const Header = () => {
             </div>
           </NavLink>
 
-          {/* Desktop links */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 32 }} className="hidden md:flex header-nav-right">
+          {/* Desktop links — display managed entirely by Tailwind so hidden works on mobile */}
+          <div className="hidden md:flex header-nav-right" style={{ alignItems: 'center', gap: 32 }}>
             {navLinks.map(({ to, label, exact }) => (
               <NavLink
                 key={to}
