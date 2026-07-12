@@ -131,8 +131,14 @@ function WorkGraphic() {
   )
 }
 
+function useOptionalQuery(query: any) {
+  const hasConvex = !!import.meta.env.VITE_CONVEX_URL
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  return hasConvex ? useQuery(query) : undefined
+}
+
 export default function OurWork() {
-  const convexArticles = useQuery(api.articles.list) ?? []
+  const convexArticles = useOptionalQuery(api.articles.list) ?? []
 
   const convexPosts: { meta: PostMeta }[] = convexArticles.map((a: any) => ({
     meta: {

@@ -6,14 +6,18 @@ import './styles/markdown.css'
 import { ThemeProvider } from './ThemeContext'
 import { ConvexProvider, ConvexReactClient } from 'convex/react'
 
-const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL as string)
+const convexUrl = import.meta.env.VITE_CONVEX_URL as string | undefined
+
+const root = (
+  <React.StrictMode>
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
+  </React.StrictMode>
+)
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <ConvexProvider client={convex}>
-      <ThemeProvider>
-        <App />
-      </ThemeProvider>
-    </ConvexProvider>
-  </React.StrictMode>
+  convexUrl
+    ? <ConvexProvider client={new ConvexReactClient(convexUrl)}>{root}</ConvexProvider>
+    : root
 )
