@@ -79,3 +79,34 @@ body {
 .prose h1, .prose h2, .prose h3,
 .prose h4, .prose h5, .prose h6 { color: #111827; }
 .prose p { color: #374151; }
+
+/*
+ * Responsive inner-section margins.
+ * On mobile: no extra indent (the section's own px-6 is enough).
+ * On md+: indent 8% left / 9% right to align with the header logo & nav links.
+ */
+.section-inner {
+  margin-left: 0;
+  margin-right: 0;
+}
+@media (min-width: 768px) {
+  .section-inner {
+    margin-left: 8%;
+    margin-right: 9%;
+  }
+  /* Push header logo & nav to match section-inner alignment */
+  .header-logo {
+    margin-left: 8%;
+  }
+  .header-nav-right {
+    margin-right: 9%;
+  }
+  .track-card {
+    padding: 40px 44px;
+  }
+}
+@media (max-width: 767px) {
+  .track-card {
+    padding: 24px 20px;
+  }
+}

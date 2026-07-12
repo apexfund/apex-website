@@ -190,7 +190,7 @@ export default function OurWork() {
           </div>
 
           {/* Text — left side */}
-          <div style={{ position: 'relative', zIndex: 1, maxWidth: 520, margin: '0 9% 0 8%' }}>
+          <div className="section-inner" style={{ position: 'relative', zIndex: 1, maxWidth: 520 }}>
             <div className="hero-slide" style={{ marginBottom: 20, animationDelay: '0.05s' }}>
               <span style={{ color: 'rgba(220,236,244,0.85)', fontSize: 11, fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
                 Research

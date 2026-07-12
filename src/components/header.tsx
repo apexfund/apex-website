@@ -24,7 +24,7 @@ const Header = () => {
         <nav style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 72 }}>
 
           {/* Logo */}
-          <NavLink to="/" style={{ flexShrink: 0, display: 'flex', alignItems: 'center', marginLeft: '8%' }}>
+          <NavLink to="/" className="header-logo" style={{ flexShrink: 0, display: 'flex', alignItems: 'center' }}>
             <div style={{
               width: 62,
               height: 62,
@@ -39,7 +39,7 @@ const Header = () => {
           </NavLink>
 
           {/* Desktop links */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 32, marginRight: '9%' }} className="hidden md:flex">
+          <div style={{ display: 'flex', alignItems: 'center', gap: 32 }} className="hidden md:flex header-nav-right">
             {navLinks.map(({ to, label, exact }) => (
               <NavLink
                 key={to}

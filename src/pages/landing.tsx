@@ -248,7 +248,7 @@ const Landing = () => {
           </div>
 
           {/* Heading — left side */}
-          <div style={{ position: 'relative', zIndex: 1, maxWidth: 600, margin: '0 9% 0 8%' }}>
+          <div className="section-inner" style={{ position: 'relative', zIndex: 1, maxWidth: 600 }}>
             {/* Label — white variant for hero */}
             <div className="hero-slide" style={{ marginBottom: 20, animationDelay: '0.05s' }}>
               <span style={{ color: 'rgba(220,236,244,0.85)', fontSize: 11, fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
@@ -285,15 +285,12 @@ const Landing = () => {
 
           {/* Stats — full-width across the hero, BAM-style */}
           <div
+            className="section-inner grid grid-cols-1 sm:grid-cols-3"
             style={{
               position: 'relative',
               zIndex: 1,
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr 1fr',
               marginTop: 56,
-              marginLeft: '8%',
-              marginRight: '9%',
-              paddingTop: 0,
+              gap: 32,
             }}
           >
             {[
@@ -305,8 +302,6 @@ const Landing = () => {
                 key={stat.label}
                 className="hero-slide"
                 style={{
-                  paddingRight: i < 2 ? 40 : 0,
-                  paddingLeft: i > 0 ? 40 : 0,
                   animationDelay: `${0.46 + i * 0.13}s`,
                 }}
               >
@@ -330,7 +325,7 @@ const Landing = () => {
 
         {/* Member Placements */}
         <section id="placements" className="max-w-7xl mx-auto px-6 sm:px-8" style={{ paddingTop: 64, paddingBottom: 64 }}>
-          <div style={{ marginLeft: '8%', marginRight: '9%' }}>
+          <div className="section-inner">
             <div style={{ marginBottom: 20 }}>
               <span style={{ color: 'rgba(220,240,250,0.75)', fontSize: 11, fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase' }}>Alumni Network</span>
             </div>
@@ -340,13 +335,13 @@ const Landing = () => {
             <p style={{ fontSize: 16, color: 'rgba(220,240,250,0.65)', lineHeight: 1.7, maxWidth: 500, margin: '0 0 48px 0' }}>
               Our members have secured positions at top firms in the industry, a testament to the skills gained through Apex.
             </p>
+            <img src={PlacementsImg} alt="Company logos of member placements" style={{ display: 'block', width: '100%', height: 'auto', opacity: 0.85 }} />
           </div>
-          <img src={PlacementsImg} alt="Company logos of member placements" style={{ display: 'block', marginLeft: '8%', width: '83%', height: 'auto', opacity: 0.85 }} />
         </section>
 
         {/* Sponsorships */}
         <section id="sponsorships" className="max-w-7xl mx-auto px-6 sm:px-8" style={{ paddingTop: 64, paddingBottom: 64 }}>
-          <div style={{ marginLeft: '8%', marginRight: '9%' }}>
+          <div className="section-inner">
             <div style={{ marginBottom: 20 }}>
               <span style={{ color: 'rgba(220,240,250,0.75)', fontSize: 11, fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase' }}>Partners</span>
             </div>
@@ -356,8 +351,8 @@ const Landing = () => {
             <p style={{ fontSize: 16, color: 'rgba(220,240,250,0.65)', lineHeight: 1.7, maxWidth: 500, margin: '0 0 48px 0' }}>
               We're grateful to partner with organizations that support Apex and our members.
             </p>
+            <img src={SponsorshipsImg} alt="Sponsor logos" style={{ display: 'block', width: '100%', height: 'auto', opacity: 0.85 }} />
           </div>
-          <img src={SponsorshipsImg} alt="Sponsor logos" style={{ display: 'block', marginLeft: '8%', width: '83%', height: 'auto', opacity: 0.85 }} />
         </section>
 
       </div>

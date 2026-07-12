@@ -11,7 +11,7 @@ return (
   <footer style={{ backgroundColor: STRIP }}>
     <div style={{ backgroundColor: STRIP }}>
       <div className="max-w-7xl mx-auto px-6 sm:px-8" style={{ paddingTop: 48, paddingBottom: 56 }}>
-        <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start" style={{ gap: 48, marginLeft: '8%', marginRight: '9%' }}>
+        <div className="section-inner flex flex-col lg:flex-row lg:justify-between lg:items-start" style={{ gap: 48 }}>
 
           {/* Brand column */}
           <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', flexShrink: 0 }}>
@@ -86,10 +86,9 @@ return (
 
         {/* Bottom bar */}
         <div
+          className="section-inner"
           style={{
             marginTop: 48,
-            marginLeft: '8%',
-            marginRight: '9%',
             paddingTop: 20,
             display: 'flex',
             justifyContent: 'space-between',

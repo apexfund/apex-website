@@ -266,7 +266,7 @@ const MeetTheTeam = () => {
           </div>
 
           {/* Text — left side */}
-          <div style={{ position: 'relative', zIndex: 1, maxWidth: 520, margin: '0 9% 0 8%' }}>
+          <div className="section-inner" style={{ position: 'relative', zIndex: 1, maxWidth: 520 }}>
             <div className="hero-slide" style={{ marginBottom: 20, animationDelay: '0.05s' }}>
               <span style={{ color: 'rgba(220,236,244,0.85)', fontSize: 11, fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
                 Our People
@@ -299,7 +299,7 @@ const MeetTheTeam = () => {
 
         {/* Executive Board */}
         <section id="executive-board" className="max-w-7xl mx-auto px-6 sm:px-8" style={{ paddingTop: 80, paddingBottom: 80, scrollMarginTop: 72 }}>
-          <div style={{ marginLeft: '8%', marginRight: '9%' }}>
+          <div className="section-inner">
             <AccentLabel>Leadership</AccentLabel>
             <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px, 3.5vw, 44px)', fontWeight: 400, letterSpacing: '-0.02em', color: '#0C1929', margin: '0 0 40px 0' }}>
               Executive Board
@@ -322,7 +322,7 @@ const MeetTheTeam = () => {
 
         {/* Quantitative Team */}
         <section id="quantitative-team" className="max-w-7xl mx-auto px-6 sm:px-8" style={{ paddingTop: 80, paddingBottom: 80, scrollMarginTop: 72 }}>
-          <div style={{ marginLeft: '8%', marginRight: '9%' }}>
+          <div className="section-inner">
             <AccentLabel>Analysts</AccentLabel>
             <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px, 3.5vw, 44px)', fontWeight: 400, letterSpacing: '-0.02em', color: '#0C1929', margin: '0 0 40px 0' }}>
               Quantitative Team
@@ -344,7 +344,7 @@ const MeetTheTeam = () => {
 
         {/* Fundamental Team */}
         <section id="fundamental-team" className="max-w-7xl mx-auto px-6 sm:px-8" style={{ paddingTop: 80, paddingBottom: 96, scrollMarginTop: 72 }}>
-          <div style={{ marginLeft: '8%', marginRight: '9%' }}>
+          <div className="section-inner">
             <AccentLabel>Analysts</AccentLabel>
             <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px, 3.5vw, 44px)', fontWeight: 400, letterSpacing: '-0.02em', color: '#0C1929', margin: '0 0 40px 0' }}>
               Fundamental Team
