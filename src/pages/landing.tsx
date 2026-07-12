@@ -375,7 +375,7 @@ const Landing = () => {
               Member Placements
             </h2>
             <p style={{ fontSize: 16, color: 'rgba(220,240,250,0.65)', lineHeight: 1.7, maxWidth: 500, margin: '0 0 48px 0' }}>
-              Our members have secured positions at top firms in the industry — a testament to the skills gained through Apex.
+              Our members have secured positions at top firms in the industry, a testament to the skills gained through Apex.
             </p>
           </div>
           <img src={PlacementsImg} alt="Company logos of member placements" style={{ display: 'block', marginLeft: '8%', width: '83%', height: 'auto', opacity: 0.85 }} />
