@@ -2,363 +2,387 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import { PRIMARY_FONT_FAMILY } from "../utils/constants";
 import PlacementsImg from "../assets/companies.png";
 import SponsorshipsImg from "../assets/sponsors.png";
 
-import Background from "../components/Background";
+/* ─── tokens ─────────────────────────────────────────────── */
+const STRIP      = '#96BFCF'
+const ON_STRIP   = '#0C1929'
+const ON_STRIP_M = 'rgba(12,25,41,0.58)'
+const SERIF      = 'Georgia, serif'
 
-const updates = [
-  {
-    id: "01",
-    title: "Quant Applications Open",
-    desc: "Applications are now open for Quantitative Analysts.",
-    link: "https://forms.gle/DddEiicn8J2XaAcs9",
-  },
-  {
-    id: "02",
-    title: "Interest Meeting 9/15.",
-    desc: "Sign up for our interest meeting to learn more.",
-    link: "/posts/test-strat-1",
-  },
-  {
-    id: "03",
-    title: "IMC Prosperity Placement.",
-    desc: "Members Aditya Dabeer and Nirav Koley placed 7th internationally in IMC Prosperity. Congrats!",
-    link: "/posts/test-strat-1",
-  },
-];
+/* Hero gradient — deeper blue so white text reads comfortably */
+const HERO_GRADIENT = 'linear-gradient(145deg, #1B5470 0%, #2B7291 30%, #3E8DAA 65%, #6BAABF 100%)'
 
-const Landing = () => {
-  const [animatedNumber, setAnimatedNumber] = useState(0);
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [slideProgress, setSlideProgress] = useState(0);
+/* ─── Mountain + chart graphic (matches logo motif) ─────── */
+function HeroGraphic() {
+  const na = (op: number) => `rgba(255,255,255,${op})`
 
-  const SLIDE_DURATION = 5000; // 5 seconds per slide
+  /* Mountain ridge points — angular, matches logo style */
+  const ridge = [
+    [0,   430],
+    [50,  360],
+    [95,  285],   // shoulder
+    [130, 195],   // peak 1 (left, smaller)
+    [160, 255],   // valley
+    [200, 110],   // peak 2 (center, tallest)
+    [240, 270],   // valley
+    [280, 185],   // peak 3 (center-right)
+    [330, 295],   // valley
+    [375, 230],   // peak 4 (right)
+    [440, 310],
+    [480, 290],
+  ]
 
-  const goToSlide = (index: number) => {
-    setCurrentSlide(index);
-    setSlideProgress(0);
-  };
+  const ridgePath  = ridge.map(([x,y], i) => `${i===0?'M':'L'}${x},${y}`).join(' ')
+  const fillPath   = ridgePath + ` L480,480 L0,480 Z`
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % updates.length);
-    setSlideProgress(0);
-  };
+  /* Geometric triangulation lines (logo-inspired faceting) */
+  const facets = [
+    // Peak 2 (tallest) — main focal point
+    [[200,110],[170,210]],
+    [[200,110],[230,220]],
+    [[160,255],[195,215]],
+    [[195,215],[240,270]],
+    // cross-facet band
+    [[130,195],[165,245]],
+    [[165,245],[160,255]],
+    // Peak 1
+    [[130,195],[105,270]],
+    [[130,195],[155,260]],
+    // Peak 3
+    [[280,185],[260,250]],
+    [[280,185],[305,255]],
+    [[260,250],[295,290]],
+    // Peak 4
+    [[375,230],[355,290]],
+    [[375,230],[400,280]],
+    // horizontal contour suggestions
+    [[95,285],[130,195]],   // ridge connectors (already part of outline)
+  ]
 
-  // Auto-slide functionality
-  useEffect(() => {
-    const slideInterval = setInterval(() => {
-      nextSlide();
-    }, SLIDE_DURATION);
+  /* Horizontal contour lines (topographic feel) */
+  const contours = [
+    { y: 310, x1: 65,  x2: 360, dash: '5 5' },
+    { y: 255, x1: 100, x2: 290, dash: '4 5' },
+    { y: 200, x1: 130, x2: 260, dash: '3 5' },
+    { y: 155, x1: 160, x2: 235, dash: '3 6' },
+  ]
 
-    return () => clearInterval(slideInterval);
-  }, []);
+  /* Rising chart / trend line — mirrors the logo's arrow motif */
+  const chart = [
+    [15, 415], [55, 370], [100, 305],
+    [140, 245], [185, 185], [220, 215],
+    [260, 155], [305, 175], [355, 100],
+    [400,  75], [440,  48],
+  ]
+  const chartPath = chart.map(([x,y], i) => `${i===0?'M':'L'}${x},${y}`).join(' ')
 
-  // Progress bar animation
-  useEffect(() => {
-    const progressInterval = setInterval(() => {
-      setSlideProgress((prev) => {
-        if (prev >= 100) {
-          return 0;
-        }
-        return prev + 100 / (SLIDE_DURATION / 100);
-      });
-    }, 100);
-
-    return () => clearInterval(progressInterval);
-  }, [currentSlide]);
-
-  // Slot machine animation for the number
-  useEffect(() => {
-    const duration = 5000; // 5 seconds
-    const targetNumber = 9780;
-    const startTime = Date.now();
-
-    const animateNumber = () => {
-      const currentTime = Date.now();
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-
-      // Smoother easing function
-      const easeOut = 1 - Math.pow(1 - progress, 6);
-
-      // Much gentler randomness for smoother effect
-      const randomFactor = progress < 0.7 ? (Math.random() - 0.5) * 0.05 : 0;
-      const currentValue = Math.floor(
-        targetNumber * easeOut + targetNumber * randomFactor
-      );
-
-      setAnimatedNumber(Math.max(0, Math.min(currentValue, targetNumber)));
-
-      if (progress < 1) {
-        requestAnimationFrame(animateNumber);
-      } else {
-        setAnimatedNumber(targetNumber);
-      }
-    };
-
-    // Start animation after a small delay
-    const timeout = setTimeout(() => {
-      requestAnimationFrame(animateNumber);
-    }, 800);
-
-    return () => clearTimeout(timeout);
-  }, []);
+  /* Arrow head at end of chart line, pointing upper-right */
+  const [ax, ay] = chart[chart.length - 1]
+  const arrowAngle = Math.atan2(
+    chart[chart.length-2][1] - ay,
+    chart[chart.length-2][0] - ax
+  )
+  const arrow = [
+    [ax + 14*Math.cos(arrowAngle - 0.4), ay + 14*Math.sin(arrowAngle - 0.4)],
+    [ax + 14*Math.cos(arrowAngle + 0.4), ay + 14*Math.sin(arrowAngle + 0.4)],
+  ]
 
   return (
-    <div className="relative text-[#121212] min-h-screen">
-      <Background />
-      <div className="relative z-10 flex flex-col min-h-screen">
+    <svg
+      viewBox="0 0 480 480"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      style={{ width: '100%', height: '100%', maxHeight: 460 }}
+      aria-hidden
+    >
+      <defs>
+        <style>{`
+          @keyframes apexFillReveal {
+            from { clip-path: inset(0 100% 0 0); }
+            to   { clip-path: inset(0 0%   0 0); }
+          }
+          @keyframes apexDrawLine {
+            to { stroke-dashoffset: 0; }
+          }
+          @keyframes apexFadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+          }
+          .apex-fill {
+            animation: apexFillReveal 1.8s cubic-bezier(0.76, 0, 0.24, 1) 0.2s both;
+          }
+          .apex-ridge {
+            stroke-dasharray: 2000;
+            stroke-dashoffset: 2000;
+            animation: apexDrawLine 1.8s cubic-bezier(0.76, 0, 0.24, 1) 0.2s forwards;
+          }
+          .apex-facets {
+            opacity: 0;
+            animation: apexFadeIn 0.7s ease 1.3s forwards;
+          }
+          .apex-contours {
+            opacity: 0;
+            animation: apexFadeIn 0.7s ease 1.5s forwards;
+          }
+          .apex-chart {
+            stroke-dasharray: 1400;
+            stroke-dashoffset: 1400;
+            animation: apexDrawLine 1.3s cubic-bezier(0.76, 0, 0.24, 1) 1.6s forwards;
+          }
+          .apex-finish {
+            opacity: 0;
+            animation: apexFadeIn 0.5s ease 2.6s forwards;
+          }
+        `}</style>
+      </defs>
+
+      {/* Mountain fill — very faint, reveals left → right */}
+      <path d={fillPath} fill={na(0.06)} className="apex-fill" />
+
+      {/* Mountain outline — draws left → right */}
+      <path
+        d={ridgePath}
+        stroke={na(0.40)} strokeWidth="1.8"
+        fill="none" strokeLinejoin="miter"
+        className="apex-ridge"
+      />
+
+      {/* Facet / triangulation lines — fade in after outline */}
+      <g className="apex-facets">
+        {facets.map(([[x1,y1],[x2,y2]], i) => (
+          <line key={i}
+            x1={x1} y1={y1} x2={x2} y2={y2}
+            stroke={na(0.18)} strokeWidth="1"
+          />
+        ))}
+      </g>
+
+      {/* Topographic contour lines + base line — fade in after facets */}
+      <g className="apex-contours">
+        {contours.map((c, i) => (
+          <line key={i}
+            x1={c.x1} y1={c.y} x2={c.x2} y2={c.y}
+            stroke={na(0.10)} strokeWidth="0.9"
+            strokeDasharray={c.dash}
+          />
+        ))}
+        <line x1={0} y1={435} x2={480} y2={435} stroke={na(0.10)} strokeWidth="1" />
+      </g>
+
+      {/* Rising trend line — draws in after mountain settles */}
+      <path
+        d={chartPath}
+        stroke={na(0.60)} strokeWidth="2.2"
+        fill="none" strokeLinejoin="round" strokeLinecap="round"
+        className="apex-chart"
+      />
+
+      {/* Arrow head + peak dots — pop in once chart finishes */}
+      <g className="apex-finish">
+        <polygon
+          points={`${ax},${ay} ${arrow[0][0]},${arrow[0][1]} ${arrow[1][0]},${arrow[1][1]}`}
+          fill={na(0.60)}
+        />
+        {[[130,195],[200,110],[280,185],[375,230]].map(([x,y]) => (
+          <circle key={`${x}${y}`} cx={x} cy={y} r={3.5} fill={na(0.45)} />
+        ))}
+      </g>
+    </svg>
+  )
+}
+
+/* ─── Shared sub-components ─────────────────────────────── */
+
+/* ─── Landing page ─────────────────────────────────────── */
+const Landing = () => {
+  const [animatedNumber, setAnimatedNumber] = useState(0)
+
+  useEffect(() => {
+    const duration = 5000, target = 9780, start = Date.now()
+    const animate = () => {
+      const p = Math.min((Date.now() - start) / duration, 1)
+      const eased = 1 - Math.pow(1 - p, 6)
+      const rand = p < 0.7 ? (Math.random() - 0.5) * 0.05 : 0
+      setAnimatedNumber(Math.max(0, Math.min(Math.floor(target * eased + target * rand), target)))
+      if (p < 1) requestAnimationFrame(animate); else setAnimatedNumber(target)
+    }
+    const t = setTimeout(() => requestAnimationFrame(animate), 600)
+    return () => clearTimeout(t)
+  }, [])
+
+  return (
+    <div style={{ minHeight: '100vh', paddingTop: 72 }}>
+      <style>{`
+        @keyframes heroSlideIn {
+          from { opacity: 0; transform: translateX(-32px); }
+          to   { opacity: 1; transform: translateX(0); }
+        }
+        .hero-slide {
+          opacity: 0;
+          animation: heroSlideIn 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+      `}</style>
+
+      {/* ════ GRADIENT — hero + placements + sponsors ════ */}
+      <div style={{ background: HERO_GRADIENT, overflowX: 'hidden' }}>
         <Header />
-        <main className="flex-grow">
-          <div className="!m-10">
-            {/* Hero Section with Side-by-Side Layout */}
-            <section className="relative px-6 sm:px-8 py-12 max-w-7xl mx-auto flex items-center">
-              <div className="max-w-full overflow-x-hidden">
-                <div className="ml-0 md:!ml-20 flex flex-col lg:flex-row lg:items-start lg:gap-12 xl:gap-16 !lg:ml-32 !xl:ml-48">
-                  {/* Hero Text - Left Side */}
 
-                  <div className="flex-1 lg:max-w-2xl">
-                    <h1
-                      className="!text-6xl md:!text-7xl !mb-8 !leading-tight !tracking-tight !text-left"
-                      style={{ fontFamily: PRIMARY_FONT_FAMILY }}
-                    >
-                      Real Assets,
-                      <br />
-                      Managed by Students
-                    </h1>
-                    <p className="text-lg sm:text-xl lg:text-2xl text-left font-light leading-relaxed max-w-3xl">
-                      Led by students at the University of Maryland, College
-                      Park — Apex Fund manages
-                      <strong className="text-[#96BFCF] font-bold">
-                        {" "}
-                        ~${animatedNumber.toLocaleString()}
-                      </strong>{" "}
-                      in assets through
-                      <strong className="text-[#96BFCF] font-bold">
-                        {" "}
-                        quantitative trading
-                      </strong>{" "}
-                      and
-                      <strong className="text-[#96BFCF] font-bold">
-                        {" "}
-                        fundamental analysis
-                      </strong>
-                      .
-                    </p>
-                  </div>
-
-                  {/* Carousel - Right Side on Desktop, Below on Mobile */}
-                  <div className="w-full lg:w-96 xl:w-[400px] flex-shrink-0 mt-12 lg:mt-0">
-                    <h2 className="!mb-5 !text-2xl !font-bold !text-left">
-                      <span className="border-b-2 border-black pb-2 inline-block font-bold sm:!pt-10">
-                        See what we've been working on...
-                      </span>
-                    </h2>
-
-                    <div className="relative overflow-hidden rounded-lg">
-                      <div
-                        className="flex transition-transform duration-500 ease-in-out"
-                        style={{
-                          transform: `translateX(-${currentSlide * 100}%)`,
-                        }}
-                      >
-                        {updates.map((update) => (
-                          <div key={update.id} className="w-full flex-shrink-0">
-                            <div className="bg-[#F1EDEE] p-4 flex flex-col min-h-[160px]">
-                              <div className="w-full h-1 bg-black mb-4"></div>
-                              <div className="mb-3">
-                                <span className="!text-3xl font-bold text-black block mb-2">
-                                  {update.id}
-                                </span>
-                                <h3 className="font-bold !text-2xl mb-2 leading-tight">
-                                  {update.title}
-                                </h3>
-                              </div>
-                              <p className="text-xl text-gray-600 mb-3 flex-grow leading-relaxed">
-                                {update.desc}
-                              </p>
-                              {update.link.startsWith("http") ? (
-                                <a
-                                  href={update.link}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="text-sm font-semibold hover:underline text-gray-800 hover:!text-[#96BFCF]"
-                                >
-                                  Learn more &gt;
-                                </a>
-                              ) : (
-                                <Link
-                                  to={update.link}
-                                  className="text-sm font-semibold hover:underline text-gray-800 hover:!text-[#96BFCF]"
-                                >
-                                  Learn more &gt;
-                                </Link>
-                              )}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Progress Bar */}
-                    <div className="mt-4 bg-gray-300 h-1 rounded-full overflow-hidden">
-                      <div
-                        className="h-full bg-[#96BFCF] transition-all duration-100 ease-linear"
-                        style={{ width: `${slideProgress % 100}%` }}
-                      ></div>
-                    </div>
-
-                    {/* Slide Indicators */}
-                    <div className="flex justify-center mt-4 gap-2">
-                      {updates.map((_, index) => (
-                        <button
-                          key={index}
-                          onClick={() => goToSlide(index)}
-                          className={`w-3 h-3 rounded-full transition-colors ${
-                            currentSlide === index
-                              ? "bg-[#96BFCF]"
-                              : "bg-gray-300"
-                          }`}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* Mission Statement Section */}
-            <section className="px-6 sm:px-8 !pt-10 sm:!pt-32 !pb-10 sm:!pb-32 pb-24 max-w-7xl mx-auto flex items-center">
-              <div className="ml-0 md:!ml-20 !lg:ml-32 !xl:ml-48">
-                <div className="flex flex-col md:flex-row-reverse md:items-center">
-                  {/* Right Column on Desktop: Title */}
-                  <div className="flex-shrink-0 md:w-1/3">
-                    <h2
-                      className="!text-6xl !leading-tight !tracking-tight text-left md:text-right text-[#96BFCF]"
-                      style={{ fontFamily: PRIMARY_FONT_FAMILY }}
-                    >
-                      Our
-                      <br />
-                      Mission.
-                    </h2>
-                  </div>
-
-                  {/* Divider */}
-                  <div className="hidden md:block w-1 bg-gray-300 self-stretch mx-12"></div>
-
-                  {/* Left Column on Desktop: Statement */}
-                  <div className="flex-1 mt-6 md:mt-0">
-                    <p className="!text-2xl lg:!text-3xl font-light leading-relaxed text-gray-800">
-                      To provide{" "}
-                      <strong className="font-semibold text-black">
-                        real-world financial experience
-                      </strong>{" "}
-                      to students by managing a{" "}
-                      <strong className="font-semibold text-black">
-                        diversified portfolio
-                      </strong>
-                      , fostering crucial{" "}
-                      <strong className="font-semibold text-black">
-                        analytical skills
-                      </strong>
-                      , and building a community of{" "}
-                      <strong className="font-semibold text-black">
-                        future financial leaders
-                      </strong>
-                      .
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* Member Placements Section */}
-            <section
-              id="placements"
-              className="px-6 sm:px-8 pt-32 pb-20 max-w-7xl mx-auto flex items-center py-8"
-            >
-              <div className="ml-0 md:!ml-20 !lg:ml-32 !xl:ml-48">
-                <h2
-                  className="!text-6xl !mt-12 !mb-6 !leading-tight !tracking-tight text-left"
-                  style={{ fontFamily: PRIMARY_FONT_FAMILY }}
-                >
-                  Member Placements
-                </h2>
-                <p className="text-base sm:text-lg font-light leading-relaxed max-w-4xl mb-12 text-left">
-                  Our members have secured positions at some of the top firms in
-                  the industry, a testament to the skills and experience gained
-                  through Apex.
-                </p>
-                <div className="flex items-center px-4">
-                  <img
-                    src={PlacementsImg}
-                    alt="Company Logos of member placements"
-                    className="max-w-full h-auto"
-                  />
-                </div>
-              </div>
-            </section>
-
-            {/* Sponsorships Section */}
-            <section
-              id="sponsorships"
-              className="px-6 sm:px-8 pt-32 pb-20 max-w-7xl mx-auto flex items-center py-8"
-            >
-              <div className="ml-0 md:!ml-20 !lg:ml-32 !xl:ml-48">
-                <h2
-                  className="!text-6xl !mt-12 !mb-6 !leading-tight !tracking-tight text-left"
-                  style={{ fontFamily: PRIMARY_FONT_FAMILY }}
-                >
-                  Sponsorships
-                </h2>
-                <p className="text-base sm:text-lg font-light leading-relaxed max-w-4xl mb-12 text-left">
-                  We&apos;re grateful to partner with organizations that support
-                  Apex and our members.
-                </p>
-                <div className="flex items-center px-4">
-                  <img
-                    src={SponsorshipsImg}
-                    alt="Company Logos of sponsors and collaborators"
-                    className="max-w-full h-auto"
-                  />
-                </div>
-              </div>
-            </section>
-
-            <div className="relative h-16 ml-0 md:!ml-20 !lg:ml-32 !xl:ml-48 mt-32">
-              <div className="absolute top-0 left-0 h-0.5 bg-gray-300 w-1/3"></div>
-              <div className="absolute top-0 left-0 w-0.5 bg-gray-300 h-1/3"></div>
-            </div>
-
-            <div className="flex flex-col items-center justify-center py-10">
-              <h1
-                className="!text-7xl !mb-8 !leading-tight !tracking-tight !text-left"
-                style={{ fontFamily: PRIMARY_FONT_FAMILY }}
-              >
-                Ready to Join?
-              </h1>
-              <div className="mt-2 inline-block rounded !border-2 !border-[#96BFCF] bg-[#F1EDEE] transition-all duration-300 ease-in-out hover:bg-[#96BFCF]">
-                <Link
-                  to="/application"
-                  className="block !px-4 !py-2 text-2xl underline decoration-transparent hover:decoration-[#F1EDEE] text-[#96BFCF] hover:text-[#F1EDEE] transition-all duration-300 ease-in-out"
-                >
-                  Applications Closed
-                </Link>
-              </div>
-            </div>
-
-            <div className="relative h-16 ml-0 md:!ml-20 !lg:ml-32 !xl:ml-48">
-              <div className="absolute bottom-0 right-0 h-0.5 bg-gray-300 w-1/3"></div>
-              <div className="absolute bottom-0 right-0 w-0.5 bg-gray-300 h-1/3"></div>
-            </div>
+        <section
+          className="max-w-7xl mx-auto px-6 sm:px-8"
+          style={{ position: 'relative', paddingTop: 80, paddingBottom: 80 }}
+        >
+          {/* Mountain — background graphic, right side */}
+          <div
+            className="hidden lg:block"
+            style={{
+              position: 'absolute',
+              right: -100,
+              top: '-4%',
+              width: '72%',
+              pointerEvents: 'none',
+            }}
+          >
+            <HeroGraphic />
           </div>
-        </main>
-        <Footer />
-      </div>
-    </div>
-  );
-};
 
-export default Landing;
+          {/* Heading — left side */}
+          <div className="section-inner" style={{ position: 'relative', zIndex: 1, maxWidth: 600 }}>
+            {/* Label — white variant for hero */}
+            <div className="hero-slide" style={{ marginBottom: 20, animationDelay: '0.05s' }}>
+              <span style={{ color: 'rgba(220,236,244,0.85)', fontSize: 11, fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
+                Apex Fund · University of Maryland
+              </span>
+            </div>
+
+            <h1 className="hero-slide" style={{
+              fontFamily: SERIF,
+              fontSize: 'clamp(38px, 4.8vw, 70px)',
+              fontWeight: 400,
+              lineHeight: 1.1,
+              letterSpacing: '-0.02em',
+              color: '#DCF0F8',
+              margin: '0 0 24px 0',
+              animationDelay: '0.18s',
+            }}>
+              Where Future<br />
+              Financial Leaders<br />
+              Are Made.
+            </h1>
+
+            <p className="hero-slide" style={{ color: 'rgba(220,240,250,0.75)', fontSize: 17, lineHeight: 1.8, maxWidth: 480, margin: 0, animationDelay: '0.32s' }}>
+              Apex Fund is a student-managed investment fund at UMD. We provide
+              real-world financial experience by managing{' '}
+              <strong style={{ color: '#DCF0F8', fontWeight: 600 }}>
+                ~${animatedNumber.toLocaleString()}
+              </strong>{' '}
+              in assets through{' '}
+              <span style={{ color: '#DCF0F8' }}>quantitative trading</span>{' '}
+              and <span style={{ color: '#DCF0F8' }}>fundamental analysis</span>.
+            </p>
+          </div>
+
+          {/* Stats — full-width across the hero, BAM-style */}
+          <div
+            className="section-inner grid grid-cols-1 sm:grid-cols-3"
+            style={{
+              position: 'relative',
+              zIndex: 1,
+              marginTop: 56,
+              gap: 32,
+            }}
+          >
+            {[
+              { value: `~$${animatedNumber.toLocaleString()}`, label: 'Assets Under Management' },
+              { value: '30+',  label: 'Investment Team Members' },
+              { value: '2020', label: 'Year Founded' },
+            ].map((stat, i) => (
+              <div
+                key={stat.label}
+                className="hero-slide"
+                style={{
+                  animationDelay: `${0.46 + i * 0.13}s`,
+                }}
+              >
+                <p style={{
+                  fontFamily: SERIF,
+                  fontSize: 'clamp(24px, 3.2vw, 44px)',
+                  fontWeight: 400,
+                  color: '#DCF0F8',
+                  margin: '0 0 8px 0',
+                  lineHeight: 1,
+                }}>
+                  {stat.value}
+                </p>
+                <p style={{ fontSize: 13, color: 'rgba(220,240,250,0.65)', margin: 0, letterSpacing: '0.02em' }}>
+                  {stat.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Member Placements */}
+        <section id="placements" className="max-w-7xl mx-auto px-6 sm:px-8" style={{ paddingTop: 64, paddingBottom: 64 }}>
+          <div className="section-inner">
+            <div style={{ marginBottom: 20 }}>
+              <span style={{ color: 'rgba(220,240,250,0.75)', fontSize: 11, fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase' }}>Alumni Network</span>
+            </div>
+            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(30px,4vw,52px)', fontWeight: 400, lineHeight: 1.15, letterSpacing: '-0.02em', color: '#DCF0F8', margin: '0 0 16px 0' }}>
+              Member Placements
+            </h2>
+            <p style={{ fontSize: 16, color: 'rgba(220,240,250,0.65)', lineHeight: 1.7, maxWidth: 500, margin: '0 0 48px 0' }}>
+              Our members have secured positions at top firms in the industry, a testament to the skills gained through Apex.
+            </p>
+            <img src={PlacementsImg} alt="Company logos of member placements" style={{ display: 'block', width: '100%', height: 'auto', opacity: 0.85 }} />
+          </div>
+        </section>
+
+        {/* Sponsorships */}
+        <section id="sponsorships" className="max-w-7xl mx-auto px-6 sm:px-8" style={{ paddingTop: 64, paddingBottom: 64 }}>
+          <div className="section-inner">
+            <div style={{ marginBottom: 20 }}>
+              <span style={{ color: 'rgba(220,240,250,0.75)', fontSize: 11, fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase' }}>Partners</span>
+            </div>
+            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(30px,4vw,52px)', fontWeight: 400, lineHeight: 1.15, letterSpacing: '-0.02em', color: '#DCF0F8', margin: '0 0 16px 0' }}>
+              Sponsorships
+            </h2>
+            <p style={{ fontSize: 16, color: 'rgba(220,240,250,0.65)', lineHeight: 1.7, maxWidth: 500, margin: '0 0 48px 0' }}>
+              We're grateful to partner with organizations that support Apex and our members.
+            </p>
+            <img src={SponsorshipsImg} alt="Sponsor logos" style={{ display: 'block', width: '100%', height: 'auto', opacity: 0.85 }} />
+          </div>
+        </section>
+
+      </div>
+
+      {/* ════ LIGHT-BLUE CTA STRIP ════ */}
+      <div style={{ backgroundColor: STRIP, paddingTop: 96, paddingBottom: 96 }}>
+        <div className="max-w-7xl mx-auto px-6 sm:px-8" style={{ textAlign: 'center' }}>
+          <div style={{ marginBottom: 20 }}>
+            <span style={{ color: 'rgba(12,25,41,0.45)', fontSize: 11, fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
+              Join the Team
+            </span>
+          </div>
+          <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(40px,5.5vw,72px)', fontWeight: 400, lineHeight: 1.1, letterSpacing: '-0.02em', color: ON_STRIP, margin: '0 0 20px 0' }}>
+            Ready to Join?
+          </h2>
+          <p style={{ color: ON_STRIP_M, fontSize: 17, lineHeight: 1.7, maxWidth: 380, margin: '0 auto 40px' }}>
+            Applications open each semester. Gain real-world investment experience at UMD.
+          </p>
+          <Link
+            to="/join-us"
+            style={{ display: 'inline-block', padding: '14px 36px', backgroundColor: ON_STRIP, color: '#fff', fontSize: 14, fontWeight: 600, letterSpacing: '0.03em', textDecoration: 'none', borderRadius: 2 }}
+          >
+            View Opportunities →
+          </Link>
+        </div>
+      </div>
+
+      <Footer />
+    </div>
+  )
+}
+
+export default Landing

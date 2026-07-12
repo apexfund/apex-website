@@ -26,6 +26,7 @@
     "@uiw/react-markdown-preview": "^5.2.0",
     "animejs": "^4.0.2",
     "buffer": "^6.0.3",
+    "convex": "^1.42.1",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.522.0",
     "react": "^19.1.0",

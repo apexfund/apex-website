@@ -1,68 +1,87 @@
-import React from "react";
+import React, { useState } from 'react'
+
+const ACCENT = '#96BFCF'
+const NAV_BG = '#0C1929'
 
 interface MemberCardProps {
-  name: string;
-  role: string;
-  team?: string;
-  bio?: string;
-  imageUrl?: string;
-  linkedinUrl?: string;
+  name: string
+  role: string
+  team?: string
+  bio?: string
+  imageUrl?: string
+  linkedinUrl?: string
 }
 
-const MemberCard: React.FC<MemberCardProps> = ({
-  name,
-  role,
-  team,
-  bio,
-  imageUrl,
-  linkedinUrl,
-}) => {
-  const cardContent = (
-    <div className="rounded-xl pt-10 !pb-8 px-6 flex flex-col items-center mx-auto transition-all duration-300 ease-in-out border-2 border-transparent cursor-pointer">
+const MemberCard: React.FC<MemberCardProps> = ({ name, role, team, bio, imageUrl, linkedinUrl }) => {
+  const [hovered, setHovered] = useState(false)
+
+  const card = (
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        textAlign: 'center',
+        padding: '24px 16px 20px',
+        border: `1px solid ${hovered ? ACCENT + '60' : 'rgba(0,0,0,0.07)'}`,
+        backgroundColor: hovered ? 'rgba(255,255,255,0.85)' : 'rgba(255,255,255,0.5)',
+        transition: 'all 0.25s ease',
+        cursor: linkedinUrl ? 'pointer' : 'default',
+      }}
+    >
       {imageUrl ? (
         <img
           src={imageUrl}
           alt={name}
-          className="w-24 h-24 rounded-full object-cover !mb-4 !mt-4 transition-transform duration-300"
+          style={{
+            width: 76,
+            height: 76,
+            borderRadius: '50%',
+            objectFit: 'cover',
+            marginBottom: 14,
+            filter: hovered ? 'grayscale(0%)' : 'grayscale(40%)',
+            transition: 'filter 0.25s ease',
+          }}
         />
       ) : (
-        <div className="w-24 h-24 rounded-full bg-gray-100 !mb-4 !mt-4 flex items-center justify-center mb-4 text-4xl text-gray-400 transition-transform duration-300">
-          <span role="img" aria-label="Member Image">
-            🧑‍💼
-          </span>
+        <div style={{ width: 76, height: 76, borderRadius: '50%', backgroundColor: '#D6E8EF', marginBottom: 14, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26, fontWeight: 600, color: '#4A8FAA', fontFamily: 'Georgia, serif', letterSpacing: '-0.01em', userSelect: 'none' }}>
+          {name.charAt(0).toUpperCase()}
         </div>
       )}
-      <h2 className="!text-2xl !font-extrabold text-center mb-1 transition-colors duration-300">
+
+      <p style={{ fontSize: 14, fontWeight: 600, color: NAV_BG, margin: '0 0 4px 0', lineHeight: 1.3 }}>
         {name}
-      </h2>
-      <div className="text-sm text-gray-600 font-medium !mb-1 text-center transition-colors duration-300">
+      </p>
+      <p style={{ fontSize: 12, color: ACCENT, fontWeight: 500, margin: '0 0 3px 0', letterSpacing: '0.02em' }}>
         {role}
-      </div>
+      </p>
       {team && (
-        <div className="text-sm text-gray-400 mb-1 text-center transition-colors duration-300">
+        <p style={{ fontSize: 11, color: '#9CA3AF', margin: '0 0 2px 0' }}>
           {team}
-        </div>
+        </p>
       )}
       {bio && (
-        <p className="text-sm text-gray-500 mt-2 text-center pb-4 transition-colors duration-300">
+        <p style={{ fontSize: 12, color: '#6B7280', marginTop: 8, lineHeight: 1.6 }}>
           {bio}
         </p>
       )}
+      {linkedinUrl && (
+        <p style={{ fontSize: 11, color: hovered ? ACCENT : '#D1D5DB', marginTop: 10, transition: 'color 0.2s' }}>
+          LinkedIn →
+        </p>
+      )}
     </div>
-  );
+  )
 
   return linkedinUrl ? (
-    <a
-      href={linkedinUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="block"
-    >
-      {cardContent}
+    <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'block', textDecoration: 'none' }}>
+      {card}
     </a>
   ) : (
-    cardContent
-  );
-};
+    card
+  )
+}
 
-export default MemberCard;
+export default MemberCard
