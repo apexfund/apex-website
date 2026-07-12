@@ -1,71 +1,96 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
-import logo from '../assets/logo.png' // confirm or update the path
+import logo from '../assets/logo.png'
+
+const STRIP = '#1A4A60'
+const ON_STRIP = '#ffffff'
+const ON_STRIP_MUTED = 'rgba(255,255,255,0.65)'
 
 const navLinks = [
   { to: '/', label: 'Home', exact: true },
+  { to: '/our-mission', label: 'About' },
   { to: '/our-work', label: 'Our Work' },
   { to: '/meet-the-team', label: 'Team' },
-  { to: '/application', label: 'Application' }
+  { to: '/join-us', label: 'Join Us' },
 ]
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <header className="bg-[#F1EDEE] sticky top-0 z-50">
+    <header style={{ backgroundColor: STRIP, position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50, borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
-        <nav className="flex items-center justify-between h-32"> {/* Increased height from h-20 to h-32 */}
-          {/* Left Logo */}
-          <div className="pt-6 pb-4 flex-shrink-0 !ml-5 !mt-3"> {/* Increased pt and pb for more vertical space */}
-            <NavLink to="/" className="flex items-center max-w-[220px]"> {/* Increased max-w for larger logo */}
-              <img src={logo} alt="Apex Fund Logo" className="w-auto" />
-            </NavLink>
-          </div>
+        <nav style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 72 }}>
 
-          {/* Desktop Nav - Positioned to the right */}
-          <div className="hidden md:flex gap-8 text-base !mr-16">
+          {/* Logo */}
+          <NavLink to="/" style={{ flexShrink: 0, display: 'flex', alignItems: 'center', marginLeft: '8%' }}>
+            <div style={{
+              width: 62,
+              height: 62,
+              borderRadius: '50%',
+              backgroundColor: '#ffffff',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+              <img src={logo} alt="Apex Fund Logo" style={{ height: 38, width: 'auto', objectFit: 'contain' }} />
+            </div>
+          </NavLink>
+
+          {/* Desktop links */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 32, marginRight: '9%' }} className="hidden md:flex">
             {navLinks.map(({ to, label, exact }) => (
               <NavLink
                 key={to}
                 to={to}
                 end={exact}
-                className={({ isActive }) =>
-                  `relative !text-[#121212] transition-colors hover:!text-[#96BFCF]
-                  after:absolute after:-bottom-1 after:left-0 after:right-0 after:h-[2px]
-                  ${isActive ? 'after:bg-[#96BFCF]' : 'after:bg-transparent'}`
-                }
+                style={({ isActive }) => ({
+                  color: isActive ? ON_STRIP : ON_STRIP_MUTED,
+                  fontSize: 14,
+                  letterSpacing: '0.02em',
+                  textDecoration: 'none',
+                  paddingBottom: 4,
+                  borderBottom: isActive ? `2px solid #96BFCF` : '2px solid transparent',
+                  transition: 'color 0.2s',
+                  fontWeight: isActive ? 600 : 400,
+                })}
               >
                 {label}
               </NavLink>
             ))}
+
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile hamburger */}
           <button
-            className="md:hidden text-[#121212] !mr-5"
+            className="md:hidden"
+            style={{ color: ON_STRIP, background: 'none', border: 'none', cursor: 'pointer', padding: 4 }}
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            {isOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </nav>
 
-        {/* Mobile Nav - Hidden by default, shown when isOpen is true */}
+        {/* Mobile drawer */}
         {isOpen && (
-          <div className="md:hidden pt-6 pl-6 pr-4 pb-4 space-y-4 text-sm">
+          <div style={{ borderTop: '1px solid rgba(255,255,255,0.10)', paddingBottom: 16 }}>
             {navLinks.map(({ to, label, exact }) => (
               <NavLink
                 key={to}
                 to={to}
                 end={exact}
                 onClick={() => setIsOpen(false)}
-                className={({ isActive }) =>
-                  `relative block !m-5 w-max !text-[#121212] transition-colors hover:!text-[#96BFCF]
-                  after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px]
-                  ${isActive ? 'after:bg-[#96BFCF]' : 'after:bg-transparent'}`
-                }
+                style={({ isActive }) => ({
+                  display: 'block',
+                  padding: '12px 0',
+                  color: isActive ? ON_STRIP : ON_STRIP_MUTED,
+                  fontSize: 14,
+                  fontWeight: isActive ? 600 : 400,
+                  textDecoration: 'none',
+                  borderBottom: '1px solid rgba(255,255,255,0.06)',
+                })}
               >
                 {label}
               </NavLink>

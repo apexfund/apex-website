@@ -28,7 +28,7 @@ export default function MarkdownPage() {
   if (!postContent) return <div className="p-8 text-center">Loading or Post not found.</div>;
 
   return (
-    <div style={{ position: 'relative', minHeight: '100vh', backgroundColor: '#ffffff' }}>
+    <div style={{ position: 'relative', minHeight: '100vh', backgroundColor: '#ffffff', paddingTop: 72 }}>
       <PlusBackground />
       {/* All content above the background pattern */}
       <div style={{ position: 'relative', zIndex: 1 }}>
