@@ -300,7 +300,7 @@ const Landing = () => {
             ].map((stat, i) => (
               <div
                 key={stat.label}
-                className="hero-slide"
+                className={`hero-slide ${i === 1 ? 'sm:text-center' : i === 2 ? 'sm:text-right' : ''}`}
                 style={{
                   animationDelay: `${0.46 + i * 0.13}s`,
                 }}
