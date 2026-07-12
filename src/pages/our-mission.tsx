@@ -212,7 +212,7 @@ export default function OurMission() {
           </div>
 
           {/* Text — left side, same margins as homepage */}
-          <div style={{ position: 'relative', zIndex: 1, maxWidth: 520, margin: '0 9% 0 8%' }}>
+          <div className="section-inner" style={{ position: 'relative', zIndex: 1, maxWidth: 520 }}>
             <div className="hero-slide" style={{ marginBottom: 20, animationDelay: '0.05s' }}>
               <span style={{ color: 'rgba(220,236,244,0.85)', fontSize: 11, fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
                 About Apex
@@ -243,7 +243,7 @@ export default function OurMission() {
 
         {/* Mission statement */}
         <section className="max-w-7xl mx-auto px-6 sm:px-8" style={{ paddingTop: 96, paddingBottom: 96 }}>
-          <div style={{ marginLeft: '8%', marginRight: '9%' }}>
+          <div className="section-inner">
           <div style={{ display: 'grid', gap: 48 }} className="lg:grid-cols-2 lg:gap-24 lg:items-start">
             <div>
               <div style={{ marginBottom: 20 }}>
@@ -286,7 +286,7 @@ export default function OurMission() {
 
         {/* Values */}
         <section className="max-w-7xl mx-auto px-6 sm:px-8" style={{ paddingTop: 96, paddingBottom: 96 }}>
-          <div style={{ marginLeft: '8%', marginRight: '9%' }}>
+          <div className="section-inner">
             <div style={{ marginBottom: 20 }}>
               <span style={{ color: ACCENT, fontSize: 11, fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
                 Our Values

@@ -198,7 +198,7 @@ const JoinUs = () => (
         </div>
 
         {/* Text — left side */}
-        <div style={{ position: 'relative', zIndex: 1, maxWidth: 520, margin: '0 9% 0 8%' }}>
+        <div className="section-inner" style={{ position: 'relative', zIndex: 1, maxWidth: 520 }}>
           <div className="hero-slide" style={{ marginBottom: 20, animationDelay: '0.05s' }}>
             <span style={{ color: 'rgba(220,236,244,0.85)', fontSize: 11, fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase' }}>Join Apex</span>
           </div>
@@ -217,7 +217,7 @@ const JoinUs = () => (
 
       {/* Why Apex + Placements */}
       <section className="max-w-7xl mx-auto px-6 sm:px-8" style={{ paddingTop: 96, paddingBottom: 96 }}>
-        <div style={{ marginLeft: '8%', marginRight: '9%' }}>
+        <div className="section-inner">
           <AccentLabel>Why Apex</AccentLabel>
           <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(32px,4vw,54px)', fontWeight: 400, lineHeight: 1.1, letterSpacing: '-0.02em', color: TEXT, margin: '0 0 48px 0' }}>
             Built to Launch Your Career.
@@ -250,13 +250,13 @@ const JoinUs = () => (
 
       {/* Investment Tracks */}
       <section className="max-w-7xl mx-auto px-6 sm:px-8" style={{ paddingTop: 96, paddingBottom: 96 }}>
-        <div style={{ marginLeft: '8%', marginRight: '9%' }}>
+        <div className="section-inner">
         <AccentLabel>Open Roles</AccentLabel>
         <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(32px,4vw,54px)', fontWeight: 400, lineHeight: 1.1, letterSpacing: '-0.02em', color: TEXT, margin: '0 0 48px 0' }}>Investment Tracks</h2>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
           {tracks.map(track => (
-            <div key={track.id} style={{ border: '1px solid rgba(0,0,0,0.1)', backgroundColor: 'rgba(255,255,255,0.65)', padding: '40px 44px' }}>
+            <div key={track.id} className="track-card" style={{ border: '1px solid rgba(0,0,0,0.1)', backgroundColor: 'rgba(255,255,255,0.65)' }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }} className="lg:flex-row lg:items-start lg:justify-between">
 
                 <div style={{ flex: 1 }}>
@@ -271,7 +271,7 @@ const JoinUs = () => (
                   <h3 style={{ fontFamily: SERIF, fontSize: 'clamp(28px,3vw,40px)', fontWeight: 400, letterSpacing: '-0.01em', color: TEXT, margin: '0 0 18px 0', lineHeight: 1.1 }}>{track.title}</h3>
                   <p style={{ fontSize: 15, color: '#4B5563', lineHeight: 1.75, maxWidth: 600, margin: '0 0 28px 0' }}>{track.description}</p>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
+                  <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 24 }}>
                     <div>
                       <p style={{ fontSize: 11, color: '#9CA3AF', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 600, margin: '0 0 8px 0' }}>Ideal Background</p>
                       <p style={{ fontSize: 14, color: '#4B5563', margin: 0, lineHeight: 1.6 }}>{track.ideal}</p>
@@ -303,7 +303,7 @@ const JoinUs = () => (
 
       {/* How to Apply */}
       <section className="max-w-7xl mx-auto px-6 sm:px-8" style={{ paddingTop: 96, paddingBottom: 96 }}>
-        <div style={{ marginLeft: '8%', marginRight: '9%' }}>
+        <div className="section-inner">
           <AccentLabel>Process</AccentLabel>
           <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(32px,4vw,54px)', fontWeight: 400, lineHeight: 1.1, letterSpacing: '-0.02em', color: TEXT, margin: '0 0 56px 0' }}>How to Apply</h2>
           <div style={{ display: 'grid', gap: 40 }} className="sm:grid-cols-2 lg:grid-cols-4">
