@@ -38,7 +38,7 @@ export default function Admin() {
   const [tab, setTab] = useState<'list' | 'write'>('list')
   const [deleteConfirm, setDeleteConfirm] = useState<Id<'articles'> | null>(null)
 
-  const articles = useQuery(api.articles.list) ?? []
+  const articles: ArticleDoc[] = useQuery(api.articles.list) ?? []
   const createArticle = useMutation(api.articles.create)
   const updateArticle = useMutation(api.articles.update)
   const removeArticle = useMutation(api.articles.remove)
