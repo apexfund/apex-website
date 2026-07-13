@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useQuery, useMutation } from 'convex/react'
 import { api } from '../../convex/_generated/api'
 import type { Id } from '../../convex/_generated/dataModel'
+import LogoManager from '../components/LogoManager'
 
 const SESSION_KEY = 'apexAdminToken'
 
@@ -40,7 +41,7 @@ export default function Admin() {
 
   const [form, setForm] = useState(emptyForm)
   const [editing, setEditing] = useState<Id<'articles'> | null>(null)
-  const [tab, setTab] = useState<'list' | 'write'>('list')
+  const [tab, setTab] = useState<'list' | 'write' | 'placements' | 'sponsors'>('list')
   const [deleteConfirm, setDeleteConfirm] = useState<Id<'articles'> | null>(null)
   const [saveError, setSaveError] = useState<string | null>(null)
 
@@ -152,7 +153,7 @@ export default function Admin() {
             {loginLoading ? 'Signing in…' : 'Sign In'}
           </button>
           <Link
-            to="/our-work"
+            to="/"
             style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, marginTop: 20, color: '#6B7280', fontSize: 13, textDecoration: 'none' }}
             onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = TEXT }}
             onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = '#6B7280' }}
@@ -160,7 +161,7 @@ export default function Admin() {
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M10 3L5 8L10 13" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            Back to Our Work
+            Back to Home
           </Link>
         </div>
       </div>
@@ -176,6 +177,8 @@ export default function Admin() {
         <div style={{ display: 'flex', gap: 24, alignItems: 'center' }}>
           <button onClick={() => { setTab('list'); setEditing(null); setForm(emptyForm) }} style={{ background: 'none', border: 'none', color: tab === 'list' ? '#fff' : 'rgba(220,240,250,0.5)', fontSize: 13, cursor: 'pointer', fontWeight: tab === 'list' ? 600 : 400 }}>Articles</button>
           <button onClick={() => { setTab('write'); setEditing(null); setForm(emptyForm) }} style={{ background: 'none', border: 'none', color: tab === 'write' ? '#fff' : 'rgba(220,240,250,0.5)', fontSize: 13, cursor: 'pointer', fontWeight: tab === 'write' ? 600 : 400 }}>+ New Article</button>
+          <button onClick={() => { setTab('placements'); setEditing(null); setForm(emptyForm) }} style={{ background: 'none', border: 'none', color: tab === 'placements' ? '#fff' : 'rgba(220,240,250,0.5)', fontSize: 13, cursor: 'pointer', fontWeight: tab === 'placements' ? 600 : 400 }}>Placements</button>
+          <button onClick={() => { setTab('sponsors'); setEditing(null); setForm(emptyForm) }} style={{ background: 'none', border: 'none', color: tab === 'sponsors' ? '#fff' : 'rgba(220,240,250,0.5)', fontSize: 13, cursor: 'pointer', fontWeight: tab === 'sponsors' ? 600 : 400 }}>Sponsors</button>
           <button
             onClick={handleLogout}
             style={{ background: 'none', border: '1px solid rgba(255,255,255,0.2)', color: 'rgba(220,240,250,0.6)', fontSize: 12, cursor: 'pointer', padding: '4px 12px', borderRadius: 2 }}
@@ -267,6 +270,26 @@ export default function Admin() {
               </div>
             </div>
           </div>
+        )}
+
+        {/* Placements — company logos */}
+        {tab === 'placements' && (
+          <LogoManager
+            sessionToken={sessionToken!}
+            apiModule={api.placements}
+            heading="Placements"
+            blurb="Upload transparent PNG company logos. They appear in the Member Placements section on the home page."
+          />
+        )}
+
+        {/* Sponsors — partner logos */}
+        {tab === 'sponsors' && (
+          <LogoManager
+            sessionToken={sessionToken!}
+            apiModule={api.sponsors as unknown as typeof api.placements}
+            heading="Sponsors"
+            blurb="Upload transparent PNG sponsor logos. They appear in the Sponsorships section on the home page."
+          />
         )}
       </div>
     </div>

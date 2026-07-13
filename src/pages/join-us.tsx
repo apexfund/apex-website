@@ -1,6 +1,8 @@
+import { useQuery } from "convex/react"
+import { api } from "../../convex/_generated/api"
 import Header from "../components/header"
 import Footer from "../components/footer"
-import PlacementsImg from "../assets/companies.png"
+import LogoShowcase from "../components/LogoShowcase"
 
 const HERO_GRADIENT = 'linear-gradient(145deg, #1B5470 0%, #2B7291 30%, #3E8DAA 65%, #6BAABF 100%)'
 const STRIP      = '#96BFCF'
@@ -162,7 +164,10 @@ function Divider() {
   return null
 }
 
-const JoinUs = () => (
+const JoinUs = () => {
+  const placements = useQuery(api.placements.list) ?? []
+
+  return (
   <div style={{ minHeight: '100vh', paddingTop: 72 }}>
     <style>{`
       @keyframes heroSlideIn {
@@ -237,11 +242,7 @@ const JoinUs = () => (
           </div>
           <div>
             <p style={{ fontSize: 13, color: '#9CA3AF', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 600, margin: '0 0 32px 0' }}>Where our members have gone</p>
-            <img
-              src={PlacementsImg}
-              alt="Company logos of member placements"
-              style={{ display: 'block', width: '100%', height: 'auto', opacity: 0.9 }}
-            />
+            <LogoShowcase logos={placements} emptyLabel="Placements will appear here soon." sizeScale={1.45} light />
           </div>
         </div>
       </section>
@@ -333,6 +334,7 @@ const JoinUs = () => (
 
     <Footer />
   </div>
-)
+  )
+}
 
 export default JoinUs

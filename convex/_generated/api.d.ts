@@ -10,6 +10,9 @@
 
 import type * as adminAuth from "../adminAuth.js";
 import type * as articles from "../articles.js";
+import type * as migrate from "../migrate.js";
+import type * as placements from "../placements.js";
+import type * as sponsors from "../sponsors.js";
 
 import type {
   ApiFromModules,
@@ -20,6 +23,9 @@ import type {
 declare const fullApi: ApiFromModules<{
   adminAuth: typeof adminAuth;
   articles: typeof articles;
+  migrate: typeof migrate;
+  placements: typeof placements;
+  sponsors: typeof sponsors;
 }>;
 
 /**

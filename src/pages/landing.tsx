@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useQuery } from "convex/react";
+import { api } from "../../convex/_generated/api";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import PlacementsImg from "../assets/companies.png";
-import SponsorshipsImg from "../assets/sponsors.png";
+import LogoShowcase from "../components/LogoShowcase";
 
 /* ─── tokens ─────────────────────────────────────────────── */
 const STRIP      = '#96BFCF'
@@ -198,6 +199,8 @@ function HeroGraphic() {
 /* ─── Landing page ─────────────────────────────────────── */
 const Landing = () => {
   const [animatedNumber, setAnimatedNumber] = useState(0)
+  const placements = useQuery(api.placements.list) ?? []
+  const sponsors = useQuery(api.sponsors.list) ?? []
 
   useEffect(() => {
     const duration = 5000, target = 9780, start = Date.now()
@@ -335,8 +338,8 @@ const Landing = () => {
             <p style={{ fontSize: 16, color: 'rgba(220,240,250,0.65)', lineHeight: 1.7, maxWidth: 500, margin: '0 0 48px 0' }}>
               Our members have secured positions at top firms in the industry, a testament to the skills gained through Apex.
             </p>
-            <div style={{ borderRadius: 16, padding: 32, background: 'rgba(220,240,250,0.04)', boxShadow: '0 4px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(220,240,250,0.08)', backdropFilter: 'blur(8px)' }}>
-              <img src={PlacementsImg} alt="Company logos of member placements" style={{ display: 'block', width: '100%', height: 'auto', opacity: 0.9, borderRadius: 8 }} />
+            <div style={{ padding: '8px 0' }}>
+              <LogoShowcase logos={placements} emptyLabel="Placements will appear here soon." sizeScale={1.45} />
             </div>
           </div>
         </section>
@@ -353,8 +356,8 @@ const Landing = () => {
             <p style={{ fontSize: 16, color: 'rgba(220,240,250,0.65)', lineHeight: 1.7, maxWidth: 500, margin: '0 0 48px 0' }}>
               We're grateful to partner with organizations that support Apex and our members.
             </p>
-            <div style={{ borderRadius: 16, padding: 32, background: 'rgba(220,240,250,0.04)', boxShadow: '0 4px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(220,240,250,0.08)', backdropFilter: 'blur(8px)' }}>
-              <img src={SponsorshipsImg} alt="Sponsor logos" style={{ display: 'block', width: '100%', height: 'auto', opacity: 0.9, borderRadius: 8 }} />
+            <div style={{ padding: '8px 0' }}>
+              <LogoShowcase logos={sponsors} emptyLabel="Sponsors will appear here soon." uniform />
             </div>
           </div>
         </section>

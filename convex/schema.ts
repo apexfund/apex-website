@@ -15,4 +15,16 @@ export default defineSchema({
     token: v.string(),
     createdAt: v.number(),
   }).index('by_token', ['token']),
+
+  placements: defineTable({
+    name: v.string(),
+    storageId: v.id('_storage'),
+    order: v.number(),
+  }),
+
+  sponsors: defineTable({
+    name: v.string(),
+    storageId: v.id('_storage'),
+    order: v.number(),
+  }),
 })
