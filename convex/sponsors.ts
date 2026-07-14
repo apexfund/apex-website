@@ -69,6 +69,26 @@ export const rename = mutation({
   },
 })
 
+export const replaceImage = mutation({
+  args: {
+    sessionToken: v.string(),
+    id: v.id('sponsors'),
+    storageId: v.id('_storage'),
+  },
+  returns: v.null(),
+  handler: async (ctx, { sessionToken, id, storageId }) => {
+    await requireAdminSession(ctx, sessionToken)
+    const doc = await ctx.db.get(id)
+    if (!doc) throw new Error('Sponsor not found')
+    const oldStorageId = doc.storageId
+    await ctx.db.patch(id, { storageId })
+    if (oldStorageId !== storageId) {
+      await ctx.storage.delete(oldStorageId)
+    }
+    return null
+  },
+})
+
 export const reorder = mutation({
   args: {
     sessionToken: v.string(),

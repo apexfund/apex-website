@@ -203,7 +203,7 @@ const Landing = () => {
   const sponsors = useQuery(api.sponsors.list) ?? []
 
   useEffect(() => {
-    const duration = 5000, target = 9780, start = Date.now()
+    const duration = 5000, target = 10000, start = Date.now()
     const animate = () => {
       const p = Math.min((Date.now() - start) / duration, 1)
       const eased = 1 - Math.pow(1 - p, 6)

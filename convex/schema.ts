@@ -9,6 +9,7 @@ export default defineSchema({
     description: v.optional(v.string()),
     content: v.string(),
     slug: v.string(),
+    images: v.optional(v.array(v.id('_storage'))),
   }).index('by_slug', ['slug']),
 
   adminSessions: defineTable({
@@ -26,5 +27,14 @@ export default defineSchema({
     name: v.string(),
     storageId: v.id('_storage'),
     order: v.number(),
+  }),
+
+  teamMembers: defineTable({
+    name: v.string(),
+    role: v.string(),
+    team: v.optional(v.string()),
+    execBoard: v.optional(v.boolean()),
+    linkedIn: v.optional(v.string()),
+    storageId: v.optional(v.id('_storage')),
   }),
 })

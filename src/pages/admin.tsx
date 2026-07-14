@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useQuery, useMutation } from 'convex/react'
 import { api } from '../../convex/_generated/api'
 import type { Id } from '../../convex/_generated/dataModel'
 import LogoManager from '../components/LogoManager'
+import TeamManager from '../components/TeamManager'
 
 const SESSION_KEY = 'apexAdminToken'
 
@@ -26,9 +27,18 @@ type ArticleDoc = {
   description?: string
   content: string
   slug: string
+  images?: Id<'_storage'>[]
 }
 
-const emptyForm = { title: '', date: new Date().toISOString().slice(0, 10), category: '', description: '', content: '', slug: '' }
+const emptyForm = {
+  title: '',
+  date: new Date().toISOString().slice(0, 10),
+  category: '',
+  description: '',
+  content: '',
+  slug: '',
+  images: [] as Id<'_storage'>[],
+}
 
 export default function Admin() {
   // Restore session from localStorage on mount
@@ -41,9 +51,12 @@ export default function Admin() {
 
   const [form, setForm] = useState(emptyForm)
   const [editing, setEditing] = useState<Id<'articles'> | null>(null)
-  const [tab, setTab] = useState<'list' | 'write' | 'placements' | 'sponsors'>('list')
+  const [tab, setTab] = useState<'list' | 'write' | 'placements' | 'sponsors' | 'team'>('list')
   const [deleteConfirm, setDeleteConfirm] = useState<Id<'articles'> | null>(null)
   const [saveError, setSaveError] = useState<string | null>(null)
+  const [imgUploading, setImgUploading] = useState(false)
+  const contentRef = useRef<HTMLTextAreaElement>(null)
+  const imageInputRef = useRef<HTMLInputElement>(null)
 
   // Always call hooks at top level
   const isSessionValid = useQuery(
@@ -57,6 +70,8 @@ export default function Admin() {
   const createArticle = useMutation(api.articles.create)
   const updateArticle = useMutation(api.articles.update)
   const removeArticle = useMutation(api.articles.remove)
+  const generateImageUploadUrl = useMutation(api.articles.generateUploadUrl)
+  const getImageUrl = useMutation(api.articles.getImageUrl)
 
   // Derive auth state: we have a token AND the server says it's valid
   // isSessionValid === undefined means still loading; treat as authed optimistically
@@ -91,10 +106,57 @@ export default function Admin() {
   }
 
   function startEdit(a: ArticleDoc) {
-    setForm({ title: a.title, date: a.date, category: a.category ?? '', description: a.description ?? '', content: a.content, slug: a.slug })
+    setForm({ title: a.title, date: a.date, category: a.category ?? '', description: a.description ?? '', content: a.content, slug: a.slug, images: a.images ?? [] })
     setEditing(a._id)
     setTab('write')
     setSaveError(null)
+  }
+
+  function insertIntoContent(snippet: string) {
+    const el = contentRef.current
+    setForm(f => {
+      const start = el?.selectionStart ?? f.content.length
+      const end = el?.selectionEnd ?? f.content.length
+      const before = f.content.slice(0, start)
+      const after = f.content.slice(end)
+      const lead = before === '' || before.endsWith('\n') ? '' : '\n'
+      const insert = `${lead}${snippet}\n`
+      const nextContent = before + insert + after
+      requestAnimationFrame(() => {
+        if (el) {
+          const caret = before.length + insert.length
+          el.focus()
+          el.setSelectionRange(caret, caret)
+        }
+      })
+      return { ...f, content: nextContent }
+    })
+  }
+
+  async function handleInsertImage(file: File) {
+    if (!sessionToken) return
+    if (!file.type.startsWith('image/')) {
+      setSaveError('Please choose an image file.')
+      return
+    }
+    setImgUploading(true)
+    setSaveError(null)
+    try {
+      const postUrl = await generateImageUploadUrl({ sessionToken })
+      const res = await fetch(postUrl, { method: 'POST', headers: { 'Content-Type': file.type }, body: file })
+      if (!res.ok) throw new Error('Image upload failed')
+      const { storageId } = await res.json()
+      const url = await getImageUrl({ sessionToken, storageId })
+      if (!url) throw new Error('Could not resolve image URL')
+      const alt = file.name.replace(/\.[^.]+$/, '')
+      insertIntoContent(`![${alt}](${url})`)
+      setForm(f => ({ ...f, images: [...f.images, storageId as Id<'_storage'>] }))
+    } catch (err) {
+      setSaveError(err instanceof Error ? err.message : 'Failed to upload image')
+    } finally {
+      setImgUploading(false)
+      if (imageInputRef.current) imageInputRef.current.value = ''
+    }
   }
 
   function resetForm() {
@@ -114,6 +176,7 @@ export default function Admin() {
       date: form.date,
       slug,
       content: form.content,
+      images: form.images,
       ...(form.category ? { category: form.category } : {}),
       ...(form.description ? { description: form.description } : {}),
     }
@@ -176,9 +239,9 @@ export default function Admin() {
         <span style={{ fontFamily: SERIF, color: '#DCF0F8', fontSize: 18 }}>Apex Admin</span>
         <div style={{ display: 'flex', gap: 24, alignItems: 'center' }}>
           <button onClick={() => { setTab('list'); setEditing(null); setForm(emptyForm) }} style={{ background: 'none', border: 'none', color: tab === 'list' ? '#fff' : 'rgba(220,240,250,0.5)', fontSize: 13, cursor: 'pointer', fontWeight: tab === 'list' ? 600 : 400 }}>Articles</button>
-          <button onClick={() => { setTab('write'); setEditing(null); setForm(emptyForm) }} style={{ background: 'none', border: 'none', color: tab === 'write' ? '#fff' : 'rgba(220,240,250,0.5)', fontSize: 13, cursor: 'pointer', fontWeight: tab === 'write' ? 600 : 400 }}>+ New Article</button>
           <button onClick={() => { setTab('placements'); setEditing(null); setForm(emptyForm) }} style={{ background: 'none', border: 'none', color: tab === 'placements' ? '#fff' : 'rgba(220,240,250,0.5)', fontSize: 13, cursor: 'pointer', fontWeight: tab === 'placements' ? 600 : 400 }}>Placements</button>
           <button onClick={() => { setTab('sponsors'); setEditing(null); setForm(emptyForm) }} style={{ background: 'none', border: 'none', color: tab === 'sponsors' ? '#fff' : 'rgba(220,240,250,0.5)', fontSize: 13, cursor: 'pointer', fontWeight: tab === 'sponsors' ? 600 : 400 }}>Sponsors</button>
+          <button onClick={() => { setTab('team'); setEditing(null); setForm(emptyForm) }} style={{ background: 'none', border: 'none', color: tab === 'team' ? '#fff' : 'rgba(220,240,250,0.5)', fontSize: 13, cursor: 'pointer', fontWeight: tab === 'team' ? 600 : 400 }}>Team</button>
           <button
             onClick={handleLogout}
             style={{ background: 'none', border: '1px solid rgba(255,255,255,0.2)', color: 'rgba(220,240,250,0.6)', fontSize: 12, cursor: 'pointer', padding: '4px 12px', borderRadius: 2 }}
@@ -193,7 +256,15 @@ export default function Admin() {
         {/* Article list */}
         {tab === 'list' && (
           <div>
-            <p style={{ fontFamily: SERIF, fontSize: 28, color: TEXT, margin: '0 0 32px 0' }}>Articles <span style={{ fontSize: 16, color: '#9CA3AF', fontFamily: 'sans-serif' }}>({articles.length})</span></p>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, margin: '0 0 32px 0' }}>
+              <p style={{ fontFamily: SERIF, fontSize: 28, color: TEXT, margin: 0 }}>Articles <span style={{ fontSize: 16, color: '#9CA3AF', fontFamily: 'sans-serif' }}>({articles.length})</span></p>
+              <button
+                onClick={() => { setTab('write'); setEditing(null); setForm(emptyForm) }}
+                style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '9px 18px', backgroundColor: TEXT, color: '#fff', border: 'none', fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}
+              >
+                + New Article
+              </button>
+            </div>
             {articles.length === 0 && (
               <div style={{ padding: '48px 0', textAlign: 'center', color: '#9CA3AF', fontSize: 15 }}>No articles yet. Click "+ New Article" to add one.</div>
             )}
@@ -249,13 +320,37 @@ export default function Admin() {
                 <input value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} style={inputStyle} placeholder="Short summary shown on the article list" />
               </div>
               <div>
-                <label style={labelStyle}>Content (Markdown) *</label>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginBottom: 6 }}>
+                  <label style={{ ...labelStyle, marginBottom: 0 }}>Content (Markdown) *</label>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                    {imgUploading && <span style={{ fontSize: 12, color: '#6B7280' }}>Uploading…</span>}
+                    <input
+                      ref={imageInputRef}
+                      type="file"
+                      accept="image/*"
+                      style={{ display: 'none' }}
+                      onChange={e => { const f = e.target.files?.[0]; if (f) void handleInsertImage(f) }}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => imageInputRef.current?.click()}
+                      disabled={imgUploading}
+                      style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '6px 12px', border: `1px solid ${ACCENT}`, backgroundColor: 'transparent', color: TEXT, fontSize: 12, fontWeight: 600, cursor: imgUploading ? 'not-allowed' : 'pointer', borderRadius: 3 }}
+                    >
+                      + Insert image
+                    </button>
+                  </div>
+                </div>
                 <textarea
+                  ref={contentRef}
                   value={form.content}
                   onChange={e => setForm(f => ({ ...f, content: e.target.value }))}
                   style={{ ...inputStyle, height: 380, resize: 'vertical', fontFamily: 'monospace', fontSize: 13, lineHeight: 1.6 }}
                   placeholder="Write your article in Markdown..."
                 />
+                <p style={{ fontSize: 12, color: '#9CA3AF', margin: '6px 0 0 0' }}>
+                  Click “Insert image” to upload a photo — it’s added as markdown (<code>![alt](url)</code>) at your cursor. You can also resize it with HTML, e.g. <code>&lt;img src="url" width="400" /&gt;</code>.
+                </p>
               </div>
               {saveError && (
                 <p style={{ fontSize: 13, color: '#EF4444', margin: 0 }}>{saveError}</p>
@@ -290,6 +385,11 @@ export default function Admin() {
             heading="Sponsors"
             blurb="Upload transparent PNG sponsor logos. They appear in the Sponsorships section on the home page."
           />
+        )}
+
+        {/* Team — member roster */}
+        {tab === 'team' && (
+          <TeamManager sessionToken={sessionToken!} />
         )}
       </div>
     </div>

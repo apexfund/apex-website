@@ -13,6 +13,7 @@ import type * as articles from "../articles.js";
 import type * as migrate from "../migrate.js";
 import type * as placements from "../placements.js";
 import type * as sponsors from "../sponsors.js";
+import type * as teamMembers from "../teamMembers.js";
 
 import type {
   ApiFromModules,
@@ -26,6 +27,7 @@ declare const fullApi: ApiFromModules<{
   migrate: typeof migrate;
   placements: typeof placements;
   sponsors: typeof sponsors;
+  teamMembers: typeof teamMembers;
 }>;
 
 /**

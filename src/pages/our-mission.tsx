@@ -24,11 +24,11 @@ const values = [
   },
   {
     title: 'Curiosity',
-    body: 'We question assumptions, dig deeper than the surface, and approach every market with the mindset of a perpetual learner.',
+    body: 'We question assumptions, dig deeper than the surface, and approach every problem with the mindset of a perpetual learner.',
   },
   {
     title: 'Humility',
-    body: 'Markets humble everyone. We stay open to being wrong, actively seek feedback, and know that the best ideas come from listening as much as speaking.',
+    body: 'We stay open to being wrong, actively seek feedback, and know that the best ideas come from listening as much as speaking.',
   },
 ]
 
@@ -268,7 +268,7 @@ export default function OurMission() {
               </p>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
                 {[
-                  { value: '~$9,780', label: 'Assets Under Management' },
+                  { value: '~$10,000', label: 'Assets Under Management' },
                   { value: '2020',    label: 'Year Founded' },
                   { value: '30+',     label: 'Investment Team Members' },
                   { value: '2',       label: 'Investment Tracks' },
