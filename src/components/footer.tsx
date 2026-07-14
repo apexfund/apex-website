@@ -97,17 +97,7 @@ return (
           }}
         >
           <span style={{ color: ON_STRIP_FAINT, fontSize: 12 }}>© {year} Apex Fund. All rights reserved.</span>
-          <span style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
-            <span style={{ color: ON_STRIP_FAINT, fontSize: 12 }}>University of Maryland, College Park</span>
-            <a
-              href="/admin"
-              style={{ color: ON_STRIP_FAINT, fontSize: 12, textDecoration: 'none', transition: 'color 0.2s' }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = ON_STRIP)}
-              onMouseLeave={(e) => (e.currentTarget.style.color = ON_STRIP_FAINT)}
-            >
-              Admin
-            </a>
-          </span>
+          <span style={{ color: ON_STRIP_FAINT, fontSize: 12 }}>University of Maryland, College Park</span>
         </div>
       </div>
     </div>
