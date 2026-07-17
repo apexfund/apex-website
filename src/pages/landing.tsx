@@ -234,7 +234,7 @@ const Landing = () => {
 
         <section
           className="max-w-7xl mx-auto px-6 sm:px-8"
-          style={{ position: 'relative', paddingTop: 80, paddingBottom: 80 }}
+          style={{ position: 'relative', paddingTop: 96, paddingBottom: 80 }}
         >
           {/* Mountain — background graphic, right side */}
           <div
@@ -242,7 +242,7 @@ const Landing = () => {
             style={{
               position: 'absolute',
               right: -100,
-              top: '-4%',
+              top: 20,
               width: '72%',
               pointerEvents: 'none',
             }}

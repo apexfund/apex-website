@@ -19,6 +19,14 @@ const inputStyle: React.CSSProperties = {
 
 const TEAM_OPTIONS = ['Quantitative Team', 'Fundamental Team']
 
+/** Ensures a URL is absolute so it isn't treated as a same-origin path. */
+function normalizeUrl(url: string): string | undefined {
+  const trimmed = url.trim()
+  if (!trimmed) return undefined
+  if (/^https?:\/\//i.test(trimmed)) return trimmed
+  return `https://${trimmed.replace(/^\/+/, '')}`
+}
+
 const emptyForm = { name: '', role: '', team: '', execBoard: false, linkedIn: '' }
 
 /**
@@ -94,7 +102,7 @@ export default function TeamManager({ sessionToken }: { sessionToken: string }) 
     setError(null)
     try {
       const storageId = pendingFile ? await uploadPhoto(pendingFile) : undefined
-      const linkedIn = form.linkedIn.trim() || undefined
+      const linkedIn = normalizeUrl(form.linkedIn)
       const team = form.team.trim() || undefined
       const execBoard = form.execBoard || undefined
       if (editing) {
@@ -215,7 +223,7 @@ export default function TeamManager({ sessionToken }: { sessionToken: string }) 
                   {m.execBoard ? 'Executive Board' : m.team}
                 </p>
               )}
-              {m.linkedIn && <a href={m.linkedIn} target="_blank" rel="noopener noreferrer" style={{ fontSize: 11, color: '#9CA3AF', textDecoration: 'none' }}>LinkedIn →</a>}
+              {m.linkedIn && <a href={normalizeUrl(m.linkedIn)} target="_blank" rel="noopener noreferrer" style={{ fontSize: 11, color: '#9CA3AF', textDecoration: 'none' }}>LinkedIn →</a>}
             </div>
             <div style={{ display: 'flex', gap: 8, width: '100%', marginTop: 4 }}>
               <button onClick={() => startEdit(m)} style={{ flex: 1, padding: '6px 0', border: `1px solid ${ACCENT}`, backgroundColor: 'transparent', color: TEXT, fontSize: 13, cursor: 'pointer' }}>Edit</button>

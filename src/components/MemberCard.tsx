@@ -12,8 +12,18 @@ interface MemberCardProps {
   linkedinUrl?: string
 }
 
+/** Ensures a URL is absolute so the browser doesn't treat it as a same-origin path. */
+function normalizeUrl(url?: string): string | undefined {
+  if (!url) return undefined
+  const trimmed = url.trim()
+  if (!trimmed) return undefined
+  if (/^https?:\/\//i.test(trimmed)) return trimmed
+  return `https://${trimmed.replace(/^\/+/, '')}`
+}
+
 const MemberCard: React.FC<MemberCardProps> = ({ name, role, team, bio, imageUrl, linkedinUrl }) => {
   const [hovered, setHovered] = useState(false)
+  const href = normalizeUrl(linkedinUrl)
 
   const card = (
     <div
@@ -75,8 +85,8 @@ const MemberCard: React.FC<MemberCardProps> = ({ name, role, team, bio, imageUrl
     </div>
   )
 
-  return linkedinUrl ? (
-    <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'block', textDecoration: 'none' }}>
+  return href ? (
+    <a href={href} target="_blank" rel="noopener noreferrer" style={{ display: 'block', textDecoration: 'none' }}>
       {card}
     </a>
   ) : (
