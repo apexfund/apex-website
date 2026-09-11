@@ -255,7 +255,7 @@ const Landing = () => {
             {/* Label — white variant for hero */}
             <div className="hero-slide" style={{ marginBottom: 20, animationDelay: '0.05s' }}>
               <span style={{ color: 'rgba(220,236,244,0.85)', fontSize: 11, fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
-                Student Investment Club · University of Maryland
+                Apex Fund · Est. 2020
               </span>
             </div>
 
