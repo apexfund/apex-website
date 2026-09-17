@@ -47,10 +47,11 @@ export const list = query({
     const sponsors = await ctx.db.query('sponsors').collect()
     sponsors.sort((a, b) => a.order - b.order)
     return await Promise.all(
-      sponsors.map(async (s) => ({
-        ...s,
-        url: await ctx.storage.getUrl(s.storageId),
-      }))
+      sponsors.map(async (s) => {
+        let url: string | null = null
+        try { url = await ctx.storage.getUrl(s.storageId) } catch { url = null }
+        return { ...s, url }
+      })
     )
   },
 })

@@ -51,10 +51,11 @@ export const list = query({
     const placements = await ctx.db.query('placements').collect()
     placements.sort((a, b) => a.order - b.order)
     return await Promise.all(
-      placements.map(async (p) => ({
-        ...p,
-        url: await ctx.storage.getUrl(p.storageId),
-      }))
+      placements.map(async (p) => {
+        let url: string | null = null
+        try { url = await ctx.storage.getUrl(p.storageId) } catch { url = null }
+        return { ...p, url }
+      })
     )
   },
 })
