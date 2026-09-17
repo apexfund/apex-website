@@ -34,7 +34,6 @@ export default defineSchema({
     role: v.string(),
     team: v.optional(v.string()),
     execBoard: v.optional(v.boolean()),
-    execOrder: v.optional(v.number()),
     linkedIn: v.optional(v.string()),
     storageId: v.optional(v.id('_storage')),
   }),

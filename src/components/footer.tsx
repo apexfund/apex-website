@@ -97,7 +97,7 @@ return (
           }}
         >
           <span style={{ color: ON_STRIP_FAINT, fontSize: 12 }}>© {year} Apex Fund. All rights reserved.</span>
-          <span style={{ color: ON_STRIP_FAINT, fontSize: 12 }}>An independent student organization at the University of Maryland, College Park. Not affiliated with or endorsed by UMD.</span>
+          <span style={{ color: ON_STRIP_FAINT, fontSize: 12 }}>University of Maryland, College Park</span>
         </div>
       </div>
     </div>

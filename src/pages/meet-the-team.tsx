@@ -155,19 +155,13 @@ type TeamMember = {
   role: string
   team: string | null
   execBoard: boolean
-  execOrder: number | null
   linkedIn: string | null
   url: string | null
 }
 
 const MeetTheTeam = () => {
   const members = useOptionalQuery<TeamMember[]>(api.teamMembers.list) ?? []
-  const executiveBoardMembers = [...members.filter(m => m.execBoard)].sort((a, b) => {
-    const aO = a.execOrder ?? Infinity
-    const bO = b.execOrder ?? Infinity
-    if (aO !== bO) return aO - bO
-    return (a.name.split(' ')[0] ?? '').localeCompare(b.name.split(' ')[0] ?? '', 'en')
-  })
+  const executiveBoardMembers = sortAlpha(members.filter(m => m.execBoard))
   const quantOther = sortAlpha(members.filter(m => !m.execBoard && m.team === 'Quantitative Team'))
   const fundOther = sortAlpha(members.filter(m => !m.execBoard && m.team === 'Fundamental Team'))
 

@@ -27,7 +27,7 @@ function normalizeUrl(url: string): string | undefined {
   return `https://${trimmed.replace(/^\/+/, '')}`
 }
 
-const emptyForm = { name: '', role: '', team: '', execBoard: false, execOrder: '', linkedIn: '' }
+const emptyForm = { name: '', role: '', team: '', execBoard: false, linkedIn: '' }
 
 /**
  * Admin UI for managing team members (photo, name, role, LinkedIn). Members are
@@ -69,9 +69,9 @@ export default function TeamManager({ sessionToken }: { sessionToken: string }) 
     if (fileInputRef.current) fileInputRef.current.value = ''
   }
 
-  function startEdit(m: { _id: Id<'teamMembers'>; name: string; role: string; team: string | null; execBoard: boolean; execOrder: number | null; linkedIn: string | null; url: string | null }) {
+  function startEdit(m: { _id: Id<'teamMembers'>; name: string; role: string; team: string | null; execBoard: boolean; linkedIn: string | null; url: string | null }) {
     setEditing(m._id)
-    setForm({ name: m.name, role: m.role, team: m.team ?? '', execBoard: m.execBoard, execOrder: m.execOrder != null ? String(m.execOrder) : '', linkedIn: m.linkedIn ?? '' })
+    setForm({ name: m.name, role: m.role, team: m.team ?? '', execBoard: m.execBoard, linkedIn: m.linkedIn ?? '' })
     setPendingFile(null)
     setPreviewUrl(m.url)
     setError(null)
@@ -105,11 +105,10 @@ export default function TeamManager({ sessionToken }: { sessionToken: string }) 
       const linkedIn = normalizeUrl(form.linkedIn)
       const team = form.team.trim() || undefined
       const execBoard = form.execBoard || undefined
-      const execOrder = form.execOrder.trim() ? Number(form.execOrder) : undefined
       if (editing) {
-        await updateMember({ sessionToken, id: editing, name, role, team, execBoard, execOrder, linkedIn, storageId })
+        await updateMember({ sessionToken, id: editing, name, role, team, execBoard, linkedIn, storageId })
       } else {
-        await createMember({ sessionToken, name, role, team, execBoard, execOrder, linkedIn, storageId })
+        await createMember({ sessionToken, name, role, team, execBoard, linkedIn, storageId })
       }
       resetForm()
     } catch (err) {
@@ -178,19 +177,11 @@ export default function TeamManager({ sessionToken }: { sessionToken: string }) 
                   {TEAM_OPTIONS.map(t => <option key={t} value={t}>{t}</option>)}
                 </select>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                <div style={{ display: 'flex', alignItems: 'center', paddingTop: 20 }}>
-                  <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 14, color: TEXT, cursor: 'pointer' }}>
-                    <input type="checkbox" checked={form.execBoard} onChange={e => setForm(f => ({ ...f, execBoard: e.target.checked }))} style={{ width: 16, height: 16, cursor: 'pointer' }} />
-                    Executive Board member
-                  </label>
-                </div>
-                {form.execBoard && (
-                  <div>
-                    <label style={labelStyle}>Exec Order</label>
-                    <input type="number" min="1" value={form.execOrder} onChange={e => setForm(f => ({ ...f, execOrder: e.target.value }))} style={{ ...inputStyle, width: 80 }} placeholder="1" />
-                  </div>
-                )}
+              <div style={{ display: 'flex', alignItems: 'flex-end', paddingBottom: 2 }}>
+                <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 14, color: TEXT, cursor: 'pointer' }}>
+                  <input type="checkbox" checked={form.execBoard} onChange={e => setForm(f => ({ ...f, execBoard: e.target.checked }))} style={{ width: 16, height: 16, cursor: 'pointer' }} />
+                  Executive Board member
+                </label>
               </div>
             </div>
             <div>

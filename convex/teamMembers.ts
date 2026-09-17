@@ -29,19 +29,17 @@ export const create = mutation({
     role: v.string(),
     team: v.optional(v.string()),
     execBoard: v.optional(v.boolean()),
-    execOrder: v.optional(v.number()),
     linkedIn: v.optional(v.string()),
     storageId: v.optional(v.id('_storage')),
   },
   returns: v.id('teamMembers'),
-  handler: async (ctx, { sessionToken, name, role, team, execBoard, execOrder, linkedIn, storageId }) => {
+  handler: async (ctx, { sessionToken, name, role, team, execBoard, linkedIn, storageId }) => {
     await requireAdminSession(ctx, sessionToken)
     return await ctx.db.insert('teamMembers', {
       name,
       role,
       ...(team ? { team } : {}),
       ...(execBoard ? { execBoard } : {}),
-      ...(execOrder != null ? { execOrder } : {}),
       ...(linkedIn ? { linkedIn } : {}),
       ...(storageId ? { storageId } : {}),
     })
@@ -57,7 +55,6 @@ export const list = query({
     role: v.string(),
     team: v.union(v.string(), v.null()),
     execBoard: v.boolean(),
-    execOrder: v.union(v.number(), v.null()),
     linkedIn: v.union(v.string(), v.null()),
     storageId: v.union(v.id('_storage'), v.null()),
     url: v.union(v.string(), v.null()),
@@ -73,7 +70,6 @@ export const list = query({
         role: m.role,
         team: m.team ?? null,
         execBoard: m.execBoard ?? false,
-        execOrder: m.execOrder ?? null,
         linkedIn: m.linkedIn ?? null,
         storageId: m.storageId ?? null,
         url: m.storageId ? await ctx.storage.getUrl(m.storageId) : null,
@@ -90,12 +86,11 @@ export const update = mutation({
     role: v.string(),
     team: v.optional(v.string()),
     execBoard: v.optional(v.boolean()),
-    execOrder: v.optional(v.number()),
     linkedIn: v.optional(v.string()),
     storageId: v.optional(v.id('_storage')),
   },
   returns: v.null(),
-  handler: async (ctx, { sessionToken, id, name, role, team, execBoard, execOrder, linkedIn, storageId }) => {
+  handler: async (ctx, { sessionToken, id, name, role, team, execBoard, linkedIn, storageId }) => {
     await requireAdminSession(ctx, sessionToken)
     const doc = await ctx.db.get(id)
     if (!doc) throw new Error('Team member not found')
@@ -104,7 +99,6 @@ export const update = mutation({
       role,
       team: team && team.trim() ? team : undefined,
       execBoard: execBoard ? true : undefined,
-      execOrder: execOrder != null ? execOrder : undefined,
       linkedIn: linkedIn && linkedIn.trim() ? linkedIn : undefined,
       ...(storageId ? { storageId } : {}),
     })

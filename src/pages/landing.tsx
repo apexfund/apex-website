@@ -1,5 +1,4 @@
-import { useState, useEffect, Component } from "react";
-import type { ReactNode } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
@@ -198,16 +197,10 @@ function HeroGraphic() {
 /* ─── Shared sub-components ─────────────────────────────── */
 
 /* ─── Landing page ─────────────────────────────────────── */
-type LogoItem = { _id: string; name: string; url: string | null }
-
-function LandingDataLoader() {
+const Landing = () => {
+  const [animatedNumber, setAnimatedNumber] = useState(0)
   const placements = useQuery(api.placements.list) ?? []
   const sponsors = useQuery(api.sponsors.list) ?? []
-  return <Landing placements={placements} sponsors={sponsors} />
-}
-
-const Landing = ({ placements = [], sponsors = [] }: { placements?: LogoItem[], sponsors?: LogoItem[] }) => {
-  const [animatedNumber, setAnimatedNumber] = useState(0)
 
   useEffect(() => {
     const duration = 5000, target = 10000, start = Date.now()
@@ -262,7 +255,7 @@ const Landing = ({ placements = [], sponsors = [] }: { placements?: LogoItem[], 
             {/* Label — white variant for hero */}
             <div className="hero-slide" style={{ marginBottom: 20, animationDelay: '0.05s' }}>
               <span style={{ color: 'rgba(220,236,244,0.85)', fontSize: 11, fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
-                Apex Fund · Est. 2020
+                Apex Fund · University of Maryland
               </span>
             </div>
 
@@ -399,19 +392,4 @@ const Landing = ({ placements = [], sponsors = [] }: { placements?: LogoItem[], 
   )
 }
 
-class ConvexErrorBoundary extends Component<{ children: ReactNode }, { error: boolean }> {
-  state = { error: false }
-  static getDerivedStateFromError() { return { error: true } }
-  render() {
-    if (this.state.error) return <Landing />
-    return this.props.children
-  }
-}
-
-export default function LandingWithBoundary() {
-  return (
-    <ConvexErrorBoundary>
-      <LandingDataLoader />
-    </ConvexErrorBoundary>
-  )
-}
+export default Landing
