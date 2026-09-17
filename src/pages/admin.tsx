@@ -5,6 +5,7 @@ import { api } from '../../convex/_generated/api'
 import type { Id } from '../../convex/_generated/dataModel'
 import LogoManager from '../components/LogoManager'
 import TeamManager from '../components/TeamManager'
+import ConvexErrorBoundary from '../components/ConvexErrorBoundary'
 
 const SESSION_KEY = 'apexAdminToken'
 
@@ -40,7 +41,7 @@ const emptyForm = {
   images: [] as Id<'_storage'>[],
 }
 
-export default function Admin() {
+function Admin() {
   // Restore session from localStorage on mount
   const [sessionToken, setSessionToken] = useState<string | null>(
     () => localStorage.getItem(SESSION_KEY)
@@ -393,6 +394,14 @@ export default function Admin() {
         )}
       </div>
     </div>
+  )
+}
+
+export default function AdminPage() {
+  return (
+    <ConvexErrorBoundary fallback={<div style={{ padding: 40, fontFamily: 'sans-serif' }}>Convex connection error — check the Convex dashboard at dashboard.convex.dev</div>}>
+      <Admin />
+    </ConvexErrorBoundary>
   )
 }
 
