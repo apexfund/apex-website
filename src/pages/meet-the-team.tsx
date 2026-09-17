@@ -1,4 +1,5 @@
 import { useQuery } from 'convex/react'
+import ConvexErrorBoundary from '../components/ConvexErrorBoundary'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import MemberCard from '../components/MemberCard'
@@ -159,8 +160,7 @@ type TeamMember = {
   url: string | null
 }
 
-const MeetTheTeam = () => {
-  const members = useOptionalQuery<TeamMember[]>(api.teamMembers.list) ?? []
+const MeetTheTeam = ({ members = [] }: { members?: TeamMember[] }) => {
   const executiveBoardMembers = sortAlpha(members.filter(m => m.execBoard))
   const quantOther = sortAlpha(members.filter(m => !m.execBoard && m.team === 'Quantitative Team'))
   const fundOther = sortAlpha(members.filter(m => !m.execBoard && m.team === 'Fundamental Team'))
@@ -311,4 +311,11 @@ const MeetTheTeam = () => {
   )
 }
 
-export default MeetTheTeam
+function MeetTheTeamData() {
+  const members = useOptionalQuery<TeamMember[]>(api.teamMembers.list) ?? []
+  return <MeetTheTeam members={members} />
+}
+
+export default function MeetTheTeamPage() {
+  return <ConvexErrorBoundary fallback={<MeetTheTeam members={[]} />}><MeetTheTeamData /></ConvexErrorBoundary>
+}

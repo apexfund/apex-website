@@ -5,6 +5,7 @@ import Footer from '../components/footer'
 import { useQuery } from 'convex/react'
 import { api } from '../../convex/_generated/api'
 import type { PostMeta } from '../utils/posts'
+import ConvexErrorBoundary from '../components/ConvexErrorBoundary'
 
 const HERO_GRADIENT = 'linear-gradient(145deg, #1B5470 0%, #2B7291 30%, #3E8DAA 65%, #6BAABF 100%)'
 const ACCENT = '#96BFCF'
@@ -136,14 +137,12 @@ function useOptionalQuery(query: any) {
   return hasConvex ? useQuery(query) : undefined
 }
 
-export default function OurWork() {
+function OurWork({ articles }: { articles?: any[] }) {
   const [search, setSearch] = useState('')
+  const isLoading = articles === undefined
+  const safeArticles = articles ?? []
 
-  const rawArticles = useOptionalQuery(api.articles.list)
-  const isLoading = rawArticles === undefined
-  const articles = rawArticles ?? []
-
-  const posts: { meta: PostMeta }[] = articles.map((a: any) => ({
+  const posts: { meta: PostMeta }[] = safeArticles.map((a: any) => ({
     meta: {
       title: a.title,
       date: a.date,
@@ -309,4 +308,13 @@ export default function OurWork() {
       <Footer />
     </div>
   )
+}
+
+function OurWorkData() {
+  const articles = useOptionalQuery(api.articles.list)
+  return <OurWork articles={articles as any[]} />
+}
+
+export default function OurWorkPage() {
+  return <ConvexErrorBoundary fallback={<OurWork articles={[]} />}><OurWorkData /></ConvexErrorBoundary>
 }

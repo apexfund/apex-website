@@ -1,5 +1,6 @@
 import { useQuery } from "convex/react"
 import { api } from "../../convex/_generated/api"
+import ConvexErrorBoundary from "../components/ConvexErrorBoundary"
 import Header from "../components/header"
 import Footer from "../components/footer"
 import LogoShowcase from "../components/LogoShowcase"
@@ -164,8 +165,7 @@ function Divider() {
   return null
 }
 
-const JoinUs = () => {
-  const placements = useQuery(api.placements.list) ?? []
+const JoinUs = ({ placements = [] }: { placements?: { _id: string; name: string; url: string | null }[] }) => {
 
   return (
   <div style={{ minHeight: '100vh', paddingTop: 72 }}>
@@ -337,4 +337,11 @@ const JoinUs = () => {
   )
 }
 
-export default JoinUs
+function JoinUsData() {
+  const placements = useQuery(api.placements.list) ?? []
+  return <JoinUs placements={placements} />
+}
+
+export default function JoinUsPage() {
+  return <ConvexErrorBoundary fallback={<JoinUs placements={[]} />}><JoinUsData /></ConvexErrorBoundary>
+}
