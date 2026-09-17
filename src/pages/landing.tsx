@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Component } from "react";
+import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
@@ -197,10 +198,9 @@ function HeroGraphic() {
 /* ─── Shared sub-components ─────────────────────────────── */
 
 /* ─── Landing page ─────────────────────────────────────── */
-const Landing = () => {
+type Logo = { _id: string; name: string; url: string | null }
+const Landing = ({ placements = [], sponsors = [] }: { placements?: Logo[], sponsors?: Logo[] }) => {
   const [animatedNumber, setAnimatedNumber] = useState(0)
-  const placements = useQuery(api.placements.list) ?? []
-  const sponsors = useQuery(api.sponsors.list) ?? []
 
   useEffect(() => {
     const duration = 5000, target = 10000, start = Date.now()
@@ -392,4 +392,18 @@ const Landing = () => {
   )
 }
 
-export default Landing
+class ConvexBoundary extends Component<{ children: ReactNode }, { dead: boolean }> {
+  state = { dead: false }
+  static getDerivedStateFromError() { return { dead: true } }
+  render() { return this.state.dead ? <Landing /> : this.props.children }
+}
+
+function LandingWithData() {
+  const placements = useQuery(api.placements.list) ?? []
+  const sponsors = useQuery(api.sponsors.list) ?? []
+  return <Landing placements={placements} sponsors={sponsors} />
+}
+
+export default function LandingPage() {
+  return <ConvexBoundary><LandingWithData /></ConvexBoundary>
+}
