@@ -1,5 +1,6 @@
 import { query, mutation, type MutationCtx } from './_generated/server'
 import { v } from 'convex/values'
+import { fileUrl } from './storageUrl'
 
 async function requireAdminSession(ctx: MutationCtx, token: string) {
   const session = await ctx.db
@@ -52,9 +53,8 @@ export const list = query({
     placements.sort((a, b) => a.order - b.order)
     return await Promise.all(
       placements.map(async (p) => {
-        let url: string | null = null
-        try { url = await ctx.storage.getUrl(p.storageId) } catch { url = null }
-        return { ...p, url }
+        const meta = await ctx.db.system.get('_storage', p.storageId)
+        return { ...p, url: meta ? fileUrl(p.storageId) : null }
       })
     )
   },

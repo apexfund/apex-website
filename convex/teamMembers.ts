@@ -1,5 +1,6 @@
 import { query, mutation, type MutationCtx } from './_generated/server'
 import { v } from 'convex/values'
+import { fileUrl } from './storageUrl'
 
 async function requireAdminSession(ctx: MutationCtx, token: string) {
   const session = await ctx.db
@@ -63,17 +64,20 @@ export const list = query({
     const members = await ctx.db.query('teamMembers').collect()
     members.sort((a, b) => a.name.localeCompare(b.name, 'en', { sensitivity: 'base' }))
     return await Promise.all(
-      members.map(async (m) => ({
-        _id: m._id,
-        _creationTime: m._creationTime,
-        name: m.name,
-        role: m.role,
-        team: m.team ?? null,
-        execBoard: m.execBoard ?? false,
-        linkedIn: m.linkedIn ?? null,
-        storageId: m.storageId ?? null,
-        url: m.storageId ? await ctx.storage.getUrl(m.storageId) : null,
-      }))
+      members.map(async (m) => {
+        const meta = m.storageId ? await ctx.db.system.get('_storage', m.storageId) : null
+        return {
+          _id: m._id,
+          _creationTime: m._creationTime,
+          name: m.name,
+          role: m.role,
+          team: m.team ?? null,
+          execBoard: m.execBoard ?? false,
+          linkedIn: m.linkedIn ?? null,
+          storageId: m.storageId ?? null,
+          url: meta && m.storageId ? fileUrl(m.storageId) : null,
+        }
+      })
     )
   },
 })

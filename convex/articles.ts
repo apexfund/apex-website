@@ -1,5 +1,6 @@
 import { query, mutation, type MutationCtx } from './_generated/server'
 import { v } from 'convex/values'
+import { fileUrl } from './storageUrl'
 
 async function requireAdminSession(ctx: MutationCtx, token: string) {
   const session = await ctx.db
@@ -59,7 +60,7 @@ export const getImageUrl = mutation({
   returns: v.union(v.string(), v.null()),
   handler: async (ctx, { sessionToken, storageId }) => {
     await requireAdminSession(ctx, sessionToken)
-    return await ctx.storage.getUrl(storageId)
+    return fileUrl(storageId)
   },
 })
 
