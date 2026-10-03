@@ -8,6 +8,8 @@ import { resizeImage } from '../lib/imageResize'
 // stored file well above that (with retina headroom) instead of serving
 // whatever resolution was uploaded.
 const MAX_LOGO_DIMENSION = 600
+// Hard cap on the uploaded file (after resizing); larger logos are rejected.
+const MAX_LOGO_BYTES = 500 * 1024
 
 const SERIF = 'Georgia, serif'
 const TEXT = '#0C1929'
@@ -109,7 +111,7 @@ export default function LogoManager({
   }, [dragIndex])
 
   async function uploadFileToStorage(file: File): Promise<Id<'_storage'>> {
-    const resized = await resizeImage(file, MAX_LOGO_DIMENSION)
+    const resized = await resizeImage(file, MAX_LOGO_DIMENSION, MAX_LOGO_BYTES)
     const postUrl = await generateUploadUrl({ sessionToken })
     const res = await fetch(postUrl, {
       method: 'POST',

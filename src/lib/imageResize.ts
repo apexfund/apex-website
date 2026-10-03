@@ -6,7 +6,7 @@
  * PNGs are kept as PNG (logos rely on transparency); everything else is
  * re-encoded as JPEG.
  */
-export async function resizeImage(file: File, maxDimension: number, quality = 0.85): Promise<File> {
+async function resize(file: File, maxDimension: number, quality: number): Promise<File> {
   if (!file.type.startsWith('image/') || file.type === 'image/svg+xml') return file
 
   let bitmap: ImageBitmap
@@ -41,4 +41,30 @@ export async function resizeImage(file: File, maxDimension: number, quality = 0.
 
   const name = outputType === 'image/jpeg' ? file.name.replace(/\.[^.]+$/, '.jpg') : file.name
   return new File([blob], name, { type: outputType })
+}
+
+const MAX_INPUT_BYTES = 30 * 1024 * 1024
+
+function formatMB(bytes: number) {
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`
+}
+
+/**
+ * Downscale `file` (see `resize`) and then enforce a hard size cap on what
+ * actually gets uploaded. Throws a user-readable error if the result is still
+ * over `maxBytes` — e.g. a huge PNG that doesn't compress, or a file the
+ * browser can't decode so it couldn't be shrunk at all.
+ */
+export async function resizeImage(file: File, maxDimension: number, maxBytes: number, quality = 0.85): Promise<File> {
+  if (file.size > MAX_INPUT_BYTES) {
+    throw new Error(`That image is ${formatMB(file.size)}. Please choose one under ${formatMB(MAX_INPUT_BYTES)}.`)
+  }
+  const out = await resize(file, maxDimension, quality)
+  if (out.size > maxBytes) {
+    throw new Error(
+      `That image is still ${formatMB(out.size)} after resizing; the limit is ${formatMB(maxBytes)}. ` +
+      'Please choose a smaller or more compressed image.',
+    )
+  }
+  return out
 }

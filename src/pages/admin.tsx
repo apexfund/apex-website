@@ -18,6 +18,8 @@ const ACCENT = '#96BFCF'
 // that (with retina headroom) instead of serving whatever resolution the
 // original upload was.
 const MAX_ARTICLE_IMAGE_DIMENSION = 1600
+// Hard cap on the uploaded file (after resizing); larger images are rejected.
+const MAX_ARTICLE_IMAGE_BYTES = 1.5 * 1024 * 1024
 
 function slugify(title: string) {
   return title
@@ -149,7 +151,7 @@ function Admin() {
     setImgUploading(true)
     setSaveError(null)
     try {
-      const resized = await resizeImage(file, MAX_ARTICLE_IMAGE_DIMENSION)
+      const resized = await resizeImage(file, MAX_ARTICLE_IMAGE_DIMENSION, MAX_ARTICLE_IMAGE_BYTES)
       const postUrl = await generateImageUploadUrl({ sessionToken })
       const res = await fetch(postUrl, { method: 'POST', headers: { 'Content-Type': resized.type }, body: resized })
       if (!res.ok) throw new Error('Image upload failed')

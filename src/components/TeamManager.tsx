@@ -8,6 +8,8 @@ import { resizeImage } from '../lib/imageResize'
 // cap the stored file well above that (with retina headroom) instead of
 // serving whatever resolution the original upload was.
 const MAX_PHOTO_DIMENSION = 320
+// Hard cap on the uploaded file (after resizing); larger photos are rejected.
+const MAX_PHOTO_BYTES = 500 * 1024
 
 const SERIF = 'Georgia, serif'
 const TEXT = '#0C1929'
@@ -86,7 +88,7 @@ export default function TeamManager({ sessionToken }: { sessionToken: string }) 
   }
 
   async function uploadPhoto(file: File): Promise<Id<'_storage'>> {
-    const resized = await resizeImage(file, MAX_PHOTO_DIMENSION)
+    const resized = await resizeImage(file, MAX_PHOTO_DIMENSION, MAX_PHOTO_BYTES)
     const postUrl = await generateUploadUrl({ sessionToken })
     const res = await fetch(postUrl, {
       method: 'POST',

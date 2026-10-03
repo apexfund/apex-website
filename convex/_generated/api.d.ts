@@ -10,9 +10,12 @@
 
 import type * as adminAuth from "../adminAuth.js";
 import type * as articles from "../articles.js";
+import type * as http from "../http.js";
+import type * as maintenance from "../maintenance.js";
 import type * as migrate from "../migrate.js";
 import type * as placements from "../placements.js";
 import type * as sponsors from "../sponsors.js";
+import type * as storageUrl from "../storageUrl.js";
 import type * as teamMembers from "../teamMembers.js";
 
 import type {
@@ -24,9 +27,12 @@ import type {
 declare const fullApi: ApiFromModules<{
   adminAuth: typeof adminAuth;
   articles: typeof articles;
+  http: typeof http;
+  maintenance: typeof maintenance;
   migrate: typeof migrate;
   placements: typeof placements;
   sponsors: typeof sponsors;
+  storageUrl: typeof storageUrl;
   teamMembers: typeof teamMembers;
 }>;
 
