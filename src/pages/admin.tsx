@@ -6,12 +6,18 @@ import type { Id } from '../../convex/_generated/dataModel'
 import LogoManager from '../components/LogoManager'
 import TeamManager from '../components/TeamManager'
 import ConvexErrorBoundary from '../components/ConvexErrorBoundary'
+import { resizeImage } from '../lib/imageResize'
 
 const SESSION_KEY = 'apexAdminToken'
 
 const SERIF = 'Georgia, serif'
 const TEXT = '#0C1929'
 const ACCENT = '#96BFCF'
+
+// Article body copy tops out around 860px wide; cap inline images well above
+// that (with retina headroom) instead of serving whatever resolution the
+// original upload was.
+const MAX_ARTICLE_IMAGE_DIMENSION = 1600
 
 function slugify(title: string) {
   return title
@@ -143,8 +149,9 @@ function Admin() {
     setImgUploading(true)
     setSaveError(null)
     try {
+      const resized = await resizeImage(file, MAX_ARTICLE_IMAGE_DIMENSION)
       const postUrl = await generateImageUploadUrl({ sessionToken })
-      const res = await fetch(postUrl, { method: 'POST', headers: { 'Content-Type': file.type }, body: file })
+      const res = await fetch(postUrl, { method: 'POST', headers: { 'Content-Type': resized.type }, body: resized })
       if (!res.ok) throw new Error('Image upload failed')
       const { storageId } = await res.json()
       const url = await getImageUrl({ sessionToken, storageId })

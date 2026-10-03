@@ -2,6 +2,12 @@ import { useRef, useState } from 'react'
 import { useQuery, useMutation } from 'convex/react'
 import { api } from '../../convex/_generated/api'
 import type { Id } from '../../convex/_generated/dataModel'
+import { resizeImage } from '../lib/imageResize'
+
+// Photos never render larger than ~104px on the public site or in admin;
+// cap the stored file well above that (with retina headroom) instead of
+// serving whatever resolution the original upload was.
+const MAX_PHOTO_DIMENSION = 320
 
 const SERIF = 'Georgia, serif'
 const TEXT = '#0C1929'
@@ -80,11 +86,12 @@ export default function TeamManager({ sessionToken }: { sessionToken: string }) 
   }
 
   async function uploadPhoto(file: File): Promise<Id<'_storage'>> {
+    const resized = await resizeImage(file, MAX_PHOTO_DIMENSION)
     const postUrl = await generateUploadUrl({ sessionToken })
     const res = await fetch(postUrl, {
       method: 'POST',
-      headers: { 'Content-Type': file.type },
-      body: file,
+      headers: { 'Content-Type': resized.type },
+      body: resized,
     })
     if (!res.ok) throw new Error('Photo upload failed')
     const { storageId } = await res.json()
